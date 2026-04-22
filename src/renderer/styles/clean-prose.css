@@ -1,0 +1,66 @@
+/* ─────────────────────────────────────────────────────────────────────────────
+   Clean Prose — Sprint 5.3-A
+   Typography-first editor styling: hides markdown syntax, shows styled text
+   ───────────────────────────────────────────────────────────────────────────── */
+
+/* === Heading Styles (Serif font from preview settings) === */
+.cm-clean-h1 { font-family: var(--preview-heading-font, Georgia, serif); font-size: 2em; font-weight: 700; line-height: 1.3; }
+.cm-clean-h2 { font-family: var(--preview-heading-font, Georgia, serif); font-size: 1.6em; font-weight: 700; line-height: 1.35; }
+.cm-clean-h3 { font-family: var(--preview-heading-font, Georgia, serif); font-size: 1.3em; font-weight: 600; line-height: 1.4; }
+.cm-clean-h4 { font-family: var(--preview-heading-font, Georgia, serif); font-size: 1.1em; font-weight: 600; line-height: 1.4; }
+.cm-clean-h5 { font-family: var(--preview-heading-font, Georgia, serif); font-size: 1em; font-weight: 600; }
+.cm-clean-h6 { font-family: var(--preview-heading-font, Georgia, serif); font-size: 0.9em; font-weight: 600; }
+
+/* === Inline Styles === */
+.cm-clean-bold   { font-weight: bold; }
+.cm-clean-italic { font-style: italic; }
+
+/* === Clean Prose mode: relax line-height across all lines === */
+.cm-editor.clean-prose-active .cm-line {
+  line-height: 1.75;
+}
+
+/* === Preview Detach Placeholder — Sprint 5.4-B === */
+.preview-detached-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  gap: 16px;
+  color: var(--text-muted);
+}
+
+.pdp-icon { opacity: 0.4; }
+
+.pdp-text {
+  font-size: 14px;
+  font-family: var(--font-ui);
+}
+
+.pdp-btn {
+  padding: 8px 20px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--bg-panel);
+  color: var(--text-primary);
+  cursor: pointer;
+  font-family: var(--font-ui);
+  transition: background 150ms ease;
+}
+
+.pdp-btn:hover {
+  background: var(--gold);
+  color: var(--text-on-accent);
+}
+
+/* === Smooth Caret — Sprint 5.3-B === */
+/* Only transition left/top — never opacity/transform/height to avoid typing lag */
+.cm-editor.clean-prose-active .cm-cursor {
+  transition: left 80ms ease-out, top 80ms ease-out;
+}
+
+/* Kill transition on secondary cursor (drag-select) to prevent lag */
+.cm-editor.clean-prose-active .cm-cursor.cm-cursor-secondary {
+  transition: none;
+}

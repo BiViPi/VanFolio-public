@@ -1,0 +1,691 @@
+/* ─────────────────────────────────────────────────────────────────────────────
+   VanFolio — Theme: Van Botanical (Light/Editorial)
+   "Editorial Minimalism | Fern & Sage | Parchment Paper"
+   ───────────────────────────────────────────────────────────────────────────── */
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   LAYER 1: TOKEN BLOCK (Canonical)
+   ───────────────────────────────────────────────────────────────────────── */
+[data-theme="van-botanical"] {
+  /* ── App Shell ── */
+  --surface-app: #D9E8D2;
+  --surface-shell: rgba(236, 232, 220, 0.78);
+  --surface-sidebar: rgba(80, 115, 74, 0.76);
+  --surface-panel: rgba(243, 239, 228, 0.82);
+  --surface-editor: #FAFAF5;
+  --surface-preview: #F7F4EE;
+
+  /* ── Glass Spec Tokens ── */
+  --glass-tint-botanical: rgba(224, 236, 217, 0.44);
+  --glass-highlight: rgba(255, 255, 255, 0.76);
+
+  /* ── Overlay & Modal ── */
+  --surface-modal: #F2EEE5;
+  --surface-card: #FAF9F5;
+
+  /* ── Input & Interactive Component ── */
+  --surface-input: rgba(90, 140, 81, 0.12);
+
+  /* ── Active / Hover States ── */
+  --surface-hover: rgba(90, 140, 81, 0.09);
+  --surface-active: rgba(90, 140, 81, 0.16);
+
+  /* ── Primary Text Layers ── */
+  --text-primary: #263525;
+  --text-secondary: #4D6B4B;
+  --text-muted: #7E9D7C;
+  --text-on-accent: #FFFFFF;
+
+  /* ── Navigation Text ── */
+  --text-sidebar-default: rgba(255, 255, 255, 0.82);
+  --text-sidebar-active: #FAFAF5;
+  --text-sidebar-muted: #A0BA9C;
+  --text-toc-default: #4D6B4B;
+  --text-toc-active: #263525;
+
+  /* ── Accent Tokens ── */
+  --accent: #5A8C51;
+  --accent-rgb: 90, 140, 81;
+  --accent-bright: #82AA78;
+  --accent-dim: #3E5B3A;
+
+  /* ── Border Tokens ── */
+  --border-subtle: rgba(160, 190, 150, 0.45);
+  --border-default: rgba(130, 170, 120, 0.60);
+  --border-strong: rgba(90, 140, 81, 0.80);
+
+  /* ── Popup & Tooltip Tokens ── */
+  --popup-bg: #F2EEE5;
+  --popup-bg-subtle: #EBE5D5;
+  --popup-text: #263525;
+  --popup-text-muted: #7E9D7C;
+  --popup-border: rgba(90, 140, 81, 0.2);
+  --popup-shadow: 0 32px 80px rgba(27, 45, 27, 0.3);
+  --popup-overlay: rgba(27, 45, 27, 0.4);
+  --popup-accent-text: #FFFFFF;
+
+  --tooltip-bg: rgba(246, 242, 232, 0.98);
+  --tooltip-text: #365033;
+  --tooltip-border: rgba(90, 140, 81, 0.22);
+  --tooltip-shadow: 0 16px 34px rgba(27, 45, 27, 0.18);
+
+  /* ── Layout & Editor Tokens ── */
+  --bento-radius: 12px;
+  --bento-shadow: 0 10px 30px -5px rgba(27, 45, 27, 0.12);
+  --bento-border: 1px solid rgba(160, 190, 150, 0.45);
+
+  --selection-bg: rgba(90, 140, 81, 0.15);
+
+  --syn-heading: #263525;
+  --syn-bold: #1B2D1B;
+  --syn-italic: #4D6B4B;
+  --syn-code: #5A8C51;
+  --syn-link: #3E5B3A;
+  --syn-punct: #7E9D7C;
+
+  --doc-heading: #263525;
+  --doc-accent: #5A8C51;
+  --doc-border: rgba(90, 140, 81, 0.22);
+  --doc-border-subtle: rgba(90, 140, 81, 0.12);
+  --doc-code-bg: rgba(90, 140, 81, 0.08);
+
+  /* ── State & Alert Tokens ── */
+  --color-success: #5A8C51;
+  --color-error: #A04040;
+  --focus-ring: 0 0 0 2px rgba(90, 140, 81, 0.4);
+
+  /* ── Component Specific Surface Tokens (Phase 1) ── */
+  --search-panel-bg: rgba(242, 238, 229, 0.98);
+  --search-panel-border: var(--border-default);
+  --search-panel-rim: rgba(255, 255, 255, 0.1);
+
+  --ai-palette-bg: rgba(250, 250, 245, 0.98);
+  --ai-palette-border: var(--accent);
+  --ai-palette-placeholder: var(--text-muted);
+
+  --toolbar-bg: linear-gradient(180deg, rgba(245, 242, 233, 0.78) 0%, rgba(226, 236, 219, 0.66) 100%);
+  --toolbar-border: rgba(130, 170, 120, 0.36);
+  --toolbar-shadow: 0 14px 34px rgba(27, 45, 27, 0.14);
+
+  --toc-header-bg: var(--surface-shell);
+  --toc-header-text: var(--text-secondary);
+
+  --ruler-bg: var(--accent-dim);
+  --ruler-shadow: 0 0 10px rgba(90, 140, 81, 0.25);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   LAYER 2: ALIAS BLOCK (Backward Compatibility)
+   ───────────────────────────────────────────────────────────────────────── */
+[data-theme="van-botanical"] {
+  /* ── Surface aliases ── */
+  --bg-sidebar: var(--surface-sidebar);
+  --bg-panel: var(--surface-panel);
+  --bg-editor: var(--surface-editor);
+  --bg-titlebar: var(--surface-shell);
+  --bg-input: var(--surface-input);
+  --bg-panel-rgb: 232, 226, 212;
+
+  /* ── Accent aliases ── */
+  --gold: var(--accent);
+  --gold-rgb: var(--accent-rgb);
+  --gold-bright: var(--accent-bright);
+  --gold-dim: var(--accent-dim);
+  --green-bright: var(--accent-bright);
+  --green-mid: var(--accent);
+  --green-dark: var(--accent-dim);
+
+  /* ── Border aliases ── */
+  --border: var(--border-default);
+  --border-light: var(--border-subtle);
+  --glass-rim: var(--border-subtle);
+
+  /* ── Text aliases ── */
+  --text-ink: var(--text-primary);
+
+  /* ── Legacy Document/Preview aliases ── */
+  --cream: #FAFAF5;
+  --cream-rgb: 250, 250, 245;
+  --cream-dim: #F2EEE5;
+
+  /* ── Legacy State aliases ── */
+  --sidebar-active-bg: var(--surface-active);
+  --sidebar-active-text: var(--text-sidebar-active);
+
+  /* ── Popup aliases ── */
+  --chronicle-popup-bg: var(--popup-bg);
+  --chronicle-popup-bg-strong: var(--popup-bg-subtle);
+  --chronicle-popup-text: var(--popup-text);
+  --chronicle-popup-text-muted: var(--popup-text-muted);
+  --chronicle-popup-border: var(--popup-border);
+  --chronicle-popup-shadow: var(--popup-shadow);
+  --chronicle-popup-overlay: var(--popup-overlay);
+
+  /* ── Semantic aliases ── */
+  --accent-primary: var(--accent);
+  --state-hover: var(--surface-hover);
+  --state-active: var(--surface-active);
+  --divider: var(--border-subtle);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   LAYER 3: EFFECT BLOCK (Design Specific)
+   ───────────────────────────────────────────────────────────────────────── */
+/* BACKGROUND_STRATEGY: PROCEDURAL */
+[data-theme="van-botanical"] #app {
+  background-color: var(--surface-app) !important;
+  position: relative;
+  overflow: hidden;
+}
+
+[data-theme="van-botanical"] #app::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: url("../assets/botanical-vibe.png");
+  background-size: cover;
+  background-position: center;
+  filter: blur(4px) saturate(130%) brightness(1.05);
+  transform: scale(1.04);
+  opacity: 0.72;
+}
+
+[data-theme="van-botanical"] #app::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  opacity: 1;
+  mix-blend-mode: soft-light;
+}
+
+[data-theme="van-botanical"] body,
+[data-theme="van-botanical"] #main-content {
+  background: transparent !important;
+}
+
+/* ── Environmental Blurs & Liquid Glass ── */
+
+/* A. Shell Glass (Layer 1) */
+[data-theme="van-botanical"] #titlebar,
+[data-theme="van-botanical"] #statusbar {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.32) 0%, rgba(220, 238, 210, 0.18) 100%) !important;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.90) inset,
+    0 -1px 0 rgba(130, 170, 120, 0.22) inset,
+    0 4px 24px rgba(27, 45, 27, 0.10) !important;
+  backdrop-filter: blur(28px) saturate(200%) brightness(1.12) !important;
+  -webkit-backdrop-filter: blur(28px) saturate(200%) brightness(1.12) !important;
+}
+
+[data-theme="van-botanical"] #titlebar {
+  border-bottom: 1px solid rgba(130, 170, 120, 0.44) !important;
+}
+
+[data-theme="van-botanical"] #statusbar {
+  border-top: 1px solid rgba(130, 170, 120, 0.44) !important;
+}
+
+[data-theme="van-botanical"] #titlebar,
+[data-theme="van-botanical"] #titlebar * {
+  color: var(--text-primary) !important;
+}
+
+html[data-theme="van-botanical"] #statusbar,
+html[data-theme="van-botanical"] #statusbar * {
+  color: var(--text-secondary) !important;
+}
+
+[data-theme="van-botanical"] .menu-btn,
+[data-theme="van-botanical"] .menu-dd-item,
+html[data-theme="van-botanical"] #statusbar,
+html[data-theme="van-botanical"] #statusbar span,
+html[data-theme="van-botanical"] #statusbar .status-btn,
+html[data-theme="van-botanical"] #statusbar .status-btn span,
+html[data-theme="van-botanical"] #statusbar .statusbar-left,
+html[data-theme="van-botanical"] #statusbar .statusbar-right,
+[data-theme="van-botanical"] .status-static {
+  color: var(--text-primary) !important;
+}
+
+[data-theme="van-botanical"] .menu-shortcut {
+  color: var(--text-secondary) !important;
+}
+
+[data-theme="van-botanical"] #titlebar .win-controls button,
+[data-theme="van-botanical"] .titlebar-toggle-btn {
+  color: var(--text-secondary) !important;
+}
+
+[data-theme="van-botanical"] .menu-dd-item.menu-dd-disabled,
+[data-theme="van-botanical"] .menu-dd-item.menu-dd-disabled * {
+  color: var(--text-muted) !important;
+}
+
+[data-theme="van-botanical"] #titlebar .wordmark-van {
+  color: var(--text-primary) !important;
+}
+
+[data-theme="van-botanical"] #titlebar .wordmark-folio {
+  color: var(--accent-dim) !important;
+}
+
+/* B. Icon Sidebar — solid fern green, không dùng glass */
+[data-theme="van-botanical"] #icon-sidebar {
+  background:
+    linear-gradient(180deg, rgba(98, 144, 89, 0.76) 0%, rgba(58, 88, 54, 0.70) 100%),
+    linear-gradient(135deg, rgba(183, 214, 169, 0.12) 0%, rgba(255, 255, 255, 0.04) 100%) !important;
+  border-right: 1px solid rgba(130, 170, 120, 0.34) !important;
+  box-shadow:
+    2px 0 18px rgba(27, 45, 27, 0.12),
+    inset -1px 0 0 rgba(198, 221, 190, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.16) !important;
+  backdrop-filter: blur(18px) saturate(145%) !important;
+  -webkit-backdrop-filter: blur(18px) saturate(145%) !important;
+}
+
+/* C. Secondary Sidebar / TOC Panel Glass — neutral lens */
+html [data-theme="van-botanical"] #secondary-sidebar,
+html [data-theme="van-botanical"] #toc-sidebar,
+html [data-theme="van-botanical"] .cm-panel.cm-search,
+html [data-theme="van-botanical"] #ai-palette {
+  background:
+    linear-gradient(160deg, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0.10) 100%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.32) !important;
+  box-shadow:
+    0 12px 40px rgba(27, 45, 27, 0.16),
+    inset 0 1px 0 rgba(255, 255, 255, 0.90),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.12) !important;
+  backdrop-filter: blur(24px) saturate(220%) brightness(1.10) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(220%) brightness(1.10) !important;
+  border-radius: 14px !important;
+}
+
+[data-theme="van-botanical"] #secondary-sidebar .sidebar-header,
+[data-theme="van-botanical"] .toc-header-bar {
+  background: rgba(238, 243, 232, 0.58) !important;
+  color: var(--text-secondary) !important;
+}
+
+[data-theme="van-botanical"] #secondary-sidebar .sidebar-title,
+[data-theme="van-botanical"] #secondary-sidebar .sidebar-empty,
+[data-theme="van-botanical"] #secondary-sidebar .tree-file,
+[data-theme="van-botanical"] #secondary-sidebar .tree-folder,
+[data-theme="van-botanical"] #toc-content a {
+  color: var(--text-secondary) !important;
+}
+
+[data-theme="van-botanical"] #secondary-sidebar .sidebar-action-btn,
+[data-theme="van-botanical"] #secondary-sidebar .recent-remove {
+  color: var(--text-secondary) !important;
+}
+
+[data-theme="van-botanical"] #secondary-sidebar .sidebar-action-btn:hover,
+[data-theme="van-botanical"] #secondary-sidebar .recent-remove:hover,
+[data-theme="van-botanical"] #secondary-sidebar .tree-file:hover,
+[data-theme="van-botanical"] #secondary-sidebar .tree-folder:hover,
+[data-theme="van-botanical"] #toc-content a:hover {
+  color: var(--text-primary) !important;
+}
+
+[data-theme="van-botanical"] #toc-content a.toc-active,
+[data-theme="van-botanical"] #secondary-sidebar .tree-file.active {
+  color: var(--text-primary) !important;
+}
+
+/* Keep content panels matte; toolbar gets separate glass cap for contrast */
+[data-theme="van-botanical"] #preview-toolbar {
+  background: var(--toolbar-bg) !important;
+  border: 1px solid var(--toolbar-border) !important;
+  box-shadow:
+    var(--toolbar-shadow),
+    inset 0 1px 0 rgba(255, 255, 255, 0.62) !important;
+  backdrop-filter: blur(16px) saturate(142%) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(142%) !important;
+}
+
+[data-theme="van-botanical"] #preview-toolbar .ptb-btn,
+[data-theme="van-botanical"] #preview-toolbar .ptb-circle-btn,
+[data-theme="van-botanical"] #preview-toolbar .ptb-zoom-label {
+  color: var(--text-secondary) !important;
+}
+
+/* D. Modal Glass (Layer 2) */
+[data-theme="van-botanical"] .s-modal,
+[data-theme="van-botanical"] #export-modal,
+[data-theme="van-botanical"] #shortcuts-modal,
+[data-theme="van-botanical"] #about-modal,
+[data-theme="van-botanical"] #docs-modal {
+  background:
+    linear-gradient(180deg, rgba(252, 250, 244, 0.94) 0%, rgba(241, 237, 227, 0.88) 100%),
+    linear-gradient(135deg, rgba(220, 236, 212, 0.18) 0%, rgba(255, 255, 255, 0.08) 100%) !important;
+  border: 1px solid rgba(130, 170, 120, 0.38) !important;
+  box-shadow:
+    0 24px 64px rgba(27, 45, 27, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.82) !important;
+  backdrop-filter: blur(22px) saturate(145%) !important;
+  -webkit-backdrop-filter: blur(22px) saturate(145%) !important;
+  border-radius: 16px !important;
+}
+
+/* Docs modal — 3-zone contrast */
+[data-theme="van-botanical"] #docs-modal .shortcuts-header,
+[data-theme="van-botanical"] #docs-modal .docs-nav {
+  background: rgba(209, 229, 201, 0.60) !important;
+}
+
+[data-theme="van-botanical"] #docs-modal .docs-nav {
+  border-right: 1px solid rgba(130, 170, 120, 0.30) !important;
+}
+
+[data-theme="van-botanical"] #docs-modal .shortcuts-header {
+  border-bottom: 1px solid rgba(130, 170, 120, 0.30) !important;
+}
+
+[data-theme="van-botanical"] #docs-modal .docs-content {
+  background: #FAFAF5 !important;
+}
+
+/* E. Popup / Toast Glass (Layer 3) */
+[data-theme="van-botanical"] .toast,
+[data-theme="van-botanical"] .upgrade-prompt,
+[data-theme="van-botanical"] .in-page-confirm-box {
+  background:
+    linear-gradient(170deg, rgba(255, 255, 255, 0.78) 0%, rgba(235, 244, 229, 0.68) 100%),
+    linear-gradient(135deg, rgba(215, 235, 206, 0.24) 0%, rgba(255, 255, 255, 0.08) 100%) !important;
+  border: 1px solid rgba(130, 170, 120, 0.42) !important;
+  box-shadow:
+    0 28px 72px rgba(27, 45, 27, 0.22),
+    0 10px 22px rgba(27, 45, 27, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.84) !important;
+  backdrop-filter: blur(20px) saturate(150%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(150%) !important;
+  border-radius: 18px !important;
+}
+
+[data-theme="van-botanical"] .in-page-confirm-overlay {
+  background: rgba(27, 45, 27, 0.20) !important;
+}
+
+[data-theme="van-botanical"] .in-page-confirm-box {
+  max-width: 360px;
+  padding: 24px 28px !important;
+}
+
+[data-theme="van-botanical"] .in-page-confirm-box p {
+  color: var(--text-primary) !important;
+  font-size: 15px !important;
+  line-height: 1.45 !important;
+  margin: 0 0 18px !important;
+}
+
+[data-theme="van-botanical"] .in-page-confirm-btns {
+  gap: 10px !important;
+}
+
+[data-theme="van-botanical"] .btn-confirm-cancel,
+[data-theme="van-botanical"] .btn-confirm-ok {
+  min-width: 92px;
+  min-height: 36px;
+  padding: 0 14px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: var(--font-ui);
+  box-shadow: none;
+  transition: transform 160ms ease, box-shadow 160ms ease, background-color 160ms ease, border-color 160ms ease, color 160ms ease;
+}
+
+[data-theme="van-botanical"] .btn-confirm-cancel {
+  background: rgba(250, 250, 245, 0.58) !important;
+  border: 1px solid rgba(130, 170, 120, 0.34) !important;
+  color: var(--text-primary) !important;
+}
+
+[data-theme="van-botanical"] .btn-confirm-ok {
+  background: linear-gradient(180deg, rgba(98, 144, 89, 0.96) 0%, rgba(62, 91, 58, 0.96) 100%) !important;
+  color: var(--text-on-accent) !important;
+  border: 1px solid rgba(62, 91, 58, 0.72) !important;
+  box-shadow:
+    0 10px 22px rgba(27, 45, 27, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18) !important;
+}
+
+[data-theme="van-botanical"] .btn-confirm-cancel:hover,
+[data-theme="van-botanical"] .btn-confirm-ok:hover {
+  transform: translateY(-1px);
+}
+
+[data-theme="van-botanical"] .btn-confirm-cancel:hover {
+  background: rgba(242, 238, 229, 0.86) !important;
+  border-color: rgba(130, 170, 120, 0.46) !important;
+}
+
+[data-theme="van-botanical"] .btn-confirm-ok:hover {
+  background: linear-gradient(180deg, rgba(114, 163, 104, 0.98) 0%, rgba(72, 107, 67, 0.98) 100%) !important;
+}
+
+[data-theme="van-botanical"] .status-sep {
+  color: var(--text-muted) !important;
+}
+
+[data-theme="van-botanical"] #secondary-sidebar {
+  margin: 12px 0 12px 12px !important;
+}
+
+[data-theme="van-botanical"] #toc-sidebar {
+  margin: 0 !important;
+}
+
+[data-theme="van-botanical"] #editor-panel {
+  margin: 0 !important;
+}
+
+[data-theme="van-botanical"] #preview-panel {
+  margin: 0 !important;
+}
+
+[data-theme="van-botanical"] #panels {
+  padding: 12px !important;
+}
+
+[data-theme="van-botanical"] #status-saved-dot {
+  display: inline-block !important;
+  background-color: var(--accent) !important;
+  width: 7px !important;
+  height: 7px !important;
+  margin-right: 4px;
+}
+
+/* Modal Open Animation */
+@keyframes botanical-glass-reveal {
+  from {
+    opacity: 0;
+    transform: scale(0.98) translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+[data-theme="van-botanical"] .s-modal,
+[data-theme="van-botanical"] #export-modal,
+[data-theme="van-botanical"] #shortcuts-modal,
+[data-theme="van-botanical"] #about-modal,
+[data-theme="van-botanical"] #docs-modal {
+  animation: botanical-glass-reveal 280ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Panel Slide In Animation */
+@keyframes botanical-panel-in {
+  from {
+    opacity: 0;
+    transform: translateX(-8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+[data-theme="van-botanical"] #secondary-sidebar,
+[data-theme="van-botanical"] #toc-sidebar {
+  animation: botanical-panel-in 250ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Interactions */
+[data-theme="van-botanical"] .icon-btn,
+[data-theme="van-botanical"] .menu-btn,
+[data-theme="van-botanical"] .modal-tab {
+  transition: transform 180ms ease, opacity 180ms ease, color 180ms ease !important;
+}
+
+[data-theme="van-botanical"] .icon-btn:hover,
+[data-theme="van-botanical"] .menu-btn:hover,
+[data-theme="van-botanical"] .modal-tab:hover {
+  transform: translateY(-1px) !important;
+}
+
+[data-theme="van-botanical"] .icon-btn:active,
+[data-theme="van-botanical"] .menu-btn:active,
+[data-theme="van-botanical"] .modal-tab:active {
+  transform: scale(0.96) !important;
+}
+
+/* Fallbacks */
+@media (prefers-reduced-motion: reduce) {
+
+  [data-theme="van-botanical"] .s-modal,
+  [data-theme="van-botanical"] #export-modal,
+  [data-theme="van-botanical"] #shortcuts-modal,
+  [data-theme="van-botanical"] #about-modal,
+  [data-theme="van-botanical"] #docs-modal,
+  [data-theme="van-botanical"] #secondary-sidebar,
+  [data-theme="van-botanical"] #toc-sidebar {
+    animation: none !important;
+  }
+}
+
+@supports not (backdrop-filter: blur(1px)) {
+
+  [data-theme="van-botanical"] #titlebar,
+  [data-theme="van-botanical"] #statusbar {
+    background: rgba(218, 232, 210, 0.96) !important;
+  }
+
+  [data-theme="van-botanical"] .s-modal,
+  [data-theme="van-botanical"] #export-modal,
+  [data-theme="van-botanical"] #shortcuts-modal,
+  [data-theme="van-botanical"] #about-modal,
+  [data-theme="van-botanical"] #docs-modal {
+    background: rgba(242, 238, 229, 0.98) !important;
+  }
+
+  [data-theme="van-botanical"] #icon-sidebar {
+    background: rgba(80, 115, 74, 0.96) !important;
+  }
+
+  [data-theme="van-botanical"] #secondary-sidebar,
+  [data-theme="van-botanical"] #toc-sidebar,
+  [data-theme="van-botanical"] .cm-panel.cm-search,
+  [data-theme="van-botanical"] #ai-palette {
+    background: rgba(232, 240, 225, 0.96) !important;
+  }
+
+  [data-theme="van-botanical"] .toast,
+  [data-theme="van-botanical"] .upgrade-prompt,
+  [data-theme="van-botanical"] .in-page-confirm-box {
+    background: rgba(236, 244, 231, 0.98) !important;
+  }
+}
+
+/* ── Preview Content Customizations (Parchment Paper Styling) ── */
+[data-theme="van-botanical"] .preview-page hr {
+  border: none !important;
+  border-top: 1.5px solid var(--border-default) !important;
+  margin: 2.2em 0 !important;
+  opacity: 0.7 !important;
+}
+
+[data-theme="van-botanical"] .preview-page blockquote {
+  border-left: 4.5px solid var(--accent) !important;
+  background: rgba(90, 140, 81, 0.04) !important;
+  padding: 14px 22px !important;
+  margin: 1.8em 0 !important;
+  color: var(--text-secondary) !important;
+  font-style: italic !important;
+}
+
+[data-theme="van-botanical"] .preview-page table {
+  border-collapse: collapse !important;
+  width: 100% !important;
+  margin: 1.5em 0 !important;
+  border: 1.5px solid var(--border-default) !important;
+}
+
+[data-theme="van-botanical"] .preview-page th,
+[data-theme="van-botanical"] .preview-page td {
+  border: 1px solid var(--border-subtle) !important;
+  padding: 10px 14px !important;
+}
+
+[data-theme="van-botanical"] .preview-page th {
+  background: var(--surface-active) !important;
+  color: var(--text-primary) !important;
+  font-weight: 700 !important;
+  text-align: left !important;
+}
+
+[data-theme="van-botanical"] .preview-page a {
+  text-underline-offset: 4px !important;
+  text-decoration-thickness: 1.5px !important;
+  font-weight: 500 !important;
+}
+
+[data-theme="van-botanical"] .preview-page a:hover {
+  opacity: 0.8 !important;
+}
+
+/* ── Custom Component Overrides ── */
+[data-theme="van-botanical"] .docs-content code {
+  color: var(--accent) !important;
+  background: rgba(90, 140, 81, 0.1) !important;
+}
+
+/* ── Zen Mode: Botanical Paperwork ── */
+[data-zen-theme="botanical"] {
+  --zen-bg: var(--surface-app);
+  --zen-canvas-bg: var(--surface-editor);
+  --zen-canvas-text: var(--text-primary);
+  --zen-canvas-border: var(--border-default);
+  --zen-canvas-shadow: 0 40px 100px rgba(27, 45, 27, 0.25);
+  --zen-accent: var(--accent);
+  --zen-line-num: var(--text-muted);
+  --zen-muted: var(--text-muted);
+  --zen-status-bg: linear-gradient(180deg, rgba(244, 247, 240, 0.9) 0%, rgba(232, 238, 224, 0.94) 100%);
+  --zen-status-border: var(--border-subtle);
+}
+
+[data-theme='van-botanical'] #zen-overlay::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-image: url("../assets/botanical-vibe.png") !important;
+  background-size: cover !important;
+  filter: blur(15px) saturate(160%) !important;
+  transform: scale(1.05);
+  opacity: 0.85;
+}
+
+[data-theme='van-botanical'] #zen-canvas {
+  box-shadow: 0 40px 120px rgba(27, 45, 27, 0.35) !important;
+}

@@ -1,0 +1,1019 @@
+/* ─────────────────────────────────────────────────────────────────────────────
+   VanFolio — Main Layout & Components
+   ⚠️ Do NOT hardcode colors — use var(--token) ONLY
+   Sprint 0 (S0-5) + Sprint 1 (S1-1)
+   ───────────────────────────────────────────────────────────────────────────── */
+
+/* ── Custom Scrollbar (thin, subtle — Chromium/Electron only) ────────────── */
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--green-mid);
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* Editor (CodeMirror) uses an even thinner scrollbar */
+.cm-scroller::-webkit-scrollbar {
+  width: 3px;
+  height: 3px;
+}
+
+.cm-scroller::-webkit-scrollbar-thumb {
+  background: var(--border-light);
+}
+
+::selection {
+  background: var(--selection-bg);
+  color: inherit;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+  font-family: var(--font-ui);
+  font-size: 13px;
+  color: var(--text-primary);
+  background: var(--bg-app);
+  user-select: none;
+  -webkit-user-select: none;
+  color-scheme: dark;
+  /* Force dark context for native components across the app */
+}
+
+/* ── Form Elements (Reset & Theme Parity) ────────────────────────────────── */
+input[type="text"],
+input[type="number"] {
+  background: var(--bg-input);
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 6px 10px;
+  font-family: inherit;
+  font-size: 12.5px;
+  outline: none;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+input:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 2px rgba(var(--gold-rgb), 0.15);
+}
+
+/* ── Luxury Custom Select Component ─────────────────────────────────────────── */
+.lux-select {
+  position: relative;
+  width: 100%;
+  user-select: none;
+  font-family: var(--font-ui);
+  z-index: 1;
+  /* Base z-index */
+}
+
+.lux-select.open {
+  z-index: 10001;
+  /* Higher than any bento card or typical UI layer */
+}
+
+/* Parent card promotion when dropdown is open (fixes stacking context with backdrop-filter) */
+.lux-active-card,
+.lux-active-pane {
+  z-index: 10000 !important;
+  position: relative !important;
+}
+
+.lux-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--surface-modal, #1C2424);
+  color: var(--text-primary, #E2E3DE);
+  border: 1px solid var(--border-default, rgba(56, 178, 172, 0.3));
+  border-radius: 6px;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: all 0.2s ease;
+}
+
+.lux-trigger:hover {
+  border-color: var(--border-strong, rgba(56, 178, 172, 0.5));
+}
+
+.lux-select.open .lux-trigger {
+  border-color: var(--accent-bright, var(--green-bright));
+  box-shadow: 0 0 0 2px rgba(var(--accent-rgb, 56, 178, 172), 0.1);
+}
+
+.lux-trigger .lux-icon {
+  font-size: 18px;
+  color: var(--accent, var(--green-mid));
+  transition: transform 0.2s ease;
+}
+
+.lux-select.open .lux-icon {
+  transform: rotate(180deg);
+}
+
+.lux-options {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  background: var(--surface-modal, #1C2424);
+  border: 1px solid var(--border-default, rgba(56, 178, 172, 0.4));
+  border-radius: 8px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6);
+  z-index: 1000;
+  display: none;
+  max-height: 240px;
+  overflow-y: auto;
+  padding: 4px;
+}
+
+.lux-select.open .lux-options {
+  display: block;
+}
+
+.lux-option {
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  color: var(--text-secondary, #B0BEC5);
+  transition: all 0.15s ease;
+  font-size: 12.5px;
+}
+
+.lux-option-group {
+  padding: 8px 12px 4px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  opacity: 0.8;
+  cursor: default;
+}
+
+.lux-option:hover {
+  background: rgba(var(--accent-rgb, 56, 178, 172), 0.1);
+  color: var(--text-primary, #FFFFFF);
+}
+
+.lux-option.active {
+  background: rgba(var(--accent-rgb, 56, 178, 172), 0.2);
+  color: var(--accent-bright, var(--green-bright));
+  font-weight: 500;
+}
+
+/* Scrollbar for custom dropdown */
+.lux-options::-webkit-scrollbar {
+  width: 4px;
+}
+
+.lux-options::-webkit-scrollbar-thumb {
+  background: rgba(var(--accent-rgb, 56, 178, 172), 0.2);
+  border-radius: 4px;
+}
+
+/* Hidden native select for compatibility */
+.lux-select select {
+  display: none;
+}
+
+/* ── App Window ──────────────────────────────────────────────────────────── */
+#app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* ── Titlebar ─────────────────────────────────────────────────────────────── */
+#titlebar {
+  display: flex;
+  align-items: center;
+  height: var(--titlebar-h);
+  background: var(--surface-shell, var(--bg-titlebar));
+  border-bottom: 1px solid var(--border-subtle, transparent);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    inset 0 -1px 0 rgba(143, 122, 96, 0.08),
+    0 2px 8px rgba(86, 69, 50, 0.08);
+  -webkit-app-region: drag;
+  /* ⚠️ drag region */
+  flex-shrink: 0;
+  z-index: 100;
+}
+
+#titlebar .titlebar-logo {
+  padding: 0 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  -webkit-app-region: no-drag;
+  flex-shrink: 0;
+}
+
+.logo-icon {
+  flex-shrink: 0;
+}
+
+.wordmark {
+  display: none;
+}
+
+.wordmark-van {
+  color: var(--text-secondary);
+  font-weight: 400;
+}
+
+.wordmark-folio {
+  color: var(--gold);
+  font-weight: 400;
+}
+
+#titlebar .titlebar-menu {
+  display: flex;
+  gap: 2px;
+  -webkit-app-region: no-drag;
+}
+
+.titlebar-spacer {
+  flex: 1;
+  -webkit-app-region: drag;
+}
+
+#titlebar-toggles {
+  display: flex;
+  align-items: center;
+  gap: 1px;
+  padding: 0 8px;
+  -webkit-app-region: no-drag;
+}
+
+.titlebar-toggle-btn {
+  width: 30px;
+  height: var(--titlebar-h);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  border-radius: 4px;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: background var(--transition-fast), color var(--transition-fast);
+}
+
+.titlebar-toggle-btn:hover {
+  background: var(--bg-input);
+  color: var(--text-primary);
+}
+
+.titlebar-toggle-btn.active {
+  color: var(--gold);
+}
+
+.titlebar-toggle-btn.panel-hidden {
+  color: var(--text-muted);
+  opacity: 0.5;
+}
+
+#titlebar .win-controls {
+  display: flex;
+  -webkit-app-region: no-drag;
+  /* ⚠️ MUST be no-drag to allow clicks */
+}
+
+#titlebar .win-controls button {
+  width: 46px;
+  height: var(--titlebar-h);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: background var(--transition-fast), color var(--transition-fast);
+}
+
+#titlebar .win-controls button:hover {
+  background: var(--bg-input);
+  color: var(--text-primary);
+}
+
+#btn-close:hover {
+  background: #C42B1C !important;
+  color: #fff !important;
+}
+
+/* Maximize button: single square when normal, two-layer when maximized */
+#btn-maximize .icon-restore {
+  display: none;
+}
+
+#btn-maximize.is-maximized .icon-maximize {
+  display: none;
+}
+
+#btn-maximize.is-maximized .icon-restore {
+  display: block;
+}
+
+/* ── Main Content Area ────────────────────────────────────────────────────── */
+#main-content {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  gap: 0;
+  background: var(--bg-app);
+}
+
+/* ── Icon Sidebar (52px) ──────────────────────────────────────────────────── */
+#icon-sidebar {
+  width: var(--icon-sidebar-w);
+  background: var(--surface-sidebar, var(--bg-sidebar));
+  border-right: 1px solid var(--border-subtle, transparent);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    inset -1px 0 0 var(--border-subtle, transparent);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  backdrop-filter: blur(18px) saturate(135%);
+  -webkit-backdrop-filter: blur(18px) saturate(135%);
+  flex-shrink: 0;
+}
+
+/* ── Secondary Sidebar (220px, collapsible) ───────────────────────────────── */
+#secondary-sidebar {
+  width: var(--secondary-sidebar-w);
+  background: var(--bg-panel);
+  border-right: none;
+  border-radius: var(--bento-radius);
+  border: var(--bento-border);
+  box-shadow: var(--bento-shadow);
+  overflow-y: auto;
+  flex-shrink: 0;
+  margin: 12px 0 12px 12px;
+}
+
+/* ── Panels Container ─────────────────────────────────────────────────────── */
+#panels {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+  gap: 16px;
+  padding: 12px;
+}
+
+/* ── Editor Panel ─────────────────────────────────────────────────────────── */
+#editor-panel {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 300px;
+  position: relative;
+  background: var(--bg-editor);
+  border-radius: var(--bento-radius);
+  border: var(--bento-border);
+  box-shadow: var(--bento-shadow);
+  overflow: hidden;
+}
+
+#editor-panel.hidden {
+  display: none !important;
+}
+
+.drag-handle {
+  width: 16px;
+  margin: 0 -16px;
+  cursor: col-resize;
+  background: transparent;
+  flex-shrink: 0;
+  position: relative;
+  transition: background 0.15s ease;
+  z-index: 10;
+}
+
+.drag-handle:hover {
+  background: rgba(119, 90, 0, 0.12);
+}
+
+.drag-handle.dragging {
+  background: rgba(119, 90, 0, 0.25);
+}
+
+/* Center line decoration */
+.drag-handle::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 1px;
+  height: 40px;
+  background: var(--border);
+  border-radius: 1px;
+}
+
+/* Disable selection during drag */
+#panels.is-dragging * {
+  pointer-events: none;
+  user-select: none;
+}
+
+#panels.is-dragging .drag-handle {
+  pointer-events: auto;
+}
+
+#panels.is-dragging .toc-resize-handle {
+  pointer-events: auto;
+}
+
+/* ── Preview Panel ────────────────────────────────────────────────────────── */
+#preview-panel {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 300px;
+  border-radius: var(--bento-radius);
+  border: var(--bento-border);
+  box-shadow: var(--bento-shadow);
+  background: var(--bg-app);
+  overflow: hidden;
+  position: relative;
+}
+
+#preview-panel.hidden {
+  display: none !important;
+}
+
+/* ── TOC Sidebar (resizable from left edge) ───────────────────────────────── */
+#toc-sidebar {
+  width: var(--toc-sidebar-w);
+  background: var(--bg-panel);
+  border-left: none;
+  border-radius: var(--bento-radius);
+  border: var(--bento-border);
+  box-shadow: var(--bento-shadow);
+  overflow-y: auto;
+  flex-shrink: 0;
+  transition: width var(--transition-med);
+  position: relative;
+}
+
+#toc-sidebar.hidden {
+  width: 0 !important;
+  min-width: 0 !important;
+  flex: 0 0 0 !important;
+  overflow: hidden;
+  border: none;
+  box-shadow: none;
+}
+
+.toc-resize-handle {
+  position: absolute;
+  top: 0;
+  left: -8px;
+  width: 16px;
+  height: 100%;
+  cursor: col-resize;
+  background: transparent;
+  z-index: 11;
+  transition: background 0.15s ease;
+}
+
+.toc-resize-handle:hover {
+  background: rgba(119, 90, 0, 0.12);
+}
+
+.toc-resize-handle.dragging {
+  background: rgba(119, 90, 0, 0.25);
+}
+
+.toc-resize-handle::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 1px;
+  height: 40px;
+  background: var(--border);
+  border-radius: 1px;
+}
+
+#toc-sidebar.hidden .toc-resize-handle {
+  display: none;
+}
+
+
+/* ── Preview-only Window Mode ────────────────────────────────────────────── */
+/* Applied via body[data-window-mode="preview-only"] when window loads with  */
+/* ?mode=preview-only query param. Hides all chrome — only preview content.  */
+body[data-window-mode="preview-only"] #icon-sidebar,
+body[data-window-mode="preview-only"] #secondary-sidebar,
+body[data-window-mode="preview-only"] #statusbar,
+body[data-window-mode="preview-only"] .drag-handle,
+body[data-window-mode="preview-only"] .toc-resize-handle,
+body[data-window-mode="preview-only"] #editor-panel,
+body[data-window-mode="preview-only"] #toc-sidebar,
+body[data-window-mode="preview-only"] #preview-toolbar,
+body[data-window-mode="preview-only"] #ai-palette,
+body[data-window-mode="preview-only"] #sidebar-hover-trigger {
+  display: none !important;
+}
+
+#preview-title {
+  display: none;
+}
+
+/* Preview-only titlebar: hide menu, toggles, maximize — keep logo + title + close/min */
+body[data-window-mode="preview-only"] #titlebar-menu,
+body[data-window-mode="preview-only"] #titlebar-toggles {
+  display: none !important;
+}
+
+body[data-window-mode="preview-only"] #titlebar .titlebar-spacer {
+  flex: 1;
+}
+
+body[data-window-mode="preview-only"] #preview-title {
+  flex: 1;
+  text-align: center;
+  font-size: 13px;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-app-region: drag;
+  pointer-events: none;
+}
+
+body[data-window-mode="preview-only"] #app {
+  padding: 0;
+}
+
+body[data-window-mode="preview-only"] #main-content {
+  padding: 0;
+}
+
+body[data-window-mode="preview-only"] #panels {
+  padding: 0;
+  gap: 0;
+}
+
+body[data-window-mode="preview-only"] #preview-panel {
+  flex: 1 1 auto;
+  border-radius: 0;
+  border: none;
+  box-shadow: none;
+}
+
+/* ── Settings Panel (slide-in from right) ─────────────────────────────────── */
+#settings-panel {
+  position: fixed;
+  top: 0;
+  right: -400px;
+  width: 360px;
+  height: 100vh;
+  background: var(--bg-panel);
+  border-left: 1px solid var(--border);
+  z-index: 10001;
+  /* Must be higher than Zen Mode (9999) */
+  transition: right var(--transition-med);
+  overflow-y: auto;
+}
+
+#settings-panel.open {
+  right: 0;
+}
+
+/* ── Export Modal ─────────────────────────────────────────────────────────── */
+#export-modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  z-index: 100;
+  align-items: center;
+  justify-content: center;
+}
+
+#export-modal-overlay.open {
+  display: flex;
+}
+
+/* ── Toast Container ──────────────────────────────────────────────────────── */
+#toast-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* ── Statusbar ────────────────────────────────────────────────────────────── */
+#statusbar {
+  height: var(--statusbar-h);
+  background: var(--surface-shell, var(--bg-titlebar));
+  border-top: 1px solid var(--border-subtle, transparent);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 12px;
+  font-size: 10.5px;
+  color: var(--text-muted);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.35),
+    0 -1px 0 rgba(143, 122, 96, 0.06);
+  flex-shrink: 0;
+}
+
+.statusbar-left,
+.statusbar-right {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.status-sep {
+  opacity: 0.4;
+}
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.status-dot-saved {
+  background: var(--green-bright);
+}
+
+.status-dot-saved.dirty {
+  background: var(--gold);
+}
+
+.status-dot-ai {
+  background: var(--green-mid);
+  opacity: 0.6;
+}
+
+.status-static {
+  color: var(--text-muted);
+}
+
+
+
+/* ── Titlebar Menu Dropdowns (Sprint 6 S6-3) ─────────────────────────────── */
+.menu-item {
+  position: relative;
+}
+
+.menu-btn {
+  padding: 0 10px;
+  height: var(--titlebar-h);
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-family: var(--font-ui);
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background var(--transition-fast), color var(--transition-fast);
+}
+
+.menu-btn:hover,
+.menu-item.open>.menu-btn {
+  background: var(--bg-input);
+  color: var(--text-primary);
+}
+
+.menu-dropdown {
+  display: none;
+  position: absolute;
+  top: calc(var(--titlebar-h) - 2px);
+  left: 0;
+  min-width: 200px;
+  background: var(--surface-modal, var(--bg-panel));
+  border: 1px solid var(--border-default, var(--border));
+  border-radius: 6px;
+  box-shadow: var(--bento-shadow, 0 8px 24px rgba(0, 0, 0, 0.3));
+  z-index: 200;
+  padding: 4px 0;
+}
+
+.menu-item.open>.menu-dropdown {
+  display: block;
+}
+
+.menu-dd-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 6px 14px;
+  background: transparent;
+  border: none;
+  color: var(--text-primary);
+  font-size: 13px;
+  font-family: var(--font-ui);
+  cursor: pointer;
+  text-align: left;
+  transition: background var(--transition-fast);
+}
+
+.menu-dd-item:hover {
+  background: var(--surface-hover, var(--bg-input));
+}
+
+.menu-dd-item.menu-dd-disabled {
+  color: var(--text-muted);
+  cursor: default;
+  pointer-events: none;
+}
+
+.menu-shortcut {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-left: 16px;
+}
+
+.menu-dd-sep {
+  border: none;
+  border-top: 1px solid var(--border-light);
+  margin: 4px 0;
+}
+
+/* ── Keyboard Shortcuts Modal ─────────────────────────────────────────────── */
+#shortcuts-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  z-index: 110;
+  align-items: center;
+  justify-content: center;
+}
+
+#shortcuts-overlay.open {
+  display: flex;
+}
+
+#shortcuts-modal {
+  background: var(--bg-panel);
+  border: var(--bento-border);
+  border-radius: 12px;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.28), 0 4px 16px rgba(0, 0, 0, 0.12);
+  width: 780px;
+  max-width: 92vw;
+  max-height: 82vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.shortcuts-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px 12px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.shortcuts-header h2 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.shortcuts-header button {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 1;
+  padding: 4px 6px;
+  border-radius: 6px;
+}
+
+.shortcuts-header button:hover {
+  background: var(--surface-hover);
+  color: var(--text-primary);
+}
+
+.shortcuts-body {
+  overflow-y: auto;
+  padding: 10px 0 18px;
+}
+
+.shortcuts-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  font-size: 14px;
+}
+
+.shortcuts-table td {
+  padding: 8px 20px;
+  color: var(--text-secondary);
+  vertical-align: middle;
+}
+
+.shortcuts-table td:last-child {
+  text-align: right;
+  white-space: nowrap;
+}
+
+.shortcuts-table td:first-child {
+  width: 42%;
+}
+
+.shortcuts-table td:nth-child(2) {
+  width: 28%;
+}
+
+.shortcuts-table td:nth-child(3) {
+  width: 30%;
+}
+
+.shortcuts-table .shortcuts-group {
+  padding: 14px 20px 6px;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.shortcuts-table kbd {
+  display: inline-block;
+  background: var(--bg-input);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 3px 8px;
+  font-size: 12px;
+  font-family: var(--font-ui);
+}
+
+.shortcuts-table kbd.is-custom {
+  border-color: var(--green-mid);
+  color: var(--green-mid);
+}
+
+.shortcuts-hint {
+  font-size: 12px;
+  color: var(--text-muted);
+  padding: 10px 20px 6px;
+}
+
+.shortcuts-actions {
+  text-align: right;
+  white-space: nowrap;
+  padding-right: 20px !important;
+}
+
+.shortcuts-edit-btn,
+.shortcuts-reset-btn {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  font-size: 12px;
+  border-radius: 4px;
+  padding: 3px 9px;
+  cursor: pointer;
+  margin-left: 6px;
+  transition: background var(--transition-fast), color var(--transition-fast);
+}
+
+.shortcuts-edit-btn:hover {
+  background: var(--bg-input);
+  color: var(--text-primary);
+}
+
+.shortcuts-reset-btn:hover {
+  color: var(--text-primary);
+}
+
+.shortcuts-row.editing {
+  background: var(--bg-input);
+}
+
+.shortcuts-capture-hint {
+  font-size: 12px;
+  color: var(--green-mid);
+  font-style: italic;
+}
+
+/* ── PRO Lock Infrastructure (Phase 4-5) ─────────────────────────────────── */
+/* Phase 3 does not attach this class to any element — placeholder for Phase 4-5 */
+.pro-locked {
+  opacity: 0.45;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ── CJK Font Switching (T11 — Phase 4.1.4) ─────────────────────────────────
+   Option A: System font fallback — no bundled fonts (zero bundle cost).
+   Windows 10+: Yu Gothic / Malgun Gothic / Microsoft YaHei available OOB.
+   macOS: Hiragino / Apple SD Gothic / PingFang available OOB.
+   Sets --font-ui CSS variable per locale and adjusts line-break rules.
+   ──────────────────────────────────────────────────────────────────────────── */
+
+:root[lang="ja"] {
+  --font-ui: 'Yu Gothic UI', 'Hiragino Kaku Gothic Pro', 'Meiryo', system-ui, sans-serif;
+}
+
+:root[lang="ko"] {
+  --font-ui: 'Malgun Gothic', 'Apple SD Gothic Neo', system-ui, sans-serif;
+}
+
+:root[lang="zh-CN"] {
+  --font-ui: 'Microsoft YaHei UI', 'PingFang SC', 'Noto Sans SC', system-ui, sans-serif;
+}
+
+/* CJK line-break and word-break rules */
+:root[lang="ja"] *,
+:root[lang="zh-CN"] * {
+  line-break: strict;
+  word-break: normal;
+}
+
+:root[lang="ko"] * {
+  word-break: keep-all;
+}
+
+/* ── Compact Mode ── */
+[data-compact="true"] {
+  --titlebar-h: 32px;
+  /* default: 36px */
+  --statusbar-h: 22px;
+  /* default: 24px */
+  --icon-sidebar-w: 36px;
+  /* default: 40px */
+}
+
+[data-compact="true"] #titlebar {
+  font-size: 12px;
+}
+
+[data-compact="true"] .wordmark {
+  font-size: 13px;
+}
+
+[data-compact="true"] #statusbar {
+  font-size: 10px;
+  padding: 0 8px;
+}
+
+[data-compact="true"] #secondary-sidebar {
+  margin: 12px 0 12px 12px;
+}
+
+[data-compact="true"] #panels {
+  padding: 12px;
+  gap: 12px;
+}
+
+[data-compact="true"] .drag-handle {
+  margin: 0 -12px;
+  width: 12px;
+}

@@ -1,0 +1,16 @@
+{
+  "extends": "@electron-toolkit/tsconfig/tsconfig.web.json",
+  "include": [
+    "src/renderer/**/*",
+    "src/engine/MarkdownEngine.ts",
+    "src/engine/TocGenerator.ts",
+    "src/shared/**/*"
+  ],
+  "compilerOptions": {
+    "composite": true,
+    "paths": {
+      "@shared/*": ["./src/shared/*"],
+      "@engine/*": ["./src/engine/*"]
+    }
+  }
+}

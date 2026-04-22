@@ -1,0 +1,101 @@
+/* ─────────────────────────────────────────────────────────────────────────────
+   VanFolio — Upgrade Prompt Styles
+   Ownership: upgrade prompt only.
+   ───────────────────────────────────────────────────────────────────────────── */
+
+.license-badge {
+  background-color: transparent !important;
+  color: var(--text-muted);
+  user-select: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin: 8px auto;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.license-badge:hover {
+  transform: scale(1.15);
+  color: var(--accent);
+}
+
+.upgrade-prompt-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: var(--popup-overlay);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20000;
+}
+
+.upgrade-prompt {
+  background-color: var(--surface-modal);
+  border: 1px solid var(--border-default);
+  border-radius: 12px;
+  padding: 24px 32px;
+  max-width: 380px;
+  width: 90%;
+  box-shadow: var(--popup-shadow);
+  text-align: center;
+}
+
+.upgrade-prompt h3 {
+  margin-top: 0;
+  margin-bottom: 12px;
+  color: var(--text-primary);
+}
+
+.upgrade-prompt p {
+  color: var(--text-secondary);
+  margin-bottom: 24px;
+}
+
+.btn-upgrade {
+  background-color: var(--accent);
+  color: var(--text-on-accent);
+  font-weight: bold;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-right: 12px;
+}
+
+.btn-close {
+  background-color: transparent;
+  color: var(--text-primary);
+  border: 1px solid var(--border-default);
+  padding: 10px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.btn-close:hover {
+  background-color: var(--surface-hover);
+}
+
+/* Watermark */
+.preview-page::after {
+  content: 'Built with VanFolio Free';
+  position: absolute;
+  bottom: 12px;
+  right: 20px;
+  font-family: var(--font-ui, sans-serif);
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--text-muted);
+  opacity: 0.25;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  pointer-events: none;
+  z-index: 100;
+  display: none;
+}
+
+[data-watermark-enabled="true"] .preview-page::after {
+  display: block;
+}

@@ -1,0 +1,122 @@
+/* ─────────────────────────────────────────────────────────────────────────────
+   VanFolio — Version History Styles (Refactored)
+   Ownership: structure only. Colors via var(--token).
+   ───────────────────────────────────────────────────────────────────────────── */
+
+.vh-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10020;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--popup-overlay);
+}
+
+.vh-modal {
+  width: min(720px, calc(100vw - 32px));
+  max-height: min(80vh, 720px);
+  display: flex;
+  flex-direction: column;
+  background: var(--surface-modal);
+  border: 1px solid var(--border-default);
+  border-radius: 16px;
+  box-shadow: var(--popup-shadow);
+  overflow: hidden;
+}
+
+.vh-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 20px 24px 16px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.vh-header h3 {
+  margin: 0;
+  font-size: 24px;
+  color: var(--text-primary);
+}
+
+.vh-header p {
+  margin: 6px 0 0;
+  color: var(--text-secondary);
+  font-size: 13px;
+}
+
+.vh-close {
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 28px;
+  cursor: pointer;
+}
+
+.vh-body {
+  padding: 16px 24px 24px;
+  overflow: auto;
+}
+
+.vh-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.vh-title {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.vh-subtitle {
+  margin-top: 4px;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.vh-actions {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.vh-btn {
+  border: 1px solid var(--border-default);
+  background: transparent;
+  color: var(--text-primary);
+  border-radius: 999px;
+  padding: 8px 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.vh-btn:hover {
+  background: var(--surface-hover);
+}
+
+.vh-btn-primary {
+  border: none;
+  background: var(--accent);
+  color: var(--text-on-accent);
+}
+
+.vh-empty {
+  padding: 32px 0;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.vh-confirm {
+  width: min(420px, calc(100vw - 32px));
+}
+
+.vh-confirm-text {
+  margin: 0 0 18px;
+  line-height: 1.55;
+  color: var(--text-secondary);
+}

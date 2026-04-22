@@ -1,0 +1,760 @@
+/* ─────────────────────────────────────────────────────────────────────────────
+   VanFolio — Theme: Van Chronicle
+   "Warm Leather Shell | Candlelight Flame Accent | Aged Parchment Paper"
+   ───────────────────────────────────────────────────────────────────────────── */
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   LAYER 1: TOKEN BLOCK (Canonical)
+   ───────────────────────────────────────────────────────────────────────── */
+[data-theme="van-chronicle"] {
+  /* ── App Shell ── */
+  --surface-app: transparent;
+  --surface-shell: #0A0703;
+  --surface-sidebar: #0D0C0B;
+  --surface-panel: rgba(13, 12, 11, 0.96);
+  --surface-editor: #D6C4A1;
+  --surface-preview: rgba(3, 3, 2, 0.45);
+
+  /* ── Overlay & Modal ── */
+  --surface-modal: #14100C;
+  --surface-card: #211914;
+
+  /* ── Input & Interactive Component ── */
+  --surface-input: #2A1C0E;
+
+  /* ── Active / Hover States ── */
+  --surface-hover: rgba(255, 170, 29, 0.08);
+  --surface-active: rgba(74, 53, 32, 0.35);
+
+  /* ── Primary Text Layers ── */
+  --text-primary: #E8D0A8;
+  --text-secondary: #C4A882;
+  --text-muted: #C4A882;
+  --text-on-accent: #1A0E00;
+
+  /* ── Navigation Text ── */
+  --text-sidebar-default: #C4A882;
+  --text-sidebar-active: #E8D0A8;
+  --text-sidebar-muted: #A08860;
+  --text-toc-default: #B8956A;
+  --text-toc-active: #EFE4C8;
+
+  /* ── Accent Tokens ── */
+  --accent: #FFAA1D;
+  --accent-rgb: 255, 170, 29;
+  --accent-bright: #E8C547;
+  --accent-dim: #5C3A1E;
+
+  /* ── Border Tokens ── */
+  --border-subtle: rgba(74, 53, 32, 0.6);
+  --border-default: #4A3520;
+  --border-strong: rgba(212, 85, 10, 0.25);
+
+  /* ── Popup & Tooltip Tokens ── */
+  --popup-bg: #F5EAD7;
+  --popup-bg-subtle: #EEDFCA;
+  --popup-text: #3F2A16;
+  --popup-text-muted: #6C4A2B;
+  --popup-border: rgba(122, 78, 32, 0.24);
+  --popup-shadow: 0 24px 60px rgba(20, 10, 3, 0.35);
+  --popup-overlay: rgba(18, 10, 4, 0.55);
+  --popup-accent: #D8640F;
+  --popup-accent-text: #FFF7EC;
+
+  --tooltip-bg: rgba(26, 18, 9, 0.96);
+  --tooltip-text: #F5EAD7;
+  --tooltip-border: rgba(255, 170, 29, 0.22);
+  --tooltip-shadow: 0 18px 42px rgba(0, 0, 0, 0.42);
+
+  /* ── Layout & Editor Tokens ── */
+  --bento-radius: 20px;
+  --bento-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.5);
+  --bento-border: 1px solid var(--border-default);
+
+  --selection-bg: rgba(255, 170, 29, 0.22);
+
+  --syn-heading: #1A1209;
+  --syn-bold: #000000;
+  --syn-italic: #5C3A1E;
+  --syn-code: #5C3A1E;
+  --syn-link: #8B4513;
+  --syn-punct: rgba(92, 58, 30, 0.5);
+
+  --doc-heading: #2B2118;
+  --doc-accent: #5C3A1E;
+  --doc-border: rgba(44, 32, 16, 0.15);
+  --doc-border-subtle: rgba(44, 32, 16, 0.08);
+  --doc-code-bg: #EDE6CC;
+
+  /* ── State & Alert Tokens ── */
+  --color-success: #FFAA1D;
+  --color-error: #D8640F;
+  --focus-ring: 0 0 0 2px rgba(255, 170, 29, 0.4);
+
+  /* ── Component Specific Surface Tokens (Phase 1) ── */
+  --search-panel-bg: #D6C4A1;
+  --search-panel-border: var(--border-default);
+  --search-panel-rim: rgba(255, 255, 255, 0.1);
+
+  --ai-palette-bg: #F5EAD7;
+  --ai-palette-border: var(--accent);
+  --ai-palette-placeholder: var(--text-muted);
+
+  --toolbar-bg: rgba(13, 12, 11, 0.85);
+  --toolbar-border: var(--border-subtle);
+  --toolbar-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+
+  --toc-header-bg: var(--surface-shell);
+  --toc-header-text: var(--text-primary);
+
+  --ruler-bg: var(--accent-dim);
+  --ruler-shadow: 0 0 10px rgba(255, 170, 29, 0.4);
+  --glass-tint-chronicle: rgba(212, 85, 10, 0.12);
+  --glass-highlight-amber: rgba(255, 170, 29, 0.15);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   LAYER 2: ALIAS BLOCK (Backward Compatibility)
+   ───────────────────────────────────────────────────────────────────────── */
+[data-theme="van-chronicle"] {
+  /* ── Surface aliases ── */
+  --bg-sidebar: var(--surface-sidebar);
+  --bg-panel: var(--surface-panel);
+  --bg-editor: var(--surface-editor);
+  --bg-titlebar: var(--surface-shell);
+  --bg-input: var(--surface-input);
+  --bg-panel-rgb: 13, 12, 11;
+  --bg-titlebar-rgb: 10, 7, 3;
+  --bg-sidebar-rgb: 13, 12, 11;
+
+  /* ── Accent aliases ── */
+  --gold: var(--accent);
+  --gold-rgb: var(--accent-rgb);
+  --gold-bright: var(--accent-bright);
+  --gold-dim: var(--accent-dim);
+  --green-bright: var(--accent-bright);
+  --green-mid: var(--accent);
+  --green-dark: var(--accent-dim);
+
+  /* ── Border aliases ── */
+  --border: var(--border-default);
+  --border-light: var(--border-subtle);
+  --glass-rim: rgba(74, 53, 32, 0.8);
+
+  /* ── Text aliases ── */
+  --text-ink: #EFE4C8;
+
+  /* ── Legacy Document/Preview aliases ── */
+  --cream: #E5D9B0;
+  --cream-rgb: 229, 217, 176;
+  --cream-dim: #D9CCA0;
+
+  /* ── Legacy State aliases ── */
+  --sidebar-active-bg: var(--surface-active);
+  --sidebar-active-text: var(--text-sidebar-active);
+
+  /* ── Popup aliases ── */
+  --chronicle-popup-bg: var(--popup-bg);
+  --chronicle-popup-bg-strong: var(--popup-bg-subtle);
+  --chronicle-popup-text: var(--popup-text);
+  --chronicle-popup-text-muted: var(--popup-text-muted);
+  --chronicle-popup-border: var(--popup-border);
+  --chronicle-popup-shadow: var(--popup-shadow);
+  --chronicle-popup-overlay: var(--popup-overlay);
+  --chronicle-popup-accent-text: var(--popup-accent-text);
+
+  /* ── Semantic aliases ── */
+  --accent-primary: var(--accent);
+  --state-hover: var(--surface-hover);
+  --state-active: var(--surface-active);
+  --divider: var(--border-subtle);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   LAYER 3: EFFECT BLOCK (Design Specific)
+   ───────────────────────────────────────────────────────────────────────── */
+/* BACKGROUND_STRATEGY: TYPE_IMAGE */
+[data-theme="van-chronicle"] {
+  --bg-app: url('../assets/chronicle-vibe.png') center center / cover no-repeat fixed;
+}
+
+[data-theme="van-chronicle"] #app,
+[data-theme="van-chronicle"] #main-content {
+  position: relative;
+  z-index: 0;
+  background: transparent !important;
+}
+
+[data-theme="van-chronicle"] #app::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: var(--bg-app);
+  filter: blur(15px);
+  transform: scale(1.0);
+  pointer-events: none;
+}
+
+[data-theme="van-chronicle"] #app::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/feColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  mix-blend-mode: soft-light;
+}
+
+/* ── Glassmorphism ── */
+[data-theme="van-chronicle"] #titlebar {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(20, 15, 8, 0.55) 0%,
+      rgba(40, 25, 10, 0.35) 100%
+    ) !important;
+  backdrop-filter: blur(32px) saturate(200%);
+  -webkit-backdrop-filter: blur(32px) saturate(200%);
+  border-bottom: 1px solid rgba(212, 85, 10, 0.3) !important;
+  box-shadow:
+    0 4px 24px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 var(--glass-highlight-amber);
+}
+
+[data-theme="van-chronicle"] #statusbar {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(18, 13, 7, 0.52) 0%,
+      rgba(35, 22, 10, 0.34) 100%
+    ) !important;
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-top: 1px solid rgba(212, 85, 10, 0.28) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 170, 29, 0.1);
+}
+
+[data-theme="van-chronicle"] #icon-sidebar {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(13, 10, 6, 0.7) 0%,
+      rgba(30, 20, 10, 0.55) 100%
+    ) !important;
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border-right: 1px solid rgba(212, 85, 10, 0.25) !important;
+  box-shadow:
+    4px 0 20px rgba(0, 0, 0, 0.4),
+    inset -1px 0 0 rgba(255, 170, 29, 0.08),
+    inset 0 1px 0 rgba(255, 170, 29, 0.12);
+}
+
+[data-theme="van-chronicle"] #secondary-sidebar,
+[data-theme="van-chronicle"] #toc-sidebar {
+  background:
+    linear-gradient(
+      160deg,
+      rgba(25, 18, 10, 0.65) 0%,
+      rgba(35, 24, 12, 0.5) 100%
+    ) !important;
+  border-color: rgba(212, 85, 10, 0.22) !important;
+  backdrop-filter: blur(20px) saturate(170%);
+  -webkit-backdrop-filter: blur(20px) saturate(170%);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 170, 29, 0.1);
+}
+
+[data-theme="van-chronicle"] #editor-panel {
+  background: transparent !important;
+  border-color: rgba(212, 85, 10, 0.25) !important;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+[data-theme="van-chronicle"] #editor-area {
+  background: var(--bg-editor) !important;
+  backdrop-filter: none;
+  --text-primary: #1A1209;
+  --text-muted: #5C3A1E;
+  color: #1A1209 !important;
+}
+
+[data-theme="van-chronicle"] #preview-panel {
+  background: var(--surface-preview) !important;
+  backdrop-filter: blur(12px);
+}
+
+
+[data-theme="van-chronicle"] #editor-panel {
+  background: transparent !important;
+  border-color: rgba(212, 85, 10, 0.25) !important;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+[data-theme="van-chronicle"] #editor-area {
+  background: var(--bg-editor) !important;
+  backdrop-filter: none;
+  --text-primary: #1A1209;
+  --text-muted: #5C3A1E;
+  color: #1A1209 !important;
+}
+
+[data-theme="van-chronicle"] #preview-panel {
+  background: var(--surface-preview) !important;
+  backdrop-filter: blur(12px);
+}
+
+[data-theme="van-chronicle"] .cm-activeLine {
+  outline-color: rgba(44, 32, 16, 0.25) !important;
+  background-color: rgba(44, 32, 16, 0.03) !important;
+}
+
+/* ── Custom Interaction Glows & Scaling ── */
+[data-theme="van-chronicle"] .icon-btn,
+[data-theme="van-chronicle"] .icon-btn-ai,
+[data-theme="van-chronicle"] .titlebar-toggle-btn {
+  color: #D4A870 !important;
+  transition: transform 200ms ease, opacity 200ms ease, color 200ms ease;
+}
+
+[data-theme="van-chronicle"] .icon-btn:hover,
+[data-theme="van-chronicle"] .icon-btn-ai:hover,
+[data-theme="van-chronicle"] .icon-btn.active,
+[data-theme="van-chronicle"] .titlebar-toggle-btn:hover,
+[data-theme="van-chronicle"] .titlebar-toggle-btn.active {
+  color: var(--accent) !important;
+  text-shadow: 0 0 5px rgba(var(--accent-rgb), 0.5);
+  transform: scale(1.08);
+}
+
+[data-theme="van-chronicle"] #icon-sidebar .icon-btn:hover,
+[data-theme="van-chronicle"] #icon-sidebar .icon-btn:hover svg,
+[data-theme="van-chronicle"] #icon-sidebar .icon-btn-ai:hover,
+[data-theme="van-chronicle"] #icon-sidebar .icon-btn-ai:hover svg,
+[data-theme="van-chronicle"] #icon-sidebar .icon-btn.active,
+[data-theme="van-chronicle"] #icon-sidebar .icon-btn.active svg {
+  color: var(--accent) !important;
+}
+
+[data-theme="van-chronicle"] .win-controls button:hover {
+  text-shadow: 0 0 10px rgba(var(--accent-rgb), 0.7);
+  transform: scale(1.2);
+}
+
+[data-theme="van-chronicle"] .file-item.active,
+[data-theme="van-chronicle"] .tree-file.active {
+  text-shadow: 0 0 10px rgba(var(--accent-rgb), 0.65);
+}
+
+[data-theme="van-chronicle"] #toc-content a.toc-active {
+  text-shadow: 0 0 10px rgba(var(--accent-rgb), 0.65);
+  transform: translateX(2px);
+}
+
+[data-theme="van-chronicle"] .icon-btn.active::before {
+  box-shadow: 0 0 10px rgba(var(--accent-rgb), 0.5);
+}
+
+[data-theme="van-chronicle"] .s-nav-item.active,
+[data-theme="van-chronicle"] .modal-tab.active {
+  text-shadow: 0 0 8px rgba(var(--accent-rgb), 0.4);
+}
+
+[data-theme="van-chronicle"] .file-tab .unsaved-dot {
+  box-shadow: 0 0 6px rgba(var(--accent-rgb), 0.6);
+}
+
+/* ── Custom Theme Components overrides ── */
+html[data-theme="van-chronicle"] .file-tab {
+  background: rgba(0, 0, 0, 0.15) !important;
+  color: #8A6A46 !important;
+}
+
+html[data-theme="van-chronicle"] .file-tab.active {
+  color: #5C3A1E !important;
+  border-radius: 12px 12px 0 0 !important;
+}
+
+html[data-theme="van-chronicle"] .file-tab .tab-title,
+html[data-theme="van-chronicle"] .file-tab .tab-name {
+  color: inherit !important;
+}
+
+html[data-theme="van-chronicle"] .file-tab .tab-close {
+  color: rgba(92, 58, 30, 0.7) !important;
+}
+
+html[data-theme="van-chronicle"] .file-tab.active .tab-close,
+html[data-theme="van-chronicle"] .file-tab:hover .tab-close {
+  color: #5C3A1E !important;
+}
+
+[data-theme="van-chronicle"] #file-tab-bar {
+  background: rgba(26, 18, 9, 0.5);
+}
+
+[data-theme="van-chronicle"] .s-modal {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(22, 16, 10, 0.94) 0%,
+      rgba(18, 13, 8, 0.96) 100%
+    ) !important;
+  backdrop-filter: blur(32px) saturate(160%) !important;
+  -webkit-backdrop-filter: blur(32px) saturate(160%) !important;
+  border-color: rgba(255, 170, 29, 0.28) !important;
+  box-shadow:
+    0 24px 64px rgba(0, 0, 0, 0.65),
+    inset 0 1px 0 rgba(255, 170, 29, 0.18) !important;
+}
+
+[data-theme="van-chronicle"] #shortcuts-modal,
+[data-theme="van-chronicle"] #export-modal {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(22, 16, 10, 0.94) 0%,
+      rgba(18, 13, 8, 0.96) 100%
+    ) !important;
+  backdrop-filter: blur(32px) saturate(160%) !important;
+  -webkit-backdrop-filter: blur(32px) saturate(160%) !important;
+  box-shadow:
+    0 24px 64px rgba(0, 0, 0, 0.65),
+    inset 0 1px 0 rgba(255, 170, 29, 0.18) !important;
+}
+
+[data-theme="van-chronicle"] .s-sidenav {
+  background: rgba(13, 12, 11, 0.4) !important;
+  border-right-color: rgba(255, 170, 29, 0.15) !important;
+}
+
+[data-theme="van-chronicle"] .s-bento-card {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border-color: rgba(255, 170, 29, 0.12) !important;
+}
+
+[data-theme="van-chronicle"] .s-nav-item.active {
+  color: var(--accent) !important;
+  border-right: 3px solid var(--accent) !important;
+}
+
+[data-theme="van-chronicle"] .s-nav-item.active > span:last-child {
+  color: var(--accent) !important;
+}
+
+[data-theme="van-chronicle"] .s-nav-item.active i,
+[data-theme="van-chronicle"] .s-nav-item.active .material-symbols-outlined,
+[data-theme="van-chronicle"] .s-nav-item.active .material-icons {
+  color: var(--accent) !important;
+}
+
+[data-theme="van-chronicle"] .upgrade-prompt-overlay,
+[data-theme="van-chronicle"] .in-page-confirm-overlay,
+[data-theme="van-chronicle"] .vh-overlay,
+[data-theme="van-chronicle"] .license-deactivate-dialog::backdrop,
+[data-theme="van-chronicle"] #about-overlay {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+[data-theme="van-chronicle"] .license-tier-badge.tier-pro,
+[data-theme="van-chronicle"] .menu-dd-item .badge-pro {
+  color: #1A0E00 !important;
+}
+
+html[data-theme="van-chronicle"] .upgrade-prompt,
+html[data-theme="van-chronicle"] .vh-modal,
+html[data-theme="van-chronicle"] .discovery-popup {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(29, 20, 12, 0.96) 0%,
+      rgba(18, 13, 8, 0.94) 100%
+    ) !important;
+  color: var(--text-primary) !important;
+  border: 1px solid rgba(255, 170, 29, 0.22) !important;
+  box-shadow:
+    0 32px 80px rgba(0, 0, 0, 0.6),
+    0 8px 20px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 170, 29, 0.12) !important;
+  backdrop-filter: blur(20px) saturate(150%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(150%) !important;
+}
+
+html[data-theme="van-chronicle"] .toast {
+  background: linear-gradient(180deg, #F2E6D2 0%, #E9D9BE 100%) !important;
+  color: #3F2A16 !important;
+  border: 1px solid rgba(122, 78, 32, 0.28) !important;
+  box-shadow:
+    0 18px 40px rgba(0, 0, 0, 0.28),
+    0 6px 14px rgba(0, 0, 0, 0.18),
+    inset 0 1px 0 rgba(255, 249, 238, 0.72) !important;
+}
+
+html[data-theme="van-chronicle"] .toast .toast-message {
+  color: #5A3A1F !important;
+}
+
+html[data-theme="van-chronicle"] .toast .toast-dismiss {
+  color: #7A4E20 !important;
+}
+
+html[data-theme="van-chronicle"] .toast .toast-dismiss:hover {
+  color: #3F2A16 !important;
+}
+
+html[data-theme="van-chronicle"] .upgrade-prompt h3,
+html[data-theme="van-chronicle"] .upgrade-prompt p {
+  color: var(--text-primary) !important;
+}
+
+html[data-theme="van-chronicle"] .upgrade-prompt .btn-close {
+  color: #C4A882 !important;
+  border-color: rgba(255, 170, 29, 0.28) !important;
+  background: rgba(24, 17, 10, 0.72) !important;
+}
+
+html[data-theme="van-chronicle"] .upgrade-prompt .btn-close:hover {
+  background: rgba(255, 170, 29, 0.12) !important;
+  color: #E8C547 !important;
+}
+
+html[data-theme="van-chronicle"] #about-modal {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(22, 16, 10, 0.96) 0%,
+      rgba(18, 13, 8, 0.98) 100%
+    ) !important;
+  color: var(--text-primary) !important;
+  border: 1px solid rgba(255, 170, 29, 0.22) !important;
+  box-shadow:
+    0 24px 64px rgba(0, 0, 0, 0.65),
+    inset 0 1px 0 rgba(255, 170, 29, 0.16) !important;
+  backdrop-filter: blur(24px) saturate(150%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(150%) !important;
+}
+
+/* ── Preview Dark Mode (Aged Stains) ── */
+[data-theme="van-chronicle"] .preview-page {
+  background:
+    radial-gradient(circle at 20% 30%, rgba(107, 89, 75, 0.08) 0%, transparent 45%),
+    radial-gradient(circle at 80% 75%, rgba(92, 58, 30, 0.12) 0%, transparent 50%),
+    radial-gradient(circle at 50% 10%, rgba(120, 80, 50, 0.05) 0%, transparent 30%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='paperNoise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.04' numOctaves='5' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23paperNoise)' opacity='0.06'/%3E%3C/svg%3E"),
+    #D6C4A1 !important;
+  color: #1A1209 !important;
+  box-shadow: inset 0 0 60px rgba(92, 30, 15, 0.15), 0 4px 24px rgba(0, 0, 0, 0.5) !important;
+}
+
+[data-theme="van-chronicle"] .preview-page h1,
+[data-theme="van-chronicle"] .preview-page h2,
+[data-theme="van-chronicle"] .preview-page h3,
+[data-theme="van-chronicle"] .preview-page h4,
+[data-theme="van-chronicle"] .preview-page h5,
+[data-theme="van-chronicle"] .preview-page h6,
+[data-theme="van-chronicle"] .preview-page h7 {
+  color: #2B2118 !important;
+}
+
+[data-theme="van-chronicle"] .preview-page blockquote {
+  background: rgba(228, 213, 186, 0.72) !important;
+  color: #1A1209 !important;
+  border-left-color: #6B4427 !important;
+}
+
+[data-theme="van-chronicle"] .preview-page blockquote p,
+[data-theme="van-chronicle"] .preview-page blockquote li,
+[data-theme="van-chronicle"] .preview-page blockquote strong,
+[data-theme="van-chronicle"] .preview-page blockquote em {
+  color: inherit !important;
+}
+
+[data-theme="van-chronicle"] #preview-content strong {
+  color: #000000 !important;
+}
+
+[data-theme="van-chronicle"] #preview-content a {
+  color: #8B4513 !important;
+}
+
+[data-theme="van-chronicle"] .preview-page code {
+  background: rgba(92, 30, 15, 0.08) !important;
+  color: #5C3A1E !important;
+}
+
+[data-theme="van-chronicle"] #preview-toolbar {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(28, 20, 12, 0.94) 0%,
+      rgba(18, 13, 8, 0.9) 100%
+    ) !important;
+  border: 1px solid rgba(255, 170, 29, 0.2) !important;
+  backdrop-filter: blur(18px) saturate(150%) !important;
+  -webkit-backdrop-filter: blur(18px) saturate(150%) !important;
+  box-shadow:
+    0 10px 28px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 170, 29, 0.1) !important;
+}
+
+[data-theme="van-chronicle"] .ptb-group {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(55, 40, 24, 0.88) 0%,
+      rgba(34, 24, 14, 0.82) 100%
+    ) !important;
+  border-color: rgba(255, 170, 29, 0.16) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 170, 29, 0.08);
+}
+
+[data-theme="van-chronicle"] .ptb-btn {
+  color: #C4A882 !important;
+}
+
+[data-theme="van-chronicle"] .ptb-btn:hover {
+  background: rgba(255, 170, 29, 0.14) !important;
+  color: #E8C547 !important;
+}
+
+[data-theme="van-chronicle"] .ptb-circle-btn {
+  color: #C4A882 !important;
+  border-color: rgba(255, 170, 29, 0.22) !important;
+  background: rgba(24, 17, 10, 0.68) !important;
+}
+
+[data-theme="van-chronicle"] .ptb-circle-btn:hover {
+  background: rgba(255, 170, 29, 0.12) !important;
+  color: #E8C547 !important;
+  border-color: rgba(255, 170, 29, 0.32) !important;
+}
+
+[data-theme="van-chronicle"] .ptb-zoom-label {
+  color: #D6C4A1 !important;
+}
+
+[data-theme="van-chronicle"] .ptb-sep {
+  background: rgba(255, 170, 29, 0.18) !important;
+}
+
+html[data-theme="van-chronicle"] #floating-toolbar {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(33, 24, 15, 0.96) 0%,
+      rgba(24, 17, 10, 0.94) 100%
+    ) !important;
+  border: 1px solid rgba(255, 170, 29, 0.22) !important;
+  box-shadow:
+    0 16px 40px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 170, 29, 0.12) !important;
+  backdrop-filter: blur(18px) saturate(150%) !important;
+  -webkit-backdrop-filter: blur(18px) saturate(150%) !important;
+}
+
+html[data-theme="van-chronicle"] .ft-btn {
+  color: #C4A882 !important;
+  border-radius: 6px;
+  transition: transform 120ms ease, background-color 120ms ease, color 120ms ease;
+}
+
+html[data-theme="van-chronicle"] .ft-btn:hover {
+  background: rgba(255, 170, 29, 0.14) !important;
+  color: #E8C547 !important;
+}
+
+html[data-theme="van-chronicle"] .ft-btn:active {
+  background: rgba(255, 170, 29, 0.2) !important;
+}
+
+/* ── Docs modal overrides ── */
+[data-theme="van-chronicle"] .docs-nav-item.active {
+  color: var(--accent) !important;
+  background: transparent !important;
+  text-shadow: 0 0 8px rgba(var(--accent-rgb), 0.4);
+}
+
+@keyframes chronicle-glass-reveal {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+[data-theme="van-chronicle"] .s-modal,
+[data-theme="van-chronicle"] #export-modal,
+[data-theme="van-chronicle"] #shortcuts-modal {
+  animation: chronicle-glass-reveal 280ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-theme="van-chronicle"] .s-modal,
+  [data-theme="van-chronicle"] #export-modal,
+  [data-theme="van-chronicle"] #shortcuts-modal {
+    animation: none;
+  }
+}
+
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  [data-theme="van-chronicle"] #titlebar,
+  [data-theme="van-chronicle"] #statusbar {
+    background: rgba(10, 7, 3, 0.95) !important;
+  }
+
+  [data-theme="van-chronicle"] #icon-sidebar {
+    background: rgba(13, 12, 11, 0.92) !important;
+  }
+
+  [data-theme="van-chronicle"] #secondary-sidebar,
+  [data-theme="van-chronicle"] #toc-sidebar {
+    background: rgba(21, 15, 9, 0.94) !important;
+  }
+
+  [data-theme="van-chronicle"] .s-modal,
+  [data-theme="van-chronicle"] #export-modal,
+  [data-theme="van-chronicle"] #shortcuts-modal {
+    background: rgba(20, 16, 12, 0.98) !important;
+  }
+}
+
+/* ── Zen Mode: Chronicle ── */
+[data-zen-theme="chronicle"] {
+  --zen-bg: url('../assets/chronicle-vibe.png') center center / cover no-repeat fixed;
+  --zen-canvas-bg: #D6C4A1;
+  --zen-canvas-text: #1A1209;
+  --zen-canvas-border: rgba(92, 58, 30, 0.2);
+  --zen-canvas-shadow: 0 60px 120px rgba(0, 0, 0, 0.8);
+  --zen-accent: var(--accent);
+  --zen-line-num: #8A7B5A;
+  --zen-muted: #8A7B5A;
+  --zen-status-bg: linear-gradient(180deg, rgba(214, 196, 161, 0.9) 0%, rgba(202, 181, 145, 0.94) 100%);
+  --zen-status-border: rgba(92, 58, 30, 0.18);
+}
+
+[data-theme='van-chronicle'] #zen-overlay::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: url('../assets/chronicle-vibe.png') center center / cover no-repeat fixed !important;
+  filter: blur(5px);
+  transform: scale(1.05);
+  backdrop-filter: blur(12px) saturate(140%) !important;
+}
+
+[data-theme='van-chronicle'] #zen-canvas {
+  background: rgba(03, 03, 02, 0.45) !important;
+  backdrop-filter: blur(12px) !important;
+  color: #E8D0A8 !important;
+  box-shadow: 0 40px 100px rgba(0, 0, 0, 0.7) !important;
+  border: 1px solid rgba(212, 85, 10, 0.2) !important;
+}

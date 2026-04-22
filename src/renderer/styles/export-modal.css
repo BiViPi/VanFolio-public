@@ -1,0 +1,376 @@
+/* ─────────────────────────────────────────────────────────────────────────────
+   VanFolio — Export Modal Styles (Refactored)
+   Ownership: structure only. Colors via var(--token).
+   ───────────────────────────────────────────────────────────────────────────── */
+
+/* ── Overlay ─────────────────────────────────────────────────────────────── */
+#export-modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: var(--popup-overlay);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  align-items: center;
+  justify-content: center;
+}
+
+#export-modal-overlay.open {
+  display: flex;
+}
+
+/* ── Modal Box ───────────────────────────────────────────────────────────── */
+#export-modal {
+  background: var(--surface-modal);
+  border: var(--bento-border);
+  border-radius: 12px;
+  width: 480px;
+  max-width: calc(100vw - 40px);
+  max-height: calc(100vh - 80px);
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--popup-shadow);
+  outline: none;
+  overflow: hidden;
+}
+
+/* ── Header ──────────────────────────────────────────────────────────────── */
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px 12px;
+  border-bottom: 1px solid var(--border-subtle);
+  flex-shrink: 0;
+}
+
+.modal-header h2 {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+  font-family: var(--font-ui);
+}
+
+#modal-close {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 16px;
+  cursor: pointer;
+  padding: 2px 6px;
+  border-radius: 4px;
+  transition: color 0.2s ease, background 0.2s ease;
+  line-height: 1;
+}
+
+#modal-close:hover {
+  color: var(--text-primary);
+  background: var(--surface-hover);
+}
+
+/* ── Tabs ────────────────────────────────────────────────────────────────── */
+.modal-tabs {
+  display: flex;
+  gap: 2px;
+  padding: 10px 20px 0;
+  flex-shrink: 0;
+}
+
+.modal-tab {
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: var(--text-muted);
+  font-size: 13px;
+  font-family: var(--font-ui);
+  font-weight: 500;
+  padding: 6px 14px;
+  cursor: pointer;
+  border-radius: 6px 6px 0 0;
+  transition: all 0.2s ease;
+}
+
+.modal-tab:hover {
+  color: var(--text-secondary);
+  background: var(--surface-hover);
+}
+
+.modal-tab.active {
+  color: var(--accent-bright);
+  border-bottom-color: var(--accent);
+  background: var(--surface-active);
+}
+
+.modal-tab-locked {
+  opacity: 0.48;
+}
+
+/* ── Body / Panels ───────────────────────────────────────────────────────── */
+.modal-body {
+  overflow-y: auto;
+  flex: 1;
+  padding: 16px 20px 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.export-panel {
+  display: none;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+}
+
+.export-panel.active {
+  display: flex;
+}
+
+/* ── Form Controls ───────────────────────────────────────────────────────── */
+.form-row {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.form-row label {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-muted);
+  font-family: var(--font-ui);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.form-row select,
+.form-row input[type="text"] {
+  background: var(--surface-input);
+  border: 1px solid var(--border-default);
+  color: var(--text-primary);
+  font-size: 13px;
+  font-family: var(--font-ui);
+  padding: 7px 10px;
+  border-radius: 6px;
+  outline: none;
+  transition: border-color 0.2s ease;
+  width: 100%;
+}
+
+.form-row select:focus,
+.form-row input[type="text"]:focus {
+  border-color: var(--accent);
+}
+
+.form-row-inline {
+  display: flex;
+  gap: 16px;
+}
+
+.form-row-inline .form-row {
+  flex: 1;
+}
+
+.form-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-size: 13px;
+  color: var(--text-secondary);
+  font-family: var(--font-ui);
+  user-select: none;
+}
+
+.form-checkbox input[type="checkbox"] {
+  width: 14px;
+  height: 14px;
+  accent-color: var(--accent);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+/* Interlock: option disabled by another option */
+.form-checkbox.option-disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.form-divider {
+  border: none;
+  border-top: 1px solid var(--border-subtle);
+  margin: 4px 0;
+}
+
+/* ── Footer / Submit ─────────────────────────────────────────────────────── */
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: nowrap;
+  padding: 16px 0 20px;
+  flex-shrink: 0;
+}
+
+.watermark-note {
+  margin: 0 auto 0 0;
+  max-width: 240px;
+  color: var(--text-muted);
+  font-size: 12px;
+  line-height: 1.35;
+}
+
+#btn-export-submit {
+  background: var(--accent);
+  color: var(--text-on-accent);
+  border: none;
+  border-radius: 7px;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: var(--font-ui);
+  padding: 9px 24px;
+  cursor: pointer;
+  transition: background 0.2s ease, opacity 0.2s ease;
+  min-width: 100px;
+}
+
+#btn-export-submit:hover {
+  opacity: 0.9;
+}
+
+#btn-export-submit:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+/* ── Toast ───────────────────────────────────────────────────────────────── */
+#toast-container {
+  position: fixed;
+  bottom: 36px;
+  right: 16px;
+  z-index: 2000;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  pointer-events: none;
+  max-width: 360px;
+}
+
+.toast {
+  background: var(--popup-bg);
+  border: 1px solid var(--border-default);
+  border-radius: 8px;
+  font-size: 13px;
+  font-family: var(--font-ui);
+  color: var(--text-primary);
+  padding: 10px 12px;
+  box-shadow: var(--popup-shadow);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  pointer-events: all;
+  animation: toast-in 200ms ease;
+}
+
+.toast-success {
+  border-left: 3px solid var(--color-success);
+}
+
+.toast-error {
+  border-left: 3px solid var(--color-error);
+}
+
+.toast-info {
+  border-left: 3px solid var(--accent);
+}
+
+.toast-message {
+  flex: 1;
+  line-height: 1.4;
+  color: var(--text-secondary);
+}
+
+.toast-action {
+  background: none;
+  border: 1px solid var(--border-subtle);
+  color: var(--accent);
+  font-size: 12px;
+  font-family: var(--font-ui);
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: background 0.2s ease;
+}
+
+.toast-action:hover {
+  background: var(--surface-hover);
+}
+
+.toast-dismiss {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 12px;
+  cursor: pointer;
+  padding: 2px 4px;
+  border-radius: 3px;
+  flex-shrink: 0;
+  line-height: 1;
+  transition: color 0.2s ease;
+}
+
+.toast-dismiss:hover {
+  color: var(--text-primary);
+}
+
+.toast-fade {
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 300ms ease, transform 300ms ease;
+}
+
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── Color Mode Toggle ───────────────────────────────────────────────────────── */
+.color-mode-toggle {
+  display: flex;
+  gap: 8px;
+}
+
+.color-mode-option {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  font-size: 12px;
+  color: var(--text-secondary);
+  padding: 4px 10px;
+  border: 1px solid var(--border-default);
+  border-radius: 6px;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.color-mode-option:has(input:checked) {
+  background: var(--surface-active);
+  border-color: var(--accent);
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.color-mode-option input[type="radio"] {
+  display: none;
+}

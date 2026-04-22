@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VanFolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,700;1,6..72,400&family=Lora:ital,wght@0,400;0,700;1,400&family=Merriweather:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Roboto:wght@400;500;700&family=Poppins:wght@400;500;600&display=swap"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    rel="stylesheet" />
+  <!-- ⚠️ ORDER MATTERS: tokens → theme → components -->
+  <link rel="stylesheet" href="./styles/tokens.css" />
+  <link rel="stylesheet" href="./styles/theme-van-ivory.css" />
+  <link rel="stylesheet" href="./styles/theme-dark-obsidian.css" />
+  <link rel="stylesheet" href="./styles/theme-van-botanical.css" />
+  <link rel="stylesheet" href="./styles/theme-van-chronicle.css" />
+  <!-- Shared skeleton: reads tokens from theme-*.css, applied before all components -->
+  <link rel="stylesheet" href="./styles/theme-template.css" />
+  <link rel="stylesheet" href="./styles/main.css" />
+  <link rel="stylesheet" href="./styles/editor.css" />
+  <link rel="stylesheet" href="./styles/preview.css" />
+  <link rel="stylesheet" href="./styles/sidebar.css" />
+  <link rel="stylesheet" href="./styles/settings.css" />
+  <link rel="stylesheet" href="./styles/zen-mode.css" />
+  <link rel="stylesheet" href="./styles/slash-command.css" />
+  <link rel="stylesheet" href="./styles/floating-toolbar.css" />
+  <link rel="stylesheet" href="./styles/writing-modes.css" />
+  <link rel="stylesheet" href="./styles/onboarding.css" />
+  <link rel="stylesheet" href="./styles/discovery.css" />
+  <link rel="stylesheet" href="./styles/export-modal.css" />
+  <link rel="stylesheet" href="./styles/version-history.css" />
+  <link rel="stylesheet" href="./styles/clean-prose.css" />
+  <link rel="stylesheet" href="./styles/docs-modal.css" />
+  <link rel="stylesheet" href="./styles/about-license-modal.css" />
+  <link rel="stylesheet" href="./styles/confirm-dialog.css" />
+  <link rel="stylesheet" href="./styles/upgrade-prompt.css" />
+</head>
+
+<body>
+  <div id="app">
+
+    <!-- ── Titlebar ─────────────────────────────────────────────────────── -->
+    <div id="titlebar">
+      <div class="titlebar-logo">
+        <img class="logo-icon" src="./assets/vanfolio-mark.svg" width="16" height="16" alt="VanFolio" />
+        <span class="wordmark"><span class="wordmark-van">Van</span><span class="wordmark-folio">Folio</span></span>
+      </div>
+      <div class="titlebar-menu" id="titlebar-menu">
+        <!-- Phase 3.2 (D1): All 5 menus renderer-owned. Native menu removed. -->
+
+        <div class="menu-item" id="menu-file">
+          <button class="menu-btn" data-menu="file" data-i18n="menu.file">File</button>
+          <div class="menu-dropdown" id="dropdown-file">
+            <button class="menu-dd-item" id="dd-new-file"><span data-i18n="menu.file.new">New File</span> <span
+                class="menu-shortcut">Ctrl+N</span></button>
+            <button class="menu-dd-item" id="dd-open-file"><span data-i18n="menu.file.open">Open File…</span> <span
+                class="menu-shortcut">Ctrl+O</span></button>
+            <button class="menu-dd-item" id="dd-open-folder"><span data-i18n="menu.file.openFolder">Open Folder…</span>
+              <span class="menu-shortcut">Ctrl+Shift+O</span></button>
+            <hr class="menu-dd-sep" />
+            <button class="menu-dd-item" id="dd-save"><span data-i18n="menu.file.save">Save</span> <span
+                class="menu-shortcut">Ctrl+S</span></button>
+            <button class="menu-dd-item" id="dd-save-as"><span data-i18n="menu.file.saveAs">Save As…</span> <span
+                class="menu-shortcut">Ctrl+Shift+S</span></button>
+            <hr class="menu-dd-sep" />
+            <button class="menu-dd-item" id="dd-exit" data-i18n="menu.file.exit">Exit</button>
+          </div>
+        </div>
+
+        <div class="menu-item" id="menu-edit">
+          <button class="menu-btn" data-menu="edit" data-i18n="menu.edit">Edit</button>
+          <div class="menu-dropdown" id="dropdown-edit">
+            <button class="menu-dd-item" id="dd-undo"><span data-i18n="menu.edit.undo">Undo</span> <span
+                class="menu-shortcut">Ctrl+Z</span></button>
+            <button class="menu-dd-item" id="dd-redo"><span data-i18n="menu.edit.redo">Redo</span> <span
+                class="menu-shortcut">Ctrl+Y</span></button>
+            <hr class="menu-dd-sep" />
+            <button class="menu-dd-item" id="dd-cut"><span data-i18n="menu.edit.cut">Cut</span> <span
+                class="menu-shortcut">Ctrl+X</span></button>
+            <button class="menu-dd-item" id="dd-copy"><span data-i18n="menu.edit.copy">Copy</span> <span
+                class="menu-shortcut">Ctrl+C</span></button>
+            <button class="menu-dd-item" id="dd-paste"><span data-i18n="menu.edit.paste">Paste</span> <span
+                class="menu-shortcut">Ctrl+V</span></button>
+          </div>
+        </div>
+
+        <div class="menu-item" id="menu-view">
+          <button class="menu-btn" data-menu="view" data-i18n="menu.view">View</button>
+          <div class="menu-dropdown" id="dropdown-view">
+            <button class="menu-dd-item" id="dd-focus-mode">
+              <span data-i18n="menu.view.focusMode">Focus Mode</span> <span class="menu-shortcut">Ctrl+Shift+F</span>
+            </button>
+            <button class="menu-dd-item" id="dd-toc-toggle">
+              <span data-i18n="menu.view.toc">Toggle TOC</span> <span class="menu-shortcut">Ctrl+\</span>
+            </button>
+            <hr class="menu-dd-sep" />
+            <button class="menu-dd-item" id="dd-typewriter">
+              <span class="menu-dd-check" id="dd-typewriter-check" style="visibility:hidden">✓</span>
+              <span data-i18n="menu.view.typewriter">Typewriter Mode</span> <span class="badge-pro"
+                style="margin-left:8px;">PRO</span>
+              <span class="menu-shortcut">Ctrl+Shift+T</span>
+            </button>
+            <button class="menu-dd-item" id="dd-fade-context">
+              <span class="menu-dd-check" id="dd-fade-check" style="visibility:hidden">✓</span>
+              <span data-i18n="menu.view.fadeContext">Fade Context</span> <span class="badge-pro"
+                style="margin-left:8px;">PRO</span>
+              <span class="menu-shortcut">Ctrl+Shift+D</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="menu-item" id="menu-export">
+          <button class="menu-btn" data-menu="export" data-i18n="menu.export">Export</button>
+          <div class="menu-dropdown" id="dropdown-export">
+            <button class="menu-dd-item" id="dd-export-pdf"><span data-i18n="menu.export.pdf">Export PDF…</span> <span
+                class="menu-shortcut">Ctrl+E</span></button>
+            <button class="menu-dd-item" id="dd-export-docx" data-i18n="menu.export.docx">Export DOCX…</button>
+            <button class="menu-dd-item" id="dd-export-html" data-i18n="menu.export.html">Export HTML…</button>
+            <button class="menu-dd-item" id="dd-export-png" data-i18n="menu.export.png">Export PNG…</button>
+          </div>
+        </div>
+
+        <div class="menu-item" id="menu-help">
+          <button class="menu-btn" data-menu="help" data-i18n="menu.help">Help</button>
+          <div class="menu-dropdown" id="dropdown-help">
+            <button class="menu-dd-item" id="dd-docs" data-i18n="menu.help.docs">Documentation</button>
+            <button class="menu-dd-item" id="dd-shortcuts" data-i18n="menu.help.shortcuts">Keyboard Shortcuts</button>
+            <button class="menu-dd-item" id="dd-check-updates"><span data-i18n="menu.help.checkUpdates">Check for
+                Updates...</span></button>
+            <hr class="menu-dd-sep" />
+            <button class="menu-dd-item" id="dd-about" data-i18n="menu.help.about">About VanFolio</button>
+          </div>
+        </div>
+      </div>
+      <div class="titlebar-spacer"></div>
+      <span id="preview-title"></span>
+      <div id="titlebar-toggles">
+        <button class="titlebar-toggle-btn active" id="btn-toggle-sidebar" data-i18n-title="titlebar.toggleSidebar"
+          title="Toggle Sidebar (Ctrl+B)">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+            stroke-linecap="round">
+            <rect x="3" y="3" width="18" height="18" rx="2" />
+            <line x1="9" y1="3" x2="9" y2="21" />
+          </svg>
+        </button>
+        <button class="titlebar-toggle-btn active" id="btn-toggle-editor" data-i18n-title="titlebar.toggleEditor"
+          title="Toggle Editor">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+            stroke-linecap="round">
+            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
+            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
+          </svg>
+        </button>
+        <button class="titlebar-toggle-btn active" id="btn-toggle-preview" data-i18n-title="titlebar.togglePreview"
+          title="Toggle Preview">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+            stroke-linecap="round">
+            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+            <circle cx="12" cy="12" r="3" />
+          </svg>
+        </button>
+        <button class="titlebar-toggle-btn active" id="btn-toggle-toc" data-i18n-title="titlebar.toggleToc"
+          title="Toggle Contents (Ctrl+\)">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+            stroke-linecap="round">
+            <rect x="2" y="3" width="20" height="18" rx="2" />
+            <line x1="9" y1="3" x2="9" y2="21" />
+          </svg>
+        </button>
+      </div>
+      <div class="win-controls" id="win-controls">
+        <button id="btn-minimize" data-i18n-title="titlebar.minimize" title="Minimize">
+          <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <line x1="0" y1="5" x2="10" y2="5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+          </svg>
+        </button>
+        <button id="btn-maximize" data-i18n-title="titlebar.maximize" title="Maximize">
+          <!-- Normal state: single square (maximize) -->
+          <svg class="icon-maximize" width="10" height="10" viewBox="0 0 10 10" fill="none"
+            xmlns="http://www.w3.org/2000/svg">
+            <rect x="0.75" y="0.75" width="8.5" height="8.5" rx="1" stroke="currentColor" stroke-width="1.2"
+              fill="none" />
+          </svg>
+          <!-- Maximized state: two-layer (restore down) -->
+          <svg class="icon-restore" width="10" height="10" viewBox="0 0 10 10" fill="none"
+            xmlns="http://www.w3.org/2000/svg">
+            <rect x="2.5" y="0.75" width="6.75" height="6.75" rx="1" stroke="currentColor" stroke-width="1.2"
+              fill="none" />
+            <rect x="0.75" y="2.5" width="6.75" height="6.75" rx="1" stroke="currentColor" stroke-width="1.2"
+              fill="var(--bg-titlebar)" />
+          </svg>
+        </button>
+        <button id="btn-close" data-i18n-title="titlebar.close" title="Close">
+          <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <line x1="0.5" y1="0.5" x2="9.5" y2="9.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+            <line x1="9.5" y1="0.5" x2="0.5" y2="9.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- ── Main Content ──────────────────────────────────────────────────── -->
+    <div id="main-content">
+
+      <!-- Auto-hide hover trigger zone (8px strip at left edge) -->
+      <div id="sidebar-hover-trigger"></div>
+
+      <!-- Icon Sidebar (52px) -->
+      <div id="icon-sidebar">
+        <!-- Sprint 1 (S1-1): icon buttons — files, editor, collections, search, bookmarks, settings -->
+      </div>
+
+      <!-- Secondary Sidebar (220px, collapsible) -->
+      <div id="secondary-sidebar">
+        <!-- Sprint 3 (S3-2): files mode / collections mode (directory tree) -->
+      </div>
+
+      <!-- Panels: Editor | DragHandle | Preview | TOC -->
+      <div id="panels">
+
+        <!-- Editor Panel -->
+        <div id="editor-panel">
+          <div id="file-tabs-bar">
+            <div id="file-tabs-scroll"><!-- tabs rendered here --></div>
+            <!-- + button appended here by fileTabs.ts, stays pinned right -->
+          </div>
+          <div id="editor-area">
+            <!-- CodeMirror 6 mounts here — Sprint 1 (S1-2) -->
+          </div>
+        </div>
+
+        <!-- Drag Handle (editor ↔ preview) — DUY NHẤT -->
+        <div class="drag-handle" id="drag-handle"></div>
+
+        <!-- Preview Panel -->
+        <div id="preview-panel">
+          <!-- Floating toolbar (glassmorphism pill) — ResizeObserver positions it -->
+          <div id="preview-toolbar">
+            <!-- Group 1: Export (segmented outline) -->
+            <div class="ptb-group">
+              <button id="btn-export-pdf" class="ptb-btn">PDF</button>
+              <button id="btn-export-html" class="ptb-btn">HTML</button>
+              <button id="btn-export-docx" class="ptb-btn">DOCX</button>
+              <button id="btn-export-png" class="ptb-btn">PNG</button>
+            </div>
+
+            <!-- Group 2: Zoom -->
+            <span class="ptb-sep"></span>
+            <button id="btn-zoom-out" class="ptb-circle-btn" data-i18n-title="preview.zoomOut"
+              title="Zoom out">−</button>
+            <span id="btn-zoom-label" class="ptb-zoom-label">100%</span>
+            <button id="btn-zoom-in" class="ptb-circle-btn" data-i18n-title="preview.zoomIn" title="Zoom in">+</button>
+
+            <!-- Group 3: Detach -->
+            <span class="ptb-sep"></span>
+            <button id="btn-detach-preview" class="ptb-circle-btn" title="Detach Preview (Ctrl+Alt+D)"
+              data-i18n-title="preview.detach">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" />
+              </svg>
+            </button>
+          </div>
+          <!-- AI Palette: Ctrl+G trigger — fixed overlay, luôn visible dù scroll -->
+          <div id="ai-palette">
+            <div id="ai-palette-row">
+              <span class="ai-palette-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" class="opacity-80">
+                  <path d="M12 22C12 22 12 16 18 16C12 16 12 10 12 10C12 10 12 16 6 16C12 16 12 22 12 22Z"
+                    fill="var(--gold-bright)" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                  <path d="M19 8C19 8 19 5.5 21.5 5.5C19 5.5 19 3 19 3C19 3 19 5.5 16.5 5.5C19 5.5 19 8 19 8Z"
+                    fill="currentColor" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                  <path d="M6 7C6 7 6 4.5 8.5 4.5C6 4.5 6 2 6 2C6 2 6 4.5 3.5 4.5C6 4.5 6 7 6 7Z" fill="currentColor"
+                    stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </span>
+              <textarea id="ai-input" rows="1" placeholder="Ask AI... or pick a prompt below"></textarea>
+              <button id="ai-generate">
+                Generate
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round" style="margin-left:4px;">
+                  <path d="M12 22C12 22 12 16 18 16C12 16 12 10 12 10C12 10 12 16 6 16C12 16 12 22 12 22Z" />
+                  <path d="M19 8C19 8 19 5.5 21.5 5.5C19 5.5 19 3 19 3C19 3 19 5.5 16.5 5.5C19 5.5 19 8 19 8Z" />
+                </svg>
+              </button>
+              <button id="ai-cancel" style="display:none;" data-i18n-title="sidebar.aiStop" title="Stop generation">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="3" width="18" height="18" rx="2" />
+                </svg>
+              </button>
+              <div class="ai-divider"></div>
+              <button id="ai-close">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M18 6L6 18M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+            <!-- Prompt Gallery (T17) -->
+            <div id="ai-chips">
+              <button class="ai-chip" data-prompt="Fix grammar and spelling">Fix Grammar</button>
+              <button class="ai-chip" data-prompt="Translate to English">→ English</button>
+              <button class="ai-chip" data-prompt="Translate to Vietnamese">→ Tiếng Việt</button>
+              <button class="ai-chip" data-prompt="Expand and elaborate this paragraph">Expand</button>
+              <button class="ai-chip" data-prompt="Summarize this into 2–3 concise sentences">Summarize</button>
+              <button class="ai-chip" data-prompt="Continue writing from here">Continue</button>
+              <button class="ai-chip" data-prompt="Explain this concept clearly">Explain</button>
+            </div>
+          </div>
+          <!-- Stage canvas — toolbar floats above, paper sits inside -->
+          <div id="preview-stage">
+            <div id="preview-content">
+              <!-- MarkdownEngine.render() output injects here -->
+            </div>
+          </div>
+        </div>
+
+        <!-- TOC Sidebar -->
+        <div id="toc-sidebar">
+          <div class="toc-resize-handle" id="toc-resize-handle" aria-hidden="true"></div>
+          <div class="toc-header-bar" data-i18n="toc.title">Table of Contents</div>
+          <div class="toc-scroll">
+            <div id="toc-content">
+              <!-- TocGenerator.generateTocHtml() output injects here -->
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /#panels -->
+
+    </div><!-- /#main-content -->
+
+    <!-- Statusbar — Focus Mode: opacity 0.35 hover 1.0 -->
+    <div id="statusbar">
+      <!-- Left group -->
+      <div class="statusbar-left">
+        <span id="status-saved-dot" class="status-dot status-dot-saved"></span>
+        <span id="status-saved-text" data-i18n="statusbar.saved">Saved</span>
+        <span class="status-sep">·</span>
+        <span id="status-cursor">Ln 1, Col 1</span>
+        <span class="status-sep">·</span>
+        <span class="status-static">UTF-8 · Markdown</span>
+      </div>
+
+      <!-- Right group -->
+      <div class="statusbar-right">
+        <span id="status-spellcheck" class="status-btn" title="Toggle Spell Check">
+          <span data-i18n="statusbar.spellcheck">Spell check</span>: <span id="status-spellcheck-state">OFF</span>
+        </span>
+        <span class="status-sep">·</span>
+        <span id="status-words">0 words</span>
+        <span class="status-sep">·</span>
+        <span id="status-read-time">0 min read</span>
+      </div>
+    </div>
+
+    <!-- Settings Panel (slide-in from right) -->
+    <div id="settings-panel">
+      <!-- Sprint 5 (S5-2): Typography | Theme | Export Defaults | AI Provider -->
+    </div>
+
+    <!-- Export Modal -->
+    <div id="export-modal-overlay">
+      <div id="export-modal" tabindex="-1">
+
+        <!-- Header -->
+        <div class="modal-header">
+          <h2 data-i18n="export.title">Export Document</h2>
+          <button id="modal-close" title="Close">✕</button>
+        </div>
+
+        <!-- Format Tabs -->
+        <div class="modal-tabs">
+          <button class="modal-tab active" data-format="pdf">PDF</button>
+          <button class="modal-tab" data-format="html">HTML</button>
+          <button class="modal-tab" data-format="docx">DOCX</button>
+          <button class="modal-tab" data-format="png">PNG</button>
+        </div>
+
+        <!-- Body -->
+        <div class="modal-body">
+
+          <!-- PDF Panel -->
+          <div id="export-panel-pdf" class="export-panel active">
+            <div class="form-row-inline">
+              <div class="form-row">
+                <label for="pdf-paper-size" data-i18n="export.paperSize">Paper Size</label>
+                <select id="pdf-paper-size">
+                  <option value="A4" selected>A4</option>
+                  <option value="A3">A3</option>
+                  <option value="Letter">Letter</option>
+                </select>
+              </div>
+              <div class="form-row">
+                <label for="pdf-orientation" data-i18n="export.orientation">Orientation</label>
+                <select id="pdf-orientation">
+                  <option value="portrait" selected data-i18n="export.portrait">Portrait</option>
+                  <option value="landscape" data-i18n="export.landscape">Landscape</option>
+                </select>
+              </div>
+            </div>
+            <hr class="form-divider">
+            <label class="form-checkbox">
+              <input type="checkbox" id="pdf-toc">
+              <span data-i18n="export.includeToc">Include Table of Contents</span>
+            </label>
+            <label class="form-checkbox">
+              <input type="checkbox" id="pdf-page-numbers">
+              <span data-i18n="export.pageNumbers">Include Page Numbers</span>
+            </label>
+            <hr class="form-divider">
+            <div class="form-row">
+              <label data-i18n="export.colorMode">Color Mode</label>
+              <div class="color-mode-toggle">
+                <label class="color-mode-option">
+                  <input type="radio" name="pdf-color-mode" id="pdf-color-mode-color" value="color" checked>
+                  <span data-i18n="export.color">Color</span>
+                </label>
+                <label class="color-mode-option">
+                  <input type="radio" name="pdf-color-mode" id="pdf-color-mode-bw" value="bw">
+                  <span data-i18n="export.blackWhite">Black &amp; White</span>
+                </label>
+              </div>
+            </div>
+            <hr class="form-divider">
+            <div class="form-row">
+              <label for="pdf-watermark" data-i18n="export.watermark">Watermark Text (optional)</label>
+              <input type="text" id="pdf-watermark" data-i18n-placeholder="export.watermarkPlaceholder"
+                placeholder="e.g. DRAFT" />
+            </div>
+          </div>
+
+          <!-- HTML Panel -->
+          <div id="export-panel-html" class="export-panel">
+            <label class="form-checkbox">
+              <input type="checkbox" id="html-embed-css" checked>
+              <span data-i18n="export.embedCss">Embed CSS (self-contained styles)</span>
+            </label>
+            <label class="form-checkbox">
+              <input type="checkbox" id="html-self-contained" checked>
+              <span data-i18n="export.selfContained">Self-contained (inline all images — local &amp; remote)</span>
+            </label>
+            <hr class="form-divider">
+            <label class="form-checkbox">
+              <input type="checkbox" id="html-toc">
+              <span data-i18n="export.includeToc">Include Table of Contents</span>
+            </label>
+          </div>
+
+          <!-- DOCX Panel -->
+          <div id="export-panel-docx" class="export-panel">
+            <div class="form-row-inline">
+              <div class="form-row">
+                <label for="docx-paper-size" data-i18n="export.paperSize">Paper Size</label>
+                <select id="docx-paper-size">
+                  <option value="A4" selected>A4</option>
+                  <option value="A3">A3</option>
+                  <option value="Letter">Letter</option>
+                </select>
+              </div>
+              <div class="form-row">
+                <label for="docx-orientation" data-i18n="export.orientation">Orientation</label>
+                <select id="docx-orientation">
+                  <option value="portrait" selected data-i18n="export.portrait">Portrait</option>
+                  <option value="landscape" data-i18n="export.landscape">Landscape</option>
+                </select>
+              </div>
+            </div>
+            <hr class="form-divider">
+            <label class="form-checkbox">
+              <input type="checkbox" id="docx-toc">
+              <span data-i18n="export.includeToc">Include Table of Contents</span>
+            </label>
+            <label class="form-checkbox">
+              <input type="checkbox" id="docx-page-numbers">
+              <span data-i18n="export.pageNumbers">Include Page Numbers</span>
+            </label>
+          </div>
+
+          <div id="export-panel-png" class="export-panel">
+            <div class="form-row-inline">
+              <div class="form-row">
+                <label for="png-paper-size" data-i18n="export.paperSize">Paper Size</label>
+                <select id="png-paper-size">
+                  <option value="A4" selected>A4</option>
+                  <option value="A3">A3</option>
+                  <option value="Letter">Letter</option>
+                </select>
+              </div>
+              <div class="form-row">
+                <label for="png-orientation" data-i18n="export.orientation">Orientation</label>
+                <select id="png-orientation">
+                  <option value="portrait" selected data-i18n="export.portrait">Portrait</option>
+                  <option value="landscape" data-i18n="export.landscape">Landscape</option>
+                </select>
+              </div>
+            </div>
+            <hr class="form-divider">
+            <div class="form-row">
+              <label for="png-scale" data-i18n="export.scaleResolution">Scale / Resolution</label>
+              <select id="png-scale">
+                <option value="1">1× (96 DPI)</option>
+                <option value="2" selected>2× (192 DPI)</option>
+                <option value="3">3× (288 DPI)</option>
+              </select>
+            </div>
+            <hr class="form-divider">
+            <div class="form-row">
+              <label data-i18n="export.outputMode">Output Mode</label>
+              <div class="color-mode-toggle">
+                <label class="color-mode-option">
+                  <input type="radio" name="png-mode" id="png-mode-single" value="single" checked>
+                  <span data-i18n="export.singleImage">Single image</span>
+                </label>
+                <label class="color-mode-option">
+                  <input type="radio" name="png-mode" id="png-mode-perpage" value="per-page">
+                  <span data-i18n="export.perPage">Per page</span>
+                </label>
+              </div>
+            </div>
+            <hr class="form-divider">
+            <label class="form-checkbox">
+              <input type="checkbox" id="png-transparent">
+              <span data-i18n="export.transparentBg">Transparent Background</span>
+            </label>
+          </div>
+
+          <!-- Footer (shared) -->
+          <div class="modal-footer">
+            <button id="btn-export-submit" data-i18n="export.submit">Export</button>
+          </div>
+
+        </div><!-- /.modal-body -->
+      </div><!-- /#export-modal -->
+    </div><!-- /#export-modal-overlay -->
+
+    <!-- Keyboard Shortcuts Modal (table rendered dynamically by titlebarMenu.ts) -->
+    <div id="shortcuts-overlay">
+      <div id="shortcuts-modal" tabindex="-1">
+        <div class="shortcuts-header">
+          <h2 data-i18n="shortcuts.modalTitle">Keyboard Shortcuts</h2>
+          <button id="shortcuts-close" title="Close">✕</button>
+        </div>
+        <div class="shortcuts-body">
+          <p class="shortcuts-hint" data-i18n="shortcuts.hint">Click <strong>Edit</strong> on any row, then press your
+            new key combo.</p>
+          <table class="shortcuts-table">
+            <tbody id="shortcuts-tbody">
+              <!-- Populated by titlebarMenu.ts renderShortcutsTable() -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Documentation Modal (content rendered dynamically by docsModal.ts) -->
+    <div id="docs-overlay">
+      <div id="docs-modal" tabindex="-1">
+        <div class="shortcuts-header">
+          <h2>Documentation</h2>
+          <button id="docs-close" title="Close">✕</button>
+        </div>
+        <div class="docs-body">
+          <nav class="docs-nav">
+            <ul id="docs-nav-list">
+              <!-- Populated by docsModal.ts -->
+            </ul>
+          </nav>
+          <div class="docs-content" id="docs-content">
+            <!-- Section HTML injected by docsModal.ts -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- About Modal (Phase 3) -->
+    <div id="about-overlay" class="modal-overlay">
+      <div id="about-modal" class="modal-container" tabindex="-1">
+        <div class="modal-header">
+          <div class="about-header-logo">
+            <img src="./assets/vanfolio-mark.svg" width="24" height="24" alt="VanFolio" />
+            <h2 data-i18n="about.title">About VanFolio</h2>
+          </div>
+          <button id="about-close" class="modal-close-btn" title="Close">✕</button>
+        </div>
+        <div class="modal-body about-body">
+          <div class="about-meta">
+            <p class="about-version"><span data-i18n="about.versionPrefix">Version </span><span
+                id="about-version-text">...</span></p>
+            <p class="about-license-title" data-i18n="about.licenseDescription">End User License Agreement</p>
+          </div>
+          <div class="about-license-scroll">
+            <div id="about-license-text">Loading license...</div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button id="about-close-btn" class="btn-primary" data-i18n="about.close">Close</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div id="toast-container"></div>
+
+  </div><!-- /#app -->
+
+  <!-- ── Zen Mode Overlay (Deep Focus) ─────────────────────────────────── -->
+  <div id="zen-overlay" style="display: none;">
+    <header id="zen-header">
+      <div class="zen-header-left">
+        <span id="zen-title" class="zen-wordmark">Untitled</span>
+      </div>
+      <div id="zen-mode-toggle">
+        <button class="zen-tab active" id="zen-tab-editor" data-i18n="zen.tabEditor">Editor</button>
+        <button class="zen-tab" id="zen-tab-preview" data-i18n="zen.tabPreview">Preview</button>
+      </div>
+      <div class="zen-header-right">
+        <button id="zen-settings-btn" data-i18n-title="sidebar.settings" title="Settings">
+          <span class="material-symbols-outlined">settings</span>
+        </button>
+        <button id="zen-close-btn" data-i18n-title="titlebar.close" title="Close Zen Mode">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+    </header>
+
+    <main id="zen-canvas-wrapper">
+      <article id="zen-canvas">
+        <div id="zen-editor-view"></div>
+        <div id="zen-preview-view" style="display: none;"></div>
+      </article>
+    </main>
+
+    <footer id="zen-status">
+      <span>
+        <span class="material-symbols-outlined">notes</span>
+        <span id="zen-word-count">... Words</span>
+      </span>
+      <span>
+        <span class="material-symbols-outlined">schedule</span>
+        <span id="zen-read-time">Reading Time: ...</span>
+      </span>
+      <span>
+        <span class="material-symbols-outlined">code</span>
+        <span id="zen-encoding">UTF-8</span>
+      </span>
+    </footer>
+  </div>
+
+  <!-- Selection Overlays — moved to root to fix positioning relative to viewport -->
+  <div id="slash-popup"></div>
+  <div id="floating-toolbar">
+    <button class="ft-btn" data-action="bold" data-i18n-title="floatingToolbar.bold"
+      title="Bold (Ctrl+B)"><strong>B</strong></button>
+    <button class="ft-btn" data-action="italic" data-i18n-title="floatingToolbar.italic"
+      title="Italic (Ctrl+I)"><em>I</em></button>
+    <button class="ft-btn" data-action="strike" data-i18n-title="floatingToolbar.strikethrough"
+      title="Strikethrough"><s>S</s></button>
+    <button class="ft-btn" data-action="code" data-i18n-title="floatingToolbar.code" title="Inline Code">`</button>
+    <button class="ft-btn" data-action="link" data-i18n-title="floatingToolbar.link" title="Link">🔗</button>
+  </div>
+
+  <script type="module" src="./main.ts"></script>
+</body>
+
+</html>

@@ -1,0 +1,16 @@
+/* ── Fade Context ────────────────────────────────────────────────────────────── */
+
+.cm-faded-line {
+  opacity: 0.3;
+  transition: opacity 200ms ease;
+}
+
+/* Active paragraph lines have no .cm-faded-line → naturally 100% opacity */
+
+/* ── Typewriter visual cue ───────────────────────────────────────────────────── */
+
+/* When Typewriter is active, show a subtle background on the cursor line
+   (re-enables active line indicator that was replaced with outline in Sprint 2) */
+.cm-editor.typewriter-active .cm-activeLine {
+  background: rgba(var(--accent-rgb), 0.05);
+}

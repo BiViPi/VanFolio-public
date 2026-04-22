@@ -1,0 +1,131 @@
+{
+  "replacements": [
+    {
+      "source": "app/src/main/licenseManager.ts",
+      "artifact": "scripts/public-artifacts/main/licenseManager.ts",
+      "dest": "src/main/licenseManager.ts",
+      "reason": "Stub version: always-pass license with full capabilities"
+    },
+    {
+      "source": "app/src/main/main.ts",
+      "artifact": "scripts/public-artifacts/main/main.ts",
+      "dest": "src/main/main.ts",
+      "reason": "Trimmed source template for removing license IPC handlers and backend imports"
+    },
+    {
+      "source": "app/src/preload/preload.ts",
+      "artifact": "scripts/public-artifacts/preload/preload.ts",
+      "dest": "src/preload/preload.ts",
+      "reason": "Trim removed license APIs from window.vanfolioAPI"
+    },
+    {
+      "source": "app/src/renderer/global.d.ts",
+      "artifact": "scripts/public-artifacts/renderer/global.d.ts",
+      "dest": "src/renderer/global.d.ts",
+      "reason": "TypeScript types for trimmed preload surface"
+    },
+    {
+      "source": "app/src/renderer/licenseGate.ts",
+      "artifact": "scripts/public-artifacts/renderer/licenseGate.ts",
+      "dest": "src/renderer/licenseGate.ts",
+      "reason": "Always-pass license gate stub"
+    },
+    {
+      "source": "app/src/renderer/settings.ts",
+      "artifact": "scripts/public-artifacts/renderer/settings.ts",
+      "dest": "src/renderer/settings.ts",
+      "reason": "Phase 3 trim template for removing license tab and aligning public AI/backup behavior"
+    }
+  ],
+  "copy_as_is": [
+    "app/src/engine/**/*.ts",
+    "app/src/main/aiManager.ts",
+    "app/src/main/fileManager.ts",
+    "app/src/main/fontManager.ts",
+    "app/src/main/menuManager.ts",
+    "app/src/main/puppeteerHelper.ts",
+    "app/src/main/securityManager.ts",
+    "app/src/main/updateManager.ts",
+    "app/src/main/versionManager.ts",
+    "app/src/main/windowManager.ts",
+    "app/src/renderer/aboutLicenseModal.ts",
+    "app/src/renderer/aiPalette.ts",
+    "app/src/renderer/autoAsset.ts",
+    "app/src/renderer/cleanProse.ts",
+    "app/src/renderer/discovery.ts",
+    "app/src/renderer/docsModal.ts",
+    "app/src/renderer/dragResize.ts",
+    "app/src/renderer/editor.ts",
+    "app/src/renderer/fileTabs.ts",
+    "app/src/renderer/floatingToolbar.ts",
+    "app/src/renderer/focusMode.ts",
+    "app/src/renderer/highlightHeader.ts",
+    "app/src/renderer/onboarding.ts",
+    "app/src/renderer/panelToggles.ts",
+    "app/src/renderer/preview.ts",
+    "app/src/renderer/previewRuler.ts",
+    "app/src/renderer/shortcuts.ts",
+    "app/src/renderer/slashCommand.ts",
+    "app/src/renderer/smartQuotes.ts",
+    "app/src/renderer/statusbar.ts",
+    "app/src/renderer/toast.ts",
+    "app/src/renderer/tocToggle.ts",
+    "app/src/renderer/toolbar.ts",
+    "app/src/renderer/tooltip.ts",
+    "app/src/renderer/versionHistory.ts",
+    "app/src/renderer/writingModes.ts",
+    "app/src/renderer/styles/**/*.css",
+    "app/src/renderer/styles/cmTheme.ts",
+    "app/src/renderer/assets/**/*",
+    "app/src/shared/constants.ts"
+  ],
+  "skip": [
+    "app/src/main/deviceFingerprint.ts",
+    "app/src/main/licenseBackend.ts",
+    "app/src/renderer/upgradePrompt.ts",
+    "app/src/renderer/styles/upgrade-prompt.css"
+  ],
+  "manual_trim": [
+    {
+      "source": "app/src/main/backupManager.ts",
+      "reason": "Disable scheduler behavior, keep manual backup"
+    },
+    {
+      "source": "app/src/main/storeManager.ts",
+      "reason": "Remove or neutralize premium and public-disabled backup fields"
+    },
+    {
+      "source": "app/src/renderer/exportModal.ts",
+      "reason": "Remove backup-on-export behavior"
+    },
+    {
+      "source": "app/src/renderer/fontLibrary.ts",
+      "reason": "Remove upgrade-gated overlay assumptions"
+    },
+    {
+      "source": "app/src/renderer/previewDetach.ts",
+      "reason": "Remove upgrade prompt dependency"
+    },
+    {
+      "source": "app/src/renderer/sidebar.ts",
+      "reason": "Remove license badge navigation"
+    },
+    {
+      "source": "app/src/renderer/titlebarMenu.ts",
+      "reason": "Remove upgrade prompt branches and publicize gated actions"
+    },
+    {
+      "source": "app/src/shared/i18n/**/*",
+      "reason": "Trim license, upgrade, scheduler, and backup-on-export copy"
+    },
+    {
+      "source": "app/src/renderer/docs/**/*",
+      "reason": "Rewrite backup scheduler, backup-on-export, and license-upgrade help content"
+    }
+  ],
+  "notes": {
+    "mainTs": "Currently represented by a Phase 3 source template, not a verified final trimmed implementation",
+    "settingsTs": "Phase 3 source template exists, but the full runnable public-safe implementation is still a Phase 4 trim task",
+    "sharedTypes": "Create scripts/public-artifacts/shared/types.ts only if trimming becomes substantial during Phase 4"
+  }
+}

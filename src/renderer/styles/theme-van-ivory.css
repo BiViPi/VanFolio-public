@@ -1,0 +1,677 @@
+/* ─────────────────────────────────────────────────────────────────────────────
+   VanFolio — Theme: Van Ivory (Light)
+   "Quiet Luxury" — Dry, Professional, Structural. Charcoal text. Brushed Gold accent.
+   ───────────────────────────────────────────────────────────────────────────── */
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   LAYER 1: TOKEN BLOCK (Canonical)
+   ───────────────────────────────────────────────────────────────────────── */
+[data-theme="van-ivory"] {
+  /* ── App Shell ── */
+  --surface-app: #ECEAE3;
+  --surface-shell: rgba(248, 246, 238, 0.62);
+  --surface-sidebar: rgba(244, 238, 218, 0.7);
+  --surface-panel: rgba(248, 244, 232, 0.34);
+  --surface-editor: #FFFFF0;
+  --surface-preview: rgba(244, 238, 218, 1);
+
+  /* ── Glass Spec Tokens ── */
+  --glass-tint-ivory: rgba(255, 248, 220, 0.32);
+  --glass-highlight: rgba(255, 255, 255, 0.82);
+
+  /* ── Overlay & Modal ── */
+  --surface-modal: #FFFFFF;
+  --surface-card: #F8F7F4;
+
+  /* ── Input & Interactive Component ── */
+  --surface-input: rgba(90, 93, 90, 0.08);
+
+  /* ── Active / Hover States ── */
+  --surface-hover: rgba(212, 175, 55, 0.10);
+  --surface-active: rgba(212, 175, 55, 0.18);
+
+  /* ── Primary Text — Charcoal Family (NO cream/tan) ── */
+  --text-primary: #2A2D2A;
+  --text-secondary: #4A4D4A;
+  --text-muted: #7A7D7A;
+  --text-ui: #5A5D5A;
+  --text-on-accent: #FDFCFB;
+
+  /* ── Navigation Text ── */
+  --text-sidebar-default: #4A4D4A;
+  --text-sidebar-active: #D4AF37;
+  --text-sidebar-muted: #7A7D7A;
+  --text-toc-default: #4A4D4A;
+  --text-toc-active: #D4AF37;
+
+  /* ── Accent Tokens — Brushed Bronze/Gold ── */
+  --accent: #B8922A;
+  --accent-rgb: 184, 146, 42;
+  --accent-bright: #D4AF37;
+  --accent-dim: #8C6E1A;
+
+  /* ── Border Tokens — Gold family ── */
+  --border-subtle: rgba(212, 175, 55, 0.22);
+  /* Brushed Gold faint */
+  --border-default: rgba(212, 175, 55, 0.40);
+  /* Brushed Gold mid — panel edges */
+  --border-strong: rgba(212, 175, 55, 0.65);
+  /* Brushed Gold sharp — separators */
+
+  /* ── Icon State Tokens ── */
+  --icon-default: #7A7D7A;
+  --icon-hover: #4A4D4A;
+  --icon-active: #D4AF37;
+  --icon-active-bg: #EBE3C8;
+
+  /* ── Sidebar Active State Tokens ── */
+  --sidebar-active-text: #D4AF37;
+  --sidebar-active-bg: #E8E0CC;
+  --sidebar-active-bar: #D4AF37;
+
+  /* ── Settings Active State ── */
+  --settings-active-text: #D4AF37;
+  --settings-active-border: #D4AF37;
+
+  /* ── Popup & Tooltip Tokens ── */
+  --popup-bg: #FFFFFF;
+  --popup-bg-subtle: rgba(255, 255, 255, 0.96);
+  --popup-text: #4A4D4A;
+  --popup-text-muted: #7A7D7A;
+  --popup-border: rgba(212, 175, 55, 0.30);
+  --popup-shadow: 0 16px 32px rgba(42, 45, 42, 0.12);
+  --popup-overlay: rgba(0, 0, 0, 0.28);
+  --popup-accent-text: #FDFCFB;
+
+  --tooltip-bg: rgba(255, 255, 255, 0.98);
+  --tooltip-text: #4A4D4A;
+  --tooltip-border: rgba(212, 175, 55, 0.28);
+  --tooltip-shadow: 0 14px 30px rgba(42, 45, 42, 0.10);
+
+  /* ── Layout & Editor Tokens ── */
+  --bento-radius: 12px;
+  --bento-shadow: 0 10px 32px 0 rgba(42, 45, 42, 0.07);
+  --bento-border: 1px solid var(--border-default);
+
+  --selection-bg: rgba(212, 175, 55, 0.20);
+
+  --syn-heading: #2A2D2A;
+  --syn-bold: #2A2D2A;
+  --syn-italic: #4A4D4A;
+  --syn-code: #B8922A;
+  --syn-link: #B8922A;
+  --syn-punct: #7A7D7A;
+
+  --doc-heading: #2A2D2A;
+  --doc-accent: #D4AF37;
+  --doc-border: rgba(212, 175, 55, 0.35);
+  --doc-border-subtle: rgba(212, 175, 55, 0.15);
+  --doc-code-bg: rgba(212, 175, 55, 0.10);
+
+  /* ── State & Alert Tokens ── */
+  --color-success: #5A8C51;
+  --color-error: #B03030;
+  --focus-ring: 0 0 0 2px rgba(212, 175, 55, 0.50);
+
+  /* ── Component Specific Surface Tokens ── */
+  --search-panel-bg: rgba(255, 255, 255, 0.98);
+  --search-panel-border: var(--border-default);
+  --search-panel-rim: var(--glass-rim);
+
+  --ai-palette-bg: rgba(255, 255, 255, 0.96);
+  --ai-palette-border: var(--accent);
+  --ai-palette-placeholder: var(--text-muted);
+
+  --toolbar-bg: linear-gradient(90deg, rgba(253, 252, 251, 0.60) 30%, rgba(212, 175, 55, 0.22) 100%);
+  --toolbar-border: rgba(212, 175, 55, 0.45);
+  --toolbar-shadow: 0 10px 24px rgba(42, 45, 42, 0.08);
+  --tabs-bar-bg: rgba(244, 238, 218, 0.7);
+  --tabs-bar-border: rgba(212, 175, 55, 0.4);
+
+  --toc-header-bg: var(--surface-shell);
+  --toc-header-text: var(--text-primary);
+
+  --ruler-bg: var(--accent-dim);
+  --ruler-shadow: 0 0 10px rgba(212, 175, 55, 0.35);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   LAYER 2: ALIAS BLOCK (Backward Compatibility)
+   ───────────────────────────────────────────────────────────────────────── */
+[data-theme="van-ivory"] {
+  /* ── Surface aliases ── */
+  --bg-sidebar: var(--surface-sidebar);
+  --bg-panel: var(--surface-panel);
+  --bg-editor: var(--surface-editor);
+  --bg-titlebar: var(--surface-shell);
+  --bg-input: var(--surface-input);
+  --bg-panel-rgb: 234, 230, 222;
+
+  /* ── Accent aliases ── */
+  --gold: var(--accent);
+  --gold-rgb: var(--accent-rgb);
+  --gold-bright: var(--accent-bright);
+  --gold-dim: var(--accent-dim);
+  --bronze: var(--accent);
+  --bronze-rgb: var(--accent-rgb);
+  --bronze-bright: var(--accent-bright);
+  --bronze-dim: var(--accent-dim);
+  --green-bright: var(--accent-bright);
+  --green-mid: var(--accent);
+  --green-dark: var(--accent-dim);
+
+  /* ── Border aliases ── */
+  --border: var(--border-default);
+  --border-light: var(--border-subtle);
+  --glass-rim: var(--border-subtle);
+
+  /* ── Text aliases ── */
+  --text-ink: var(--text-primary);
+
+  /* ── Legacy Document/Preview aliases ── */
+  --cream: var(--surface-editor);
+  --cream-rgb: 255, 255, 240;
+  --cream-dim: #FAF0E6;
+
+  /* ── Legacy State aliases ── (sidebar-active-* defined as real tokens in Layer 1) ── */
+
+  /* ── Popup aliases ── */
+  --chronicle-popup-bg: var(--popup-bg);
+  --chronicle-popup-bg-strong: var(--popup-bg-subtle);
+  --chronicle-popup-text: var(--popup-text);
+  --chronicle-popup-text-muted: var(--popup-text-muted);
+  --chronicle-popup-border: var(--popup-border);
+  --chronicle-popup-shadow: var(--popup-shadow);
+  --chronicle-popup-overlay: var(--popup-overlay);
+
+  /* ── Semantic aliases ── */
+  --accent-primary: var(--accent);
+  --state-hover: var(--surface-hover);
+  --state-active: var(--surface-active);
+  --divider: var(--border-subtle);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   LAYER 3: EFFECT BLOCK (Design Specific)
+   ───────────────────────────────────────────────────────────────────────── */
+/* BACKGROUND_STRATEGY: PROCEDURAL (Blurred Image) */
+[data-theme="van-ivory"] {
+  --ivory-scene-image: url('../assets/ivory-vibe.png');
+  --bg-app: var(--ivory-scene-image) center center / cover no-repeat fixed;
+}
+
+[data-theme="van-ivory"] #app {
+  background-color: #F0EDE6 !important;
+  /* Base stone color under image */
+  position: relative;
+  overflow: hidden;
+}
+
+[data-theme="van-ivory"] #app::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: var(--ivory-scene-image);
+  background-size: cover;
+  background-position: center;
+  filter: blur(15px) saturate(110%);
+  transform: scale(1.1);
+  /* Prevent white edges from blur */
+  opacity: 0.9;
+}
+
+/* ── Environmental Blurs & Liquid Glass ── */
+/* All selectors use `html [data-theme]` pattern (specificity 1,1,1)
+   to override theme-template.css selectors (specificity 1,1,0) */
+
+/* A. Shell Glass */
+/* Titlebar + Statusbar share one contract. Only edge border/shadow direction differs. */
+/* Titlebar: cannot use transparent + ::before trick because Electron's native
+   backgroundColor bleeds through when the renderer surface is transparent.
+   Instead, paint the frosted look directly on the element using background + overflow:hidden.
+   Statusbar sits inside the body flow so it doesn't have this constraint, but
+   we keep both contracts identical for consistency. */
+html[data-theme="van-ivory"] #titlebar,
+html[data-theme="van-ivory"] #statusbar {
+  position: relative !important;
+  /* Semi-opaque ivory frosted base — covers Electron native bg on titlebar */
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.85) 30%, rgba(244, 240, 228, 0.85) 100%),
+    var(--ivory-scene-image) center center / cover no-repeat fixed !important;
+  box-shadow: none !important;
+}
+
+html[data-theme="van-ivory"] #titlebar {
+  overflow: visible !important;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.75) !important;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.92) inset,
+    0 -1px 0 rgba(212, 175, 55, 0.18) inset,
+    0 4px 24px rgba(42, 45, 42, 0.06) !important;
+}
+
+html[data-theme="van-ivory"] #statusbar {
+  overflow: hidden !important;
+  border-top: 1px solid rgba(212, 175, 55, 0.45) !important;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.92) inset,
+    0 -1px 0 rgba(212, 175, 55, 0.18) inset,
+    0 -4px 24px rgba(42, 45, 42, 0.06) !important;
+}
+
+[data-theme="van-ivory"] #titlebar,
+[data-theme="van-ivory"] #titlebar * {
+  color: var(--text-primary) !important;
+}
+
+html[data-theme="van-ivory"] #statusbar {
+  overflow: hidden !important;
+  border-top: 1px solid rgba(212, 175, 55, 0.45) !important;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.92) inset,
+    0 -1px 0 rgba(212, 175, 55, 0.18) inset,
+    0 -4px 24px rgba(42, 45, 42, 0.06) !important;
+}
+
+[data-theme="van-ivory"] #titlebar,
+[data-theme="van-ivory"] #titlebar * {
+  color: var(--text-primary) !important;
+}
+
+html[data-theme="van-ivory"] #statusbar,
+html[data-theme="van-ivory"] #statusbar * {
+  color: var(--text-secondary) !important;
+}
+
+[data-theme="van-ivory"] .menu-btn,
+[data-theme="van-ivory"] .status-static {
+  color: var(--text-primary) !important;
+}
+
+[data-theme="van-ivory"] .menu-shortcut {
+  color: var(--text-secondary) !important;
+}
+
+[data-theme="van-ivory"] #titlebar .wordmark-van {
+  color: var(--text-secondary) !important;
+}
+
+[data-theme="van-ivory"] #titlebar .wordmark-folio {
+  color: var(--accent-dim) !important;
+}
+
+/* B. Icon Sidebar Glass */
+html[data-theme="van-ivory"] #icon-sidebar {
+  background:
+    linear-gradient(180deg, rgba(255, 252, 240, 0.7) 0%, rgba(240, 234, 212, 0.7) 100%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.24) 0%, rgba(212, 175, 55, 0.04) 100%) !important;
+  border-right: 1px solid rgba(212, 175, 55, 0.50) !important;
+  box-shadow:
+    2px 0 18px rgba(42, 45, 42, 0.08),
+    inset -1px 0 0 rgba(212, 175, 55, 0.14),
+    inset 0 1px 0 rgba(255, 255, 255, 0.80) !important;
+  backdrop-filter: blur(24px) saturate(200%) brightness(1.12) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(200%) brightness(1.12) !important;
+}
+
+/* C. Secondary Sidebar / TOC — very transparent warm glass */
+html[data-theme="van-ivory"] #secondary-sidebar,
+html[data-theme="van-ivory"] #toc-sidebar,
+
+html[data-theme="van-ivory"] .cm-panel.cm-search,
+html[data-theme="van-ivory"] #ai-palette {
+  position: relative !important;
+  background: #FDFCF8 !important;
+  border: 1px solid rgba(212, 175, 55, 0.36) !important;
+  box-shadow:
+    0 18px 42px rgba(42, 45, 42, 0.10),
+    inset 0 1px 0 rgba(255, 255, 255, 0.94),
+    inset 0 -1px 0 rgba(212, 175, 55, 0.16),
+    inset 1px 0 0 rgba(244, 231, 186, 0.55),
+    inset -1px 0 0 rgba(181, 143, 45, 0.18) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border-radius: 14px !important;
+}
+
+[data-theme="van-ivory"] #secondary-sidebar .sidebar-header,
+[data-theme="van-ivory"] .toc-header-bar {
+  background: rgba(240, 235, 215, 0.62) !important;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.28) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.72) !important;
+  color: var(--text-secondary) !important;
+}
+
+[data-theme="van-ivory"] #secondary-sidebar .sidebar-title,
+[data-theme="van-ivory"] #secondary-sidebar .sidebar-empty,
+[data-theme="van-ivory"] #secondary-sidebar .tree-file,
+[data-theme="van-ivory"] #secondary-sidebar .tree-folder,
+[data-theme="van-ivory"] #toc-content a {
+  color: var(--text-secondary) !important;
+}
+
+[data-theme="van-ivory"] #secondary-sidebar .tree-file,
+[data-theme="van-ivory"] #secondary-sidebar .tree-folder,
+[data-theme="van-ivory"] #toc-content a {
+  border-radius: 8px !important;
+}
+
+[data-theme="van-ivory"] #secondary-sidebar .sidebar-action-btn,
+[data-theme="van-ivory"] #secondary-sidebar .recent-remove {
+  color: var(--text-secondary) !important;
+}
+
+[data-theme="van-ivory"] #secondary-sidebar .sidebar-action-btn:hover,
+[data-theme="van-ivory"] #secondary-sidebar .recent-remove:hover,
+[data-theme="van-ivory"] #secondary-sidebar .tree-file:hover,
+[data-theme="van-ivory"] #secondary-sidebar .tree-folder:hover,
+[data-theme="van-ivory"] #toc-content a:hover {
+  background: rgba(255, 255, 255, 0.16) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.34),
+    0 6px 16px rgba(42, 45, 42, 0.06) !important;
+  color: var(--text-primary) !important;
+}
+
+[data-theme="van-ivory"] #toc-content a.toc-active,
+[data-theme="van-ivory"] #secondary-sidebar .tree-file.active {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.24) 0%, rgba(235, 226, 196, 0.20) 100%) !important;
+  border-left-color: rgba(212, 175, 55, 0.72) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.48),
+    0 8px 18px rgba(212, 175, 55, 0.10) !important;
+  color: var(--text-primary) !important;
+}
+
+/* Preview toolbar glass cap */
+[data-theme="van-ivory"] #preview-toolbar {
+  background: var(--toolbar-bg) !important;
+  border: 1px solid var(--toolbar-border) !important;
+  box-shadow:
+    var(--toolbar-shadow),
+    inset 0 1px 0 rgba(255, 255, 255, 0.72) !important;
+  backdrop-filter: blur(16px) saturate(140%) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(140%) !important;
+}
+
+[data-theme="van-ivory"] #preview-toolbar .ptb-btn,
+[data-theme="van-ivory"] #preview-toolbar .ptb-circle-btn,
+[data-theme="van-ivory"] #preview-toolbar .ptb-zoom-label {
+  color: var(--text-secondary) !important;
+}
+
+[data-theme="van-ivory"] #file-tabs-bar {
+  background: var(--tabs-bar-bg) !important;
+  border-bottom: 1px solid var(--tabs-bar-border) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.52),
+    inset 0 -1px 0 rgba(212, 175, 55, 0.16) !important;
+}
+
+/* D. Modal Glass (Layer 2) */
+[data-theme="van-ivory"] .s-modal,
+[data-theme="van-ivory"] #export-modal,
+[data-theme="van-ivory"] #shortcuts-modal,
+[data-theme="van-ivory"] #about-modal,
+[data-theme="van-ivory"] #docs-modal {
+  background:
+    linear-gradient(180deg, rgba(255, 254, 252, 0.94) 0%, rgba(244, 241, 232, 0.88) 100%),
+    linear-gradient(135deg, rgba(255, 248, 220, 0.14) 0%, rgba(255, 255, 255, 0.06) 100%) !important;
+  border: 1px solid rgba(212, 175, 55, 0.36) !important;
+  box-shadow:
+    0 24px 64px rgba(42, 45, 42, 0.14),
+    inset 0 1px 0 rgba(255, 255, 255, 0.90) !important;
+  backdrop-filter: blur(22px) saturate(145%) !important;
+  -webkit-backdrop-filter: blur(22px) saturate(145%) !important;
+  border-radius: 16px !important;
+}
+
+[data-theme="van-ivory"] #docs-modal .shortcuts-header,
+[data-theme="van-ivory"] #docs-modal .docs-nav {
+  background: rgba(240, 235, 215, 0.62) !important;
+}
+
+[data-theme="van-ivory"] #docs-modal .docs-nav {
+  border-right: 1px solid rgba(212, 175, 55, 0.28) !important;
+}
+
+[data-theme="van-ivory"] #docs-modal .shortcuts-header {
+  border-bottom: 1px solid rgba(212, 175, 55, 0.28) !important;
+}
+
+[data-theme="van-ivory"] #docs-modal .docs-content {
+  background: #FDFCF8 !important;
+}
+
+/* E. Popup / Toast Glass (Layer 3) */
+[data-theme="van-ivory"] .toast,
+[data-theme="van-ivory"] .upgrade-prompt {
+  background:
+    linear-gradient(170deg, rgba(255, 255, 255, 0.86) 0%, rgba(248, 242, 224, 0.76) 100%),
+    linear-gradient(135deg, rgba(255, 240, 180, 0.18) 0%, rgba(255, 255, 255, 0.06) 100%) !important;
+  border: 1px solid rgba(212, 175, 55, 0.40) !important;
+  box-shadow:
+    0 28px 72px rgba(42, 45, 42, 0.16),
+    0 10px 22px rgba(42, 45, 42, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.92) !important;
+  backdrop-filter: blur(20px) saturate(150%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(150%) !important;
+  border-radius: 18px !important;
+}
+
+/* ── Panel overrides ── */
+[data-theme="van-ivory"] #preview-panel {
+  background: var(--surface-preview) !important;
+  margin: 0 !important;
+}
+
+[data-theme="van-ivory"] #toc-sidebar {
+  margin: 0 !important;
+}
+
+[data-theme="van-ivory"] #editor-panel {
+  margin: 0 !important;
+}
+
+[data-theme="van-ivory"] #secondary-sidebar {
+  margin: 12px 0 12px 12px !important;
+}
+
+[data-theme="van-ivory"] #panels {
+  padding: 12px !important;
+}
+
+/* ── Icon Rail Active State ── */
+[data-theme="van-ivory"] .icon-btn {
+  color: var(--icon-default);
+  transition: transform 180ms ease, opacity 180ms ease, color 180ms ease !important;
+}
+
+[data-theme="van-ivory"] .icon-btn:hover {
+  color: var(--icon-hover);
+  transform: translateY(-1px) !important;
+}
+
+[data-theme="van-ivory"] .icon-btn:active,
+[data-theme="van-ivory"] .menu-btn:active {
+  transform: scale(0.96) !important;
+}
+
+[data-theme="van-ivory"] .icon-btn.active,
+[data-theme="van-ivory"] .icon-btn[aria-selected="true"] {
+  color: var(--icon-active);
+  background-color: var(--icon-active-bg);
+  box-shadow: -2px 0 0 var(--sidebar-active-bar) inset;
+}
+
+[data-theme="van-ivory"] .menu-btn,
+[data-theme="van-ivory"] .modal-tab {
+  transition: transform 180ms ease, opacity 180ms ease, color 180ms ease !important;
+}
+
+[data-theme="van-ivory"] .menu-btn:hover,
+[data-theme="van-ivory"] .modal-tab:hover {
+  transform: translateY(-1px) !important;
+}
+
+/* Modal Open Animation */
+@keyframes ivory-glass-reveal {
+  from {
+    opacity: 0;
+    transform: scale(0.98) translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+[data-theme="van-ivory"] .s-modal,
+[data-theme="van-ivory"] #export-modal,
+[data-theme="van-ivory"] #shortcuts-modal,
+[data-theme="van-ivory"] #about-modal,
+[data-theme="van-ivory"] #docs-modal {
+  animation: ivory-glass-reveal 280ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Panel Slide In Animation */
+@keyframes ivory-panel-in {
+  from {
+    opacity: 0;
+    transform: translateX(-8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+[data-theme="van-ivory"] #secondary-sidebar,
+[data-theme="van-ivory"] #toc-sidebar {
+  animation: ivory-panel-in 250ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+
+  [data-theme="van-ivory"] .s-modal,
+  [data-theme="van-ivory"] #export-modal,
+  [data-theme="van-ivory"] #shortcuts-modal,
+  [data-theme="van-ivory"] #about-modal,
+  [data-theme="van-ivory"] #docs-modal,
+  [data-theme="van-ivory"] #secondary-sidebar,
+  [data-theme="van-ivory"] #toc-sidebar {
+    animation: none !important;
+  }
+}
+
+/* Backdrop filter fallbacks */
+@supports not (backdrop-filter: blur(1px)) {
+
+  [data-theme="van-ivory"] #titlebar,
+  [data-theme="van-ivory"] #statusbar {
+    background: rgba(240, 237, 228, 0.96) !important;
+  }
+
+  [data-theme="van-ivory"] #icon-sidebar {
+    background: rgba(244, 239, 224, 0.92) !important;
+  }
+
+  [data-theme="van-ivory"] #secondary-sidebar,
+  [data-theme="van-ivory"] #toc-sidebar,
+  [data-theme="van-ivory"] .cm-panel.cm-search,
+  [data-theme="van-ivory"] #ai-palette {
+    background: rgba(248, 244, 232, 0.90) !important;
+  }
+
+  [data-theme="van-ivory"] .s-modal,
+  [data-theme="van-ivory"] #export-modal,
+  [data-theme="van-ivory"] #shortcuts-modal,
+  [data-theme="van-ivory"] #about-modal,
+  [data-theme="van-ivory"] #docs-modal {
+    background: rgba(253, 252, 248, 0.99) !important;
+  }
+
+  [data-theme="van-ivory"] .toast,
+  [data-theme="van-ivory"] .upgrade-prompt {
+    background: rgba(255, 252, 240, 0.99) !important;
+  }
+}
+
+/* ── Zen Mode: Ivory Paper ── */
+[data-zen-theme="light"] {
+  --zen-bg: var(--bg-app);
+  --zen-canvas-bg: rgba(255, 255, 240, 0.84);
+  --zen-canvas-text: var(--text-primary);
+  --zen-canvas-border: rgba(212, 175, 55, 0.22);
+  --zen-canvas-shadow: 0 40px 100px rgba(42, 45, 42, 0.18);
+  --zen-accent: var(--accent);
+  --zen-line-num: var(--text-muted);
+  --zen-muted: var(--text-muted);
+  --zen-status-bg: transparent;
+  --zen-status-border: transparent;
+}
+
+[data-theme='van-ivory'] #zen-overlay::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background-image: var(--ivory-scene-image) !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  filter: blur(15px) saturate(120%) brightness(1.05) !important;
+  transform: scale(1.08);
+  opacity: 0.88;
+  pointer-events: none;
+}
+
+[data-theme='van-ivory'] #zen-canvas {
+  backdrop-filter: blur(0px) !important;
+  box-shadow: 0 40px 120px rgba(42, 45, 42, 0.22) !important;
+  border: 1px solid rgba(212, 175, 55, 0.28) !important;
+}
+
+[data-theme='van-ivory'] #zen-preview-view {
+  background: transparent !important;
+}
+
+[data-theme='van-ivory'] #zen-preview-view #preview-content {
+  background: transparent !important;
+}
+
+[data-theme='van-ivory'] #zen-preview-view .preview-page {
+  box-shadow:
+    0 18px 48px rgba(42, 45, 42, 0.10),
+    0 0 0 1px rgba(255, 255, 255, 0.72) inset !important;
+}
+
+[data-theme='van-ivory'] #zen-overlay {
+  background-color: #F0EDE6 !important;
+}
+
+[data-theme='van-ivory'] #zen-status {
+  color: var(--zen-muted) !important;
+  background: transparent !important;
+  border-top: 1px solid transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  opacity: 0.42;
+  transition: all 0.5s ease-in-out !important;
+}
+
+[data-theme='van-ivory'] #zen-status:hover {
+  color: var(--text-primary) !important;
+  background: linear-gradient(180deg, rgba(253, 252, 248, 0.08) 0%, rgba(240, 237, 230, 0.22) 100%) !important;
+  border-top: 1px solid rgba(212, 175, 55, 0.28) !important;
+  backdrop-filter: blur(8px) saturate(110%) !important;
+  -webkit-backdrop-filter: blur(8px) saturate(110%) !important;
+  opacity: 1 !important;
+}

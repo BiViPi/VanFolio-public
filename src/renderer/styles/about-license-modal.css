@@ -1,0 +1,190 @@
+/* ── About & License Modal ───────────────────────────────────────────────────
+   VanFolio — About Modal (Refactored)
+   Ownership: structure only. Colors via var(--token).
+   ─────────────────────────────────────────────────────────────────────────── */
+
+#about-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--popup-overlay);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1600;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 200ms ease;
+}
+
+#about-overlay.open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+#about-modal {
+  background: var(--surface-modal);
+  border: 1px solid var(--border-default);
+  border-radius: 12px;
+  width: 600px;
+  max-width: 90vw;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: var(--popup-shadow);
+}
+
+#about-modal .modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+#about-modal .modal-close-btn {
+  background: transparent !important;
+  border: none !important;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 18px;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 50%;
+  margin-right: -8px;
+  opacity: 0.8;
+  font-weight: 700;
+  line-height: 1;
+}
+
+#about-modal .modal-close-btn:hover {
+  color: var(--text-primary);
+  opacity: 1;
+  transform: scale(1.1) rotate(90deg);
+}
+
+.about-header-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.about-header-logo h2 {
+  font-size: 18px;
+  margin: 0;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+#about-modal .modal-body {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  flex: 1;
+  overflow: hidden;
+}
+
+.about-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.about-version {
+  font-family: var(--font-ui);
+  font-size: 13px;
+  color: var(--accent);
+  font-weight: 600;
+  margin: 0;
+}
+
+.about-license-title {
+  font-family: var(--font-ui);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.about-license-scroll {
+  flex: 1;
+  background: var(--surface-input);
+  border: 1px solid var(--border-subtle);
+  border-radius: 6px;
+  padding: 16px;
+  overflow-y: auto;
+}
+
+#about-license-text {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin: 0;
+  user-select: text;
+}
+
+/* Base Markdown Styling for License */
+#about-license-text h1,
+#about-license-text h2,
+#about-license-text h3 {
+  color: var(--text-primary);
+  margin-top: 1.2rem;
+  margin-bottom: 0.6rem;
+  font-weight: 600;
+}
+
+#about-license-text h1 {
+  font-size: 15px;
+  border-bottom: 1px solid var(--border-subtle);
+  padding-bottom: 4px;
+}
+
+#about-license-text h2 {
+  font-size: 14px;
+}
+
+#about-license-text h3 {
+  font-size: 13px;
+}
+
+#about-license-text p {
+  margin-bottom: 1rem;
+}
+
+#about-license-text strong {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+#about-license-text em {
+  font-style: italic;
+}
+
+#about-modal .modal-footer {
+  padding: 16px 24px;
+  border-top: 1px solid var(--border-subtle);
+  display: flex;
+  justify-content: flex-end;
+}
+
+#about-modal .btn-primary {
+  background: var(--accent);
+  color: var(--text-on-accent);
+  border: none;
+  padding: 8px 24px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+#about-modal .btn-primary:hover {
+  opacity: 0.9;
+}

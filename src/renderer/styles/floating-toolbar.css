@@ -1,0 +1,53 @@
+/* ── Floating Inline Toolbar (Refactored) ─────────────────────────────────── */
+
+#floating-toolbar {
+  position: fixed;
+  z-index: 999;
+  display: flex;
+  gap: 2px;
+  padding: 4px 6px;
+  border-radius: 8px;
+
+  /* Glassmorphism via tokens */
+  background: var(--popup-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--popup-shadow);
+
+  /* Hidden by default */
+  opacity: 0;
+  transform: translateY(4px);
+  pointer-events: none;
+  transition: opacity 150ms ease, transform 150ms ease;
+}
+
+#floating-toolbar.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.ft-btn {
+  width: 32px;
+  height: 28px;
+  border: none;
+  border-radius: 5px;
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 13px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.1s ease;
+}
+
+.ft-btn:hover {
+  background: var(--surface-hover);
+  color: var(--text-primary);
+}
+
+.ft-btn:active {
+  transform: scale(0.95);
+}

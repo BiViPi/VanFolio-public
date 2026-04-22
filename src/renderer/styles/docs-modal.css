@@ -1,0 +1,242 @@
+/* ── Documentation Modal ─────────────────────────────────────────────────────
+   VanFolio — Documentation (Refactored)
+   Ownership: structure only. Colors via var(--token).
+   ─────────────────────────────────────────────────────────────────────────── */
+
+#docs-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--popup-overlay);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1500;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 200ms ease;
+}
+
+#docs-overlay.open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+#docs-modal {
+  background: var(--surface-modal);
+  border: 1px solid var(--border-default);
+  border-radius: 12px;
+  width: 780px;
+  max-width: 92vw;
+  max-height: 82vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: var(--popup-shadow);
+}
+
+#docs-modal .shortcuts-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px 12px;
+  background: var(--surface-panel);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+#docs-modal .shortcuts-header h2 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+#docs-modal .shortcuts-header button {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 1;
+  padding: 4px 6px;
+  border-radius: 6px;
+}
+
+#docs-modal .shortcuts-header button:hover {
+  background: var(--surface-hover);
+  color: var(--text-primary);
+}
+
+/* ── Body layout: nav + content ─────────────────────────────────────────── */
+.docs-body {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* ── Left nav ────────────────────────────────────────────────────────────── */
+.docs-nav {
+  width: 190px;
+  flex-shrink: 0;
+  border-right: 1px solid var(--border-subtle);
+  padding: 10px 0;
+  overflow-y: auto;
+  background: var(--surface-panel);
+}
+
+.docs-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.docs-nav-item {
+  padding: 8px 18px;
+  font-size: 13px;
+  font-family: var(--font-ui);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.docs-nav-item:hover {
+  background: var(--surface-hover);
+  color: var(--text-primary);
+}
+
+.docs-nav-item.active {
+  color: var(--accent-bright);
+  font-weight: 600;
+  background: var(--surface-active);
+}
+
+/* ── Content area ────────────────────────────────────────────────────────── */
+.docs-content {
+  flex: 1;
+  padding: 24px 28px;
+  overflow-y: auto;
+  font-size: 14px;
+  font-family: var(--font-ui);
+  color: var(--text-primary);
+  line-height: 1.75;
+  background: var(--surface-modal);
+}
+
+/* ── Typography inside docs-content ─────────────────────────────────────── */
+.docs-content h1 {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0 0 18px;
+  color: var(--text-primary);
+}
+
+.docs-content h2 {
+  font-size: 13px;
+  font-weight: 600;
+  margin: 22px 0 8px;
+  color: var(--text-primary);
+  border-bottom: 1px solid var(--border-subtle);
+  padding-bottom: 5px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.docs-content h3 {
+  font-size: 13px;
+  font-weight: 600;
+  margin: 14px 0 5px;
+  color: var(--text-secondary);
+}
+
+.docs-content p {
+  margin: 0 0 10px;
+  color: var(--text-secondary);
+}
+
+.docs-content ul,
+.docs-content ol {
+  padding-left: 20px;
+  margin: 0 0 10px;
+  color: var(--text-secondary);
+}
+
+.docs-content li {
+  margin-bottom: 4px;
+}
+
+.docs-content table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 0 0 14px;
+  font-size: 13px;
+}
+
+.docs-content th {
+  text-align: left;
+  padding: 6px 10px;
+  border-bottom: 1px solid var(--border-default);
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.docs-content td {
+  padding: 5px 10px;
+  border-bottom: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+}
+
+.docs-content code {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  background: var(--surface-input);
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: var(--accent);
+}
+
+.docs-content pre {
+  background: var(--surface-input);
+  border: 1px solid var(--border-subtle);
+  border-radius: 6px;
+  padding: 12px 14px;
+  overflow-x: auto;
+  margin: 0 0 12px;
+}
+
+.docs-content pre code {
+  background: none;
+  padding: 0;
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.docs-content kbd {
+  font-family: var(--font-ui);
+  font-size: 11px;
+  background: var(--surface-modal);
+  border: 1px solid var(--border-default);
+  border-radius: 4px;
+  padding: 1px 6px;
+  color: var(--text-primary);
+  box-shadow: inset 0 1px 0 var(--border-subtle);
+}
+
+.docs-content hr {
+  border: none;
+  border-top: 1px solid var(--border-subtle);
+  margin: 18px 0;
+}
+
+.docs-content strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.docs-content a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.docs-content a:hover {
+  text-decoration: underline;
+}

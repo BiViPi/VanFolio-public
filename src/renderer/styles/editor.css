@@ -1,0 +1,359 @@
+/* ─────────────────────────────────────────────────────────────────────────────
+   VanFolio — Editor Styles (Refactored)
+   Ownership: structure only. Colors via var(--token).
+   ───────────────────────────────────────────────────────────────────────────── */
+
+/* ── File Tabs Bar ────────────────────────────────────────────────────────── */
+#file-tabs-bar {
+  display: flex;
+  align-items: center;
+  height: 32px;
+  background: var(--tabs-bar-bg, var(--surface-shell));
+  border-bottom: 1px solid var(--tabs-bar-border, var(--border-default));
+  border-radius: var(--bento-radius) var(--bento-radius) 0 0;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+#file-tabs-scroll {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  height: 100%;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+#file-tabs-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.file-tab {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 12px;
+  height: 100%;
+  font-size: 12px;
+  color: var(--text-sidebar-muted);
+  cursor: pointer;
+  white-space: nowrap;
+  border-right: 1px solid var(--border-subtle);
+  transition: all 0.2s ease;
+}
+
+.file-tab:hover {
+  background: var(--surface-hover);
+  color: var(--text-sidebar-default);
+}
+
+.file-tab.active {
+  background: var(--surface-editor);
+  color: var(--text-primary);
+  border-top: 2px solid var(--accent);
+  border-radius: 6px 6px 0 0;
+}
+
+/* ── Tab Close Button ──────────────────────────────────────────────────────── */
+.tab-close {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  border: none;
+  border-radius: 4px;
+  background: none;
+  color: var(--text-muted);
+  font-size: 12px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: all 0.2s ease;
+}
+
+.file-tab:hover .tab-close,
+.file-tab.active .tab-close {
+  opacity: 1;
+}
+
+.tab-close:hover {
+  background: var(--surface-hover);
+  color: var(--text-primary);
+}
+
+.tab-name {
+  max-width: 140px;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.file-tab .unsaved-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
+}
+
+/* ── File Tabs + button ────────────────────────────────────────────────────── */
+.file-tabs-new {
+  width: 26px;
+  height: 26px;
+  border-radius: 4px;
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 16px;
+  cursor: pointer;
+  flex-shrink: 0;
+  align-self: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.file-tabs-new:hover {
+  background: var(--surface-hover);
+  color: var(--text-primary);
+}
+
+/* ── Editor Area ──────────────────────────────────────────────────────────── */
+#editor-area {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+}
+
+#editor-area.drag-over::after {
+  content: 'Drop image here';
+  position: absolute;
+  inset: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px dashed var(--accent);
+  border-radius: 8px;
+  background: var(--surface-hover);
+  color: var(--accent);
+  font-size: 14px;
+  font-weight: 500;
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* CodeMirror overrides */
+.cm-editor {
+  height: 100%;
+  font-family: var(--font-mono);
+}
+
+.cm-scroller {
+  overflow: auto;
+}
+
+.cm-editor.cm-focused {
+  outline: none;
+}
+
+.cm-gutters {
+  background: var(--surface-editor) !important;
+  border-right: none;
+}
+
+.cm-activeLine {
+  background: color-mix(in srgb, var(--surface-active) 55%, transparent) !important;
+  box-shadow: inset 2px 0 0 color-mix(in srgb, var(--accent) 42%, transparent);
+  border-radius: 2px;
+}
+
+.cm-editor.has-range-selection .cm-activeLine {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.cm-editor.has-range-selection .cm-activeLineGutter {
+  background: transparent !important;
+}
+
+.cm-selectionBackground {
+  background: var(--selection-bg) !important;
+}
+
+/* ── AI Palette ─────────────────────────────────────────────────────── */
+#ai-palette {
+  display: none;
+  position: fixed;
+  bottom: calc(var(--statusbar-h) + 24px);
+  left: 50%;
+  transform: translateX(-50%) translateY(12px);
+  z-index: 200;
+  background: var(--ai-palette-bg);
+  backdrop-filter: blur(30px) saturate(160%);
+  border: 1px solid var(--ai-palette-border);
+  box-shadow: var(--popup-shadow);
+  border-radius: 16px;
+  min-width: 520px;
+  max-width: 660px;
+  width: 100%;
+  flex-direction: column;
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease;
+}
+
+#ai-palette.visible {
+  display: flex !important;
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+
+#ai-palette-row {
+  display: flex;
+  align-items: flex-start;
+  padding: 22px 24px;
+  gap: 16px;
+}
+
+#ai-palette-row .ai-palette-icon {
+  color: var(--accent);
+}
+
+#ai-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  color: var(--text-primary);
+  font-family: var(--font-ui);
+  letter-spacing: -0.01em;
+  resize: none;
+  line-height: 1.5;
+}
+
+#ai-input::placeholder {
+  color: var(--ai-palette-placeholder);
+}
+
+#ai-generate {
+  background: transparent;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  border-radius: 100px;
+  padding: 6px 16px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+#ai-generate:hover {
+  background: var(--accent);
+  color: var(--text-on-accent);
+}
+
+.ai-divider {
+  width: 1px;
+  height: 24px;
+  background: var(--border-subtle);
+}
+
+#ai-close {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+#ai-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  padding: 8px 0;
+  margin: 0 24px 16px;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.ai-chip {
+  background: var(--surface-input);
+  border: 1px solid var(--border-subtle);
+  border-radius: 20px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  font-size: 11px;
+  padding: 3px 10px;
+  transition: all 0.15s ease;
+}
+
+.ai-chip:hover {
+  background: var(--surface-active);
+  border-color: var(--accent);
+  color: var(--text-primary);
+}
+
+/* ── CodeMirror Search Panel ── */
+.cm-editor .cm-panels.cm-panels-bottom {
+  position: fixed !important;
+  bottom: 48px !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  width: calc(100% - 40px) !important;
+  max-width: 520px !important;
+  z-index: 150 !important;
+  background: transparent !important;
+  border: none !important;
+}
+
+.cm-editor .cm-panel.cm-search {
+  background: var(--search-panel-bg) !important;
+  backdrop-filter: blur(20px) saturate(160%) !important;
+  border: 1px solid var(--search-panel-border) !important;
+  border-top: 1px solid var(--search-panel-rim) !important;
+  box-shadow: var(--popup-shadow) !important;
+  border-radius: 12px !important;
+  padding: 10px !important;
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+.cm-panel.cm-search input.cm-textfield {
+  flex: 1 !important;
+  background: var(--surface-input) !important;
+  border: 1px solid var(--border-default) !important;
+  border-radius: 6px !important;
+  padding: 5px 10px !important;
+  color: var(--text-primary) !important;
+  outline: none !important;
+}
+
+.cm-panel.cm-search input.cm-textfield:focus {
+  border-color: var(--accent) !important;
+  box-shadow: var(--focus-ring) !important;
+}
+
+.cm-panel.cm-search button {
+  background: transparent !important;
+  border: 1px solid var(--accent) !important;
+  border-radius: 100px !important;
+  padding: 3px 12px !important;
+  color: var(--accent) !important;
+  font-size: 11px !important;
+  cursor: pointer !important;
+}
+
+.cm-panel.cm-search button:hover {
+  background: var(--accent) !important;
+  color: var(--text-on-accent) !important;
+}
+
+.cm-active-heading {
+  background: var(--surface-active) !important;
+  box-shadow: inset 4px 0 0 0 var(--accent) !important;
+}

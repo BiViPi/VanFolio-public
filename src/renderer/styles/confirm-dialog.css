@@ -1,0 +1,75 @@
+/* ─────────────────────────────────────────────────────────────────────────────
+   VanFolio — Confirm Dialog Styles
+   Ownership: in-page confirm only.
+   ───────────────────────────────────────────────────────────────────────────── */
+
+.in-page-confirm-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 20001;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--popup-overlay);
+}
+
+.in-page-confirm-box {
+  background-color: var(--surface-modal);
+  color: var(--text-primary);
+  border: 1px solid var(--border-default);
+  border-radius: 16px;
+  padding: 22px 28px;
+  max-width: 320px;
+  width: 90%;
+  box-shadow: var(--popup-shadow);
+  text-align: center;
+}
+
+.in-page-confirm-box p {
+  margin: 0 0 20px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.in-page-confirm-btns {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+.btn-confirm-ok,
+.btn-confirm-cancel {
+  padding: 8px 20px;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  line-height: 1.4;
+}
+
+.btn-confirm-ok {
+  background: var(--accent);
+  color: var(--text-on-accent);
+  border: 1px solid transparent;
+  box-shadow: 0 4px 12px rgba(42, 45, 42, 0.08);
+}
+
+.btn-confirm-ok:hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(42, 45, 42, 0.12);
+}
+
+.btn-confirm-cancel {
+  background: transparent;
+  border: 1px solid var(--border-default);
+  color: var(--text-secondary);
+}
+
+.btn-confirm-cancel:hover {
+  background: var(--surface-hover);
+  border-color: var(--accent);
+  color: var(--text-primary);
+}

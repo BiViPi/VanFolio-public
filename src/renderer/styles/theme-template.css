@@ -1,0 +1,358 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   VanFolio — theme-template.css
+   Universal Shared Selector Layer (v1.2) - Refactor v2 Core
+   ───────────────────────────────────────────────────────────────────────── */
+
+/* 
+   HOW THIS FILE WORKS:
+   - This file contains ZERO hardcoded color values.
+   - It only contains structural selectors that read from semantic tokens.
+   - All skin-specific traits belong in theme-*.css.
+*/
+
+/* 
+    Required canonical tokens each theme MUST define:
+    ── Surfaces ──────────────────────────────────────────────────────────────
+      --surface-app      --surface-shell    --surface-sidebar
+      --surface-panel    --surface-editor   --surface-preview
+      --surface-modal    --surface-card     --surface-input
+      --surface-hover    --surface-active
+    ── Text ──────────────────────────────────────────────────────────────────
+      --text-primary     --text-secondary   --text-muted     --text-on-accent
+      --text-sidebar-default  --text-sidebar-active  --text-sidebar-muted
+      --text-toc-default      --text-toc-active
+    ── Accent ────────────────────────────────────────────────────────────────
+      --accent           --accent-rgb       --accent-bright     --accent-dim
+    ── Borders ───────────────────────────────────────────────────────────────
+      --border-subtle    --border-default   --border-strong
+    ── Popup / Tooltip ───────────────────────────────────────────────────────
+      --popup-bg         --popup-bg-subtle  --popup-text        --popup-text-muted
+      --popup-border     --popup-shadow     --popup-overlay     --popup-accent-text
+      --tooltip-bg       --tooltip-text     --tooltip-border    --tooltip-shadow
+    ── Layout ────────────────────────────────────────────────────────────────
+      --bento-radius     --bento-shadow     --bento-border      --selection-bg
+    ── State & Alert (Phase 1) ───────────────────────────────────────────────
+      --color-success    --color-error      --focus-ring
+    ── Component Specific (Phase 1) ──────────────────────────────────────────
+      --search-panel-bg  --search-panel-border  --search-panel-rim
+      --ai-palette-bg    --ai-palette-border    --ai-palette-placeholder
+      --toolbar-bg       --toolbar-border       --toolbar-shadow
+      --tabs-bar-bg      --tabs-bar-border
+      --toc-header-bg    --toc-header-text      --ruler-bg          --ruler-shadow
+    ── Alias bridge (backward-compat) ────────────────────────────────────────
+      --bg-sidebar  --bg-panel  --bg-editor  --bg-titlebar  --bg-input
+      --gold  --gold-rgb  --gold-bright  --gold-dim
+      --border  --border-light
+    ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ── §1  SHELL — Titlebar / Statusbar Shared Contract ─────────────────────── */
+[data-theme] #titlebar,
+[data-theme] #statusbar {
+    background: var(--surface-shell) !important;
+    box-shadow: none !important;
+}
+
+[data-theme] #titlebar {
+    border-bottom: 1px solid var(--border-default) !important;
+}
+
+[data-theme] #titlebar .win-controls button {
+    color: var(--text-sidebar-muted);
+    opacity: 0.85;
+    transition: all 0.2s ease;
+}
+
+[data-theme] #titlebar .win-controls button:hover {
+    color: var(--accent) !important;
+    background: transparent !important;
+    opacity: 1;
+}
+
+/* ── §2  SHELL — Statusbar ────────────────────────────────────────────────── */
+[data-theme] #statusbar {
+    border-top: 1px solid var(--border-default) !important;
+    color: var(--text-sidebar-default) !important;
+}
+
+[data-theme] #statusbar span,
+[data-theme] .status-static {
+    color: var(--text-sidebar-default) !important;
+}
+
+/* ── §3  SHELL — Icon Sidebar ─────────────────────────────────────────────── */
+[data-theme] #icon-sidebar {
+    background: var(--surface-sidebar) !important;
+    border-right: 1px solid var(--border-default) !important;
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.06),
+        inset -1px 0 0 var(--border-subtle) !important;
+}
+
+[data-theme] .icon-btn,
+[data-theme] .icon-btn-ai,
+[data-theme] .sidebar-action-btn {
+    color: var(--text-sidebar-default) !important;
+    background: transparent !important;
+    opacity: 0.8;
+    transition: color 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+    box-shadow: none !important;
+}
+
+[data-theme] .icon-btn:hover,
+[data-theme] .icon-btn-ai:hover,
+[data-theme] .sidebar-action-btn:hover,
+[data-theme] .icon-btn.active {
+    color: var(--accent-bright) !important;
+    opacity: 1;
+    background: transparent !important;
+    box-shadow: none !important;
+}
+
+[data-theme] .icon-btn.active::before {
+    background: var(--accent) !important;
+}
+
+[data-theme] .titlebar-toggle-btn {
+    color: var(--text-sidebar-muted) !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    opacity: 0.75;
+    transition: color 0.2s ease;
+}
+
+[data-theme] .titlebar-toggle-btn:hover,
+[data-theme] .titlebar-toggle-btn.active {
+    color: var(--accent) !important;
+    opacity: 1;
+    background: transparent !important;
+}
+
+/* ── §4  PANEL — Explorer Sidebar & TOC ──────────────────────────────────── */
+[data-theme] #secondary-sidebar,
+[data-theme] #toc-sidebar {
+    background: var(--surface-panel) !important;
+    border: 1px solid var(--border-subtle) !important;
+    border-radius: var(--bento-radius) !important;
+}
+
+[data-theme] .tree-file,
+[data-theme] .tree-folder,
+[data-theme] .sidebar-title {
+    color: var(--text-toc-default) !important;
+}
+
+[data-theme] .tree-file:hover,
+[data-theme] .tree-folder:hover {
+    color: var(--text-toc-active) !important;
+    background: var(--surface-hover) !important;
+}
+
+[data-theme] .file-item.active,
+[data-theme] .tree-file.active {
+    background: transparent !important;
+    color: var(--accent) !important;
+    font-weight: 700;
+}
+
+/* ── §5  PANEL — Editor ───────────────────────────────────────────────────── */
+[data-theme] #editor-panel {
+    background: var(--surface-editor) !important;
+    border: 1px solid var(--border-default) !important;
+    border-radius: var(--bento-radius) !important;
+    overflow: hidden;
+}
+
+[data-theme] .cm-editor,
+[data-theme] .cm-gutters,
+[data-theme] #editor-area {
+    background: transparent !important;
+}
+
+/* ── §6  PANEL — Preview ──────────────────────────────────────────────────── */
+[data-theme] #preview-panel {
+    background: var(--surface-preview) !important;
+    border: 1px solid var(--border-subtle) !important;
+    border-radius: var(--bento-radius) !important;
+}
+
+/* ── §7  TABS ─────────────────────────────────────────────────────────────── */
+[data-theme] .file-tab {
+    background: var(--surface-hover) !important;
+    border-right: 1px solid var(--border-subtle) !important;
+    color: var(--text-sidebar-muted) !important;
+}
+
+[data-theme] .file-tab.active {
+    background: var(--surface-editor) !important;
+    border-top: 3px solid var(--accent) !important;
+    color: var(--text-primary) !important;
+    font-weight: 600;
+}
+
+/* ── §8  TITLEBAR MENU ────────────────────────────────────────────────────── */
+[data-theme] .menu-btn {
+    color: var(--text-sidebar-default) !important;
+}
+
+[data-theme] .menu-btn:hover,
+[data-theme] .menu-item.open>.menu-btn {
+    color: var(--text-primary) !important;
+    background: var(--surface-input) !important;
+}
+
+[data-theme] .menu-dropdown {
+    background: var(--surface-modal) !important;
+    border: 1px solid var(--border-default) !important;
+    border-radius: 8px !important;
+    box-shadow: var(--bento-shadow) !important;
+}
+
+[data-theme] .menu-dd-item {
+    color: var(--text-sidebar-default) !important;
+}
+
+[data-theme] .menu-dd-item:hover {
+    background: var(--surface-hover) !important;
+    color: var(--text-primary) !important;
+}
+
+/* ── §9  MODAL — Settings ─────────────────────────────────────────────────── */
+[data-theme] #shortcuts-modal,
+[data-theme] .s-modal {
+    background: var(--surface-modal) !important;
+    border: 1px solid var(--border-default) !important;
+}
+
+[data-theme] .s-sidenav {
+    background: var(--surface-shell) !important;
+    border-right: 1px solid var(--border-subtle) !important;
+}
+
+[data-theme] .s-bento-card {
+    background: var(--surface-card) !important;
+    border: 1px solid var(--border-subtle) !important;
+}
+
+[data-theme] .s-nav-item.active,
+[data-theme] .modal-tab.active {
+    color: var(--accent-bright) !important;
+    background: rgba(var(--accent-rgb), 0.12) !important;
+}
+
+[data-theme] .form-row select,
+[data-theme] .form-row input[type="text"] {
+    background: var(--surface-input) !important;
+    border-color: var(--border-default) !important;
+    color: var(--text-primary) !important;
+}
+
+/* ── §10 MODAL — Export & Shared Popups ───────────────────────────────────── */
+[data-theme] #export-modal {
+    background: var(--surface-modal) !important;
+    border: 1px solid var(--border-default) !important;
+}
+
+[data-theme] #export-modal-overlay,
+[data-theme] .vh-overlay,
+[data-theme] #about-overlay {
+    background: var(--popup-overlay) !important;
+}
+
+[data-theme] .upgrade-prompt,
+[data-theme] .vh-modal,
+[data-theme] .discovery-popup,
+[data-theme] #about-modal,
+[data-theme] .toast {
+    background: var(--popup-bg) !important;
+    color: var(--popup-text) !important;
+    border: 1px solid var(--popup-border) !important;
+    box-shadow: var(--popup-shadow) !important;
+}
+
+/* ── §11 COMPONENT SPECIFIC MAPPINGS (Phase 1) ────────────────────────────── */
+
+/* Search Panel */
+[data-theme] .cm-panel.cm-search {
+    background: var(--search-panel-bg) !important;
+    border: 1px solid var(--search-panel-border) !important;
+    border-top: 1px solid var(--search-panel-rim) !important;
+}
+
+[data-theme] .cm-panel.cm-search input.cm-textfield {
+    background: var(--surface-input) !important;
+    border-color: var(--border-default) !important;
+    color: var(--text-primary) !important;
+}
+
+/* AI Palette */
+[data-theme] .ai-palette {
+    background: var(--ai-palette-bg) !important;
+    border: 1px solid var(--ai-palette-border) !important;
+}
+
+/* Preview Toolbar */
+[data-theme] #preview-toolbar {
+    background: var(--toolbar-bg) !important;
+    border: 1px solid var(--toolbar-border) !important;
+    box-shadow: var(--toolbar-shadow) !important;
+}
+
+/* TOC Header */
+[data-theme] .toc-header {
+    background: var(--toc-header-bg) !important;
+    color: var(--toc-header-text) !important;
+}
+
+/* Ruler */
+[data-theme] .ruler {
+    background: var(--ruler-bg) !important;
+    box-shadow: var(--ruler-shadow) !important;
+}
+
+/* ── §12 BADGE — PRO / Premium Chip ──────────────────────────────────────── */
+/*
+   Shared contract: all .badge-pro instances use semantic tokens.
+   No hardcoded colors here. Theme files may skin via token overrides only.
+   Spacing (margin) is a layout concern — handled by context, not this rule.
+*/
+[data-theme] .badge-pro {
+    display: inline-flex;
+    align-items: center;
+    line-height: 1;
+    border-radius: 4px;
+    padding: 2px 6px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    background: var(--accent);
+    color: var(--text-on-accent);
+    vertical-align: middle;
+    flex-shrink: 0;
+}
+
+/* Large badge variant — used in overlay/unlock prompt context */
+[data-theme] .badge-pro-lg {
+    padding: 6px 14px;
+    font-size: 13px;
+    border-radius: 6px;
+    background: var(--accent);
+    color: var(--text-on-accent);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+/* ── §13 SCROLLBARS & SELECTION ────────────────────────────────────────────── */
+[data-theme] ::-webkit-scrollbar-thumb {
+    background: rgba(var(--accent-rgb), 0.3) !important;
+}
+
+[data-theme] ::selection {
+    background: var(--selection-bg) !important;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   END OF SHARED TEMPLATE — §12 badge-pro §13 scrollbars/selection
+   ══════════════════════════════════════════════════════════════════════════ */

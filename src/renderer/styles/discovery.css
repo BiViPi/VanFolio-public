@@ -1,0 +1,137 @@
+/* ─────────────────────────────────────────────────────────────────────────────
+   Discovery Mode — Phase 4.1.2
+   Hover tooltips for novel features; active only during first-run discovery
+   ───────────────────────────────────────────────────────────────────────────── */
+
+/* ── Target glow ────────────────────────────────────────────────────────────── */
+
+.discovery-target {
+  position: relative;
+}
+
+.discovery-target::after {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: inherit;
+  border: 1.5px solid var(--accent);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s;
+  border-radius: 6px;
+}
+
+.discovery-target:hover::after {
+  opacity: 0.5;
+}
+
+/* ── Popup ──────────────────────────────────────────────────────────────────── */
+
+.discovery-popup {
+  position: fixed;
+  z-index: 10010;
+  /* above settings-panel (10002) */
+  width: 260px;
+  border-radius: 10px;
+  padding: 14px 14px 12px;
+  font-family: var(--font-ui, Inter, sans-serif);
+  font-size: 13px;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.18s ease, transform 0.18s ease;
+  pointer-events: none;
+}
+
+.discovery-popup--visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* ── Close button (top-right × ) ────────────────────────────────────────────── */
+
+.discovery-popup-close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  border-radius: 4px;
+  padding: 0;
+  transition: background 0.15s, color 0.15s;
+}
+
+/* ── Inner content ──────────────────────────────────────────────────────────── */
+
+.discovery-popup-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-right: 16px;
+  /* avoid overlap with × button */
+}
+
+.discovery-popup-title {
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.discovery-popup-desc {
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+[data-theme] .discovery-popup-desc,
+[data-theme] .discovery-popup-dismiss,
+[data-theme] .discovery-popup-kbd {
+  color: var(--popup-text-muted) !important;
+}
+
+[data-theme] .discovery-popup-close {
+  color: var(--popup-text-muted) !important;
+}
+
+[data-theme] .discovery-popup-close:hover {
+  color: var(--popup-text) !important;
+}
+
+.discovery-popup-kbd {
+  display: inline-block;
+  padding: 2px 7px;
+  border-radius: 4px;
+  border: 1px solid var(--popup-border);
+  background: transparent;
+  color: var(--popup-text-muted);
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 11px;
+  align-self: flex-start;
+  margin-top: 2px;
+}
+
+/* ── "Got it" dismiss button ────────────────────────────────────────────────── */
+
+.discovery-popup-dismiss {
+  margin-top: 8px;
+  padding: 0;
+  background: none;
+  border: none;
+  font-family: inherit;
+  font-size: 11px;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-color: transparent;
+  transition: color 0.15s, text-decoration-color 0.15s;
+  text-align: left;
+}
+
+.discovery-popup-dismiss:hover {
+  text-decoration-color: currentColor;
+}

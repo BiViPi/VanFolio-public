@@ -1,0 +1,89 @@
+/* ── Slash Command Popup (Refactored) ───────────────────────────────────────── */
+
+#slash-popup {
+  position: fixed;
+  z-index: 1000;
+  width: 260px;
+  max-height: 320px;
+  overflow-y: auto;
+  background: var(--popup-bg);
+  border: 1px solid var(--border-subtle);
+  border-top: 1px solid var(--rim-light);
+  border-radius: 8px;
+  box-shadow: var(--popup-shadow);
+  padding: 4px;
+  display: none;
+  backdrop-filter: blur(12px);
+
+  /* Animation */
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: opacity 120ms ease-out, transform 120ms ease-out;
+}
+
+#slash-popup.visible {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.slash-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  color: var(--text-secondary);
+  transition: background 80ms ease;
+  user-select: none;
+}
+
+.slash-item:hover,
+.slash-item.active {
+  background: var(--surface-hover);
+  color: var(--text-primary);
+}
+
+.slash-item-icon {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  background: var(--surface-active);
+  font-size: 12px;
+  font-weight: 700;
+  flex-shrink: 0;
+  color: var(--accent);
+}
+
+.slash-item-label {
+  flex: 1;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.slash-item-shortcut {
+  font-size: 11px;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+}
+
+.slash-empty {
+  padding: 16px;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 13px;
+}
+
+#slash-popup::-webkit-scrollbar {
+  width: 3px;
+}
+
+#slash-popup::-webkit-scrollbar-thumb {
+  background: var(--border-subtle);
+  border-radius: 2px;
+}

@@ -1,0 +1,359 @@
+/* ─────────────────────────────────────────────────────────────────────────────
+   VanFolio — Theme: Prussian Blue & Deep Focus (Dark Obsidian)
+   "Absolute Contrast | Technical Precision | Deep Work"
+   ───────────────────────────────────────────────────────────────────────────── */
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   LAYER 1: TOKEN BLOCK (Canonical)
+   ───────────────────────────────────────────────────────────────────────── */
+[data-theme="dark-obsidian"] {
+  /* ── App Shell ── */
+  --surface-app: transparent;
+  --surface-shell: rgba(13, 19, 29, 0.5);
+  --surface-sidebar: rgba(13, 19, 29, 0.45);
+  --surface-panel: rgba(13, 19, 29, 0.45);
+  --surface-editor: #020202;
+  --surface-preview: rgba(13, 19, 29, 0.45);
+
+  /* ── Overlay & Modal ── */
+  --surface-modal: #090E16;
+  --surface-card: #0D131D;
+
+  /* ── Input & Interactive Component ── */
+  --surface-input: rgba(255, 255, 255, 0.05);
+
+  /* ── Active / Hover States ── */
+  --surface-hover: rgba(255, 255, 255, 0.05);
+  --surface-active: rgba(38, 166, 154, 0.15);
+
+  /* ── Primary Text Layers ── */
+  --text-primary: #FFFFFF;
+  --text-secondary: #ECEFF1;
+  --text-muted: #B0BEC5;
+  --text-on-accent: #FFFFFF;
+
+  /* ── Navigation Text ── */
+  --text-sidebar-default: #CFD8DC;
+  --text-sidebar-active: #33C2B4;
+  --text-sidebar-muted: #90A4AE;
+  --text-toc-default: #CFD8DC;
+  --text-toc-active: #33C2B4;
+
+  /* ── Accent Tokens ── */
+  --accent: #26A69A;
+  --accent-rgb: 38, 166, 154;
+  --accent-bright: #33C2B4;
+  --accent-dim: #1E7D7A;
+
+  /* ── Border Tokens ── */
+  --border-subtle: rgba(255, 255, 255, 0.05);
+  --border-default: rgba(56, 178, 172, 0.25);
+  --border-strong: rgba(56, 178, 172, 0.4);
+
+  /* ── Popup & Tooltip Tokens ── */
+  --popup-bg: #131C2B;
+  --popup-bg-subtle: rgba(13, 19, 29, 0.8);
+  --popup-text: #E8EAF0;
+  --popup-text-muted: #8FA8B8;
+  --popup-border: rgba(38, 166, 154, 0.25);
+  --popup-shadow: 0 24px 64px rgba(0, 0, 0, 0.8);
+  --popup-overlay: rgba(0, 0, 0, 0.6);
+  --popup-accent-text: #FFFFFF;
+
+  --tooltip-bg: rgba(7, 14, 22, 0.96);
+  --tooltip-text: #EAF7F6;
+  --tooltip-border: rgba(56, 178, 172, 0.26);
+  --tooltip-shadow: 0 16px 36px rgba(0, 0, 0, 0.42);
+
+  /* ── Layout & Editor Tokens ── */
+  --bento-radius: 12px;
+  --bento-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  --bento-border: 1px solid var(--border-default);
+
+  --selection-bg: rgba(56, 178, 172, 0.25);
+
+  --syn-heading: #38B2AC;
+  --syn-bold: #FFFFFF;
+  --syn-italic: #80DEEA;
+  --syn-code: #54CBC4;
+  --syn-link: #33C2B4;
+  --syn-punct: #B0BEC5;
+
+  --doc-heading: #38B2AC;
+  --doc-accent: #2D8A87;
+  --doc-border: rgba(56, 178, 172, 0.12);
+  --doc-border-subtle: rgba(255, 255, 255, 0.04);
+  --doc-code-bg: rgba(27, 38, 59, 0.4);
+
+  /* ── State & Alert Tokens ── */
+  --color-success: #38B2AC;
+  --color-error: #EF4444;
+  --focus-ring: 0 0 0 2px rgba(38, 166, 154, 0.4);
+
+  /* ── Component Specific Surface Tokens (Phase 1) ── */
+  --search-panel-bg: rgba(13, 19, 29, 0.95);
+  --search-panel-border: var(--border-default);
+  --search-panel-rim: rgba(255, 255, 255, 0.1);
+
+  --ai-palette-bg: rgba(9, 14, 22, 0.98);
+  --ai-palette-border: var(--accent);
+  --ai-palette-placeholder: var(--text-muted);
+
+  --toolbar-bg: rgba(13, 19, 29, 0.85);
+  --toolbar-border: var(--border-subtle);
+  --toolbar-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+
+  --toc-header-bg: var(--surface-shell);
+  --toc-header-text: var(--text-primary);
+
+  --ruler-bg: var(--accent-dim);
+  --ruler-shadow: 0 0 15px rgba(38, 166, 154, 0.3);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   LAYER 2: ALIAS BLOCK (Backward Compatibility)
+   ───────────────────────────────────────────────────────────────────────── */
+[data-theme="dark-obsidian"] {
+  /* ── Surface aliases ── */
+  --bg-sidebar: var(--surface-sidebar);
+  --bg-panel: var(--surface-panel);
+  --bg-editor: var(--surface-editor);
+  --bg-titlebar: var(--surface-shell);
+  --bg-input: var(--surface-input);
+  --bg-panel-rgb: 13, 19, 29;
+
+  /* ── Accent aliases ── */
+  --gold: var(--accent);
+  --gold-rgb: var(--accent-rgb);
+  --gold-bright: var(--accent-bright);
+  --gold-dim: var(--accent-dim);
+  --green-bright: var(--accent-bright);
+  --green-mid: var(--accent);
+  --green-dark: var(--accent-dim);
+
+  /* ── Border aliases ── */
+  --border: var(--border-default);
+  --border-light: var(--border-subtle);
+  --glass-rim: rgba(255, 255, 255, 0.12);
+
+  /* ── Text aliases ── */
+  --text-ink: #E0E4E8;
+
+  /* ── Legacy Document/Preview aliases ── */
+  --cream: #090E16;
+  --cream-rgb: 9, 14, 22;
+  --cream-dim: #05080C;
+
+  /* ── Legacy State aliases ── */
+  --sidebar-active-bg: var(--surface-active);
+  --sidebar-active-text: var(--text-sidebar-active);
+
+  /* ── Popup aliases ── */
+  --chronicle-popup-bg: var(--popup-bg);
+  --chronicle-popup-bg-strong: var(--popup-bg-subtle);
+  --chronicle-popup-text: var(--popup-text);
+  --chronicle-popup-text-muted: var(--popup-text-muted);
+  --chronicle-popup-border: var(--popup-border);
+  --chronicle-popup-shadow: var(--popup-shadow);
+  --chronicle-popup-overlay: var(--popup-overlay);
+
+  /* ── Semantic aliases ── */
+  --accent-primary: var(--accent);
+  --state-hover: var(--surface-hover);
+  --state-active: var(--surface-active);
+  --divider: var(--border-subtle);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   LAYER 3: EFFECT BLOCK (Design Specific)
+   ───────────────────────────────────────────────────────────────────────── */
+/* BACKGROUND_STRATEGY: TYPE_IMAGE */
+[data-theme="dark-obsidian"] {
+  --bg-app: url('../assets/obsidian-vibe.png') center center / cover no-repeat fixed;
+}
+
+/* ── Shell Glassmorphism ── */
+[data-theme="dark-obsidian"] #titlebar {
+  background: var(--surface-shell) !important;
+  backdrop-filter: blur(28px) saturate(160%);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+[data-theme="dark-obsidian"] #statusbar {
+  background: var(--surface-shell) !important;
+  border-top: 1px solid var(--border-default) !important;
+  backdrop-filter: blur(20px);
+}
+
+[data-theme="dark-obsidian"] #icon-sidebar {
+  background: rgba(13, 19, 29, 0.92) !important;
+  backdrop-filter: blur(24px) saturate(150%);
+}
+
+[data-theme="dark-obsidian"] #secondary-sidebar,
+[data-theme="dark-obsidian"] #toc-sidebar {
+  background: rgba(13, 19, 29, 0.98) !important;
+  backdrop-filter: blur(20px);
+  margin: 12px 0 12px 12px !important;
+}
+
+/* TOC sidebar syncs margins but avoids the 16px left gap if it's on the right */
+[data-theme="dark-obsidian"] #toc-sidebar {
+  margin: 0 !important;
+}
+
+[data-theme="dark-obsidian"] #editor-panel {
+  background: #020202 !important;
+  margin: 0 !important;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+}
+
+[data-theme="dark-obsidian"] #panels {
+  padding: 12px !important;
+}
+
+[data-theme="dark-obsidian"] .cm-lineNumbers .cm-gutterElement {
+  opacity: 0.75 !important;
+}
+
+[data-theme="dark-obsidian"] .cm-quote {
+  color: #80CBC4 !important;
+  font-style: italic;
+}
+
+[data-theme="dark-obsidian"] #preview-panel {
+  background: rgba(9, 14, 22, 0.98) !important;
+  backdrop-filter: blur(16px);
+  margin: 0 !important;
+}
+
+/* Custom Scrollbar for Obsidian Preview */
+[data-theme="dark-obsidian"] #preview-panel::-webkit-scrollbar {
+  width: 4px;
+}
+
+[data-theme="dark-obsidian"] #preview-panel::-webkit-scrollbar-thumb {
+  background: rgba(56, 178, 172, 0.2);
+  border-radius: 10px;
+}
+
+[data-theme="dark-obsidian"] #preview-panel::-webkit-scrollbar-thumb:hover {
+  background: rgba(56, 178, 172, 0.4);
+}
+
+/* ── Custom Interaction Effects (Glows & Scales) ── */
+[data-theme="dark-obsidian"] .win-controls button:hover,
+[data-theme="dark-obsidian"] .icon-btn:hover,
+[data-theme="dark-obsidian"] .icon-btn-ai:hover,
+[data-theme="dark-obsidian"] .titlebar-toggle-btn:hover,
+[data-theme="dark-obsidian"] .icon-btn.active,
+[data-theme="dark-obsidian"] .titlebar-toggle-btn.active {
+  text-shadow: 0 0 10px rgba(var(--accent-rgb), 0.6);
+  transform: scale(1.08);
+}
+
+[data-theme="dark-obsidian"] .titlebar-toggle-btn.panel-hidden:hover {
+  text-shadow: 0 0 10px rgba(var(--accent-rgb), 0.6);
+}
+
+[data-theme="dark-obsidian"] .win-controls button:hover {
+  text-shadow: 0 0 10px rgba(var(--accent-rgb), 0.8);
+  transform: scale(1.2);
+}
+
+[data-theme="dark-obsidian"] .file-item.active,
+[data-theme="dark-obsidian"] .tree-file.active {
+  color: #33C2B4 !important;
+  text-shadow: 0 0 10px rgba(51, 194, 180, 0.6);
+}
+
+[data-theme="dark-obsidian"] #toc-content a.toc-active {
+  color: #33C2B4 !important;
+  text-shadow: 0 0 10px rgba(51, 194, 180, 0.6);
+  transform: translateX(2px);
+}
+
+[data-theme="dark-obsidian"] .icon-btn.active::before {
+  box-shadow: 0 0 10px rgba(var(--accent-rgb), 0.5);
+}
+
+[data-theme="dark-obsidian"] .s-nav-item.active,
+[data-theme="dark-obsidian"] .modal-tab.active {
+  text-shadow: 0 0 10px rgba(var(--accent-rgb), 0.4);
+}
+
+/* ── Tabs (File Tabs) Override ── */
+[data-theme="dark-obsidian"] .file-tab {
+  background: rgba(255, 255, 255, 0.03) !important;
+  border-radius: 8px 8px 0 0 !important;
+  margin: 0 2px;
+}
+
+[data-theme="dark-obsidian"] .file-tab.active {
+  border-left: 1px solid var(--border) !important;
+  border-right: 1px solid var(--border) !important;
+}
+
+/* ── Settings Panel Tokens Overrides ── */
+[data-theme="dark-obsidian"] #settings-panel {
+  backdrop-filter: none !important;
+}
+
+[data-theme="dark-obsidian"] #shortcuts-modal,
+[data-theme="dark-obsidian"] .s-modal,
+[data-theme="dark-obsidian"] #export-modal {
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+/* ── Search Panel Overrides ── */
+[data-theme="dark-obsidian"] .cm-panel.cm-search input.cm-textfield {
+  background-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+/* ── Preview Toolbar Overrides ── */
+[data-theme="dark-obsidian"] #preview-toolbar {
+  background: linear-gradient(to right, rgba(27, 38, 59, 0.97) 0%, rgba(56, 178, 172, 0.06) 100%) !important;
+  border: 1px solid rgba(56, 178, 172, 0.35) !important;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.40) !important;
+}
+
+[data-theme="dark-obsidian"] .ptb-group {
+  border-color: rgba(56, 178, 172, 0.25) !important;
+}
+
+[data-theme="dark-obsidian"] .ptb-group .ptb-btn {
+  border-right-color: rgba(56, 178, 172, 0.18) !important;
+}
+
+/* ── Zen Mode: Dark Obsidian Immersive Workspace ── */
+[data-zen-theme="dark"] {
+  --zen-bg: url('../assets/obsidian-vibe.png') center center / cover no-repeat fixed;
+  --zen-canvas-bg: rgba(2, 2, 2, 0.95);
+  --zen-canvas-text: #FFFFFF;
+  --zen-canvas-border: rgba(56, 178, 172, 0.25);
+  --zen-canvas-shadow: 0 40px 100px rgba(0, 0, 0, 0.8);
+  --zen-accent: #33C2B4;
+  --zen-line-num: #B0BEC5;
+  --zen-muted: #8FA8B8;
+  --zen-status-bg: linear-gradient(180deg, rgba(7, 14, 22, 0.88) 0%, rgba(9, 14, 22, 0.96) 100%);
+  --zen-status-border: rgba(56, 178, 172, 0.18);
+}
+
+[data-theme='dark-obsidian'] #zen-overlay::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: url('../assets/obsidian-vibe.png') center center / cover no-repeat fixed !important;
+  filter: blur(10px);
+  transform: scale(1.05);
+  backdrop-filter: blur(8px) saturate(120%) !important;
+}
+
+[data-theme='dark-obsidian'] #zen-canvas {
+  background: rgba(9, 14, 22, 0.7) !important;
+  backdrop-filter: blur(24px) !important;
+  border: 1px solid rgba(56, 178, 172, 0.2) !important;
+  box-shadow: 0 60px 120px rgba(0, 0, 0, 0.8) !important;
+}

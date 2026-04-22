@@ -1,0 +1,133 @@
+/* ─────────────────────────────────────────────────────────────────────────────
+   VanFolio — Design Tokens (tokens.css)
+   ⚠️ NEVER hardcode colors in HTML/JS/CSS components
+   All colors must use var(--token-name) defined here
+   See specs_engineering.md section 8
+   ───────────────────────────────────────────────────────────────────────────── */
+
+:root {
+   /* ── Layout backgrounds ── */
+   --bg-app: ;
+   --bg-sidebar: ;
+   --bg-editor: ;
+   --bg-titlebar: ;
+   --bg-panel: ;
+   --bg-panel-rgb: ;
+   --bg-input: ;
+
+   /* ── Borders ── */
+   --border: ;
+   --border-light: ;
+
+   /* ── Brand Colors ── */
+   --green-dark: ;
+   --green-mid: ;
+   --green-bright: ;
+   --sidebar-active-bg: ;
+   --gold: ;
+   --gold-rgb: ;
+   --gold-bright: ;
+   --gold-dim: ;
+
+   /* ── Text ── */
+   --text-primary: ;
+   --text-secondary: ;
+   --text-muted: ;
+   --text-ink: ;
+   --tooltip-bg: var(--popup-bg);
+   --tooltip-text: var(--popup-text);
+   --tooltip-border: var(--popup-border);
+   --tooltip-shadow: var(--popup-shadow);
+
+   /* ── Preview (paper) ── */
+   --cream: ;
+   --cream-rgb: ;
+   --cream-dim: ;
+
+   /* ── Syntax (CodeMirror editor) ── */
+   --syn-heading: ;
+   --syn-bold: ;
+   --syn-italic: ;
+   --syn-code: ;
+   --syn-link: ;
+   --syn-punct: ;
+
+   /* ── Typography ── */
+   --font-ui: 'Inter', system-ui, -apple-system, sans-serif;
+   --font-preview: 'Newsreader', 'Georgia', 'Times New Roman', serif;
+   --font-heading: 'Newsreader', 'Georgia', 'Times New Roman', serif;
+   --font-mono: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
+
+   /* ── Preview Typography Scale ── */
+   --preview-base-size: 15px;
+   --preview-line-height: 1.8;
+   --preview-h1-size: 33.8px;
+   --preview-h2-size: 22.5px;
+   --preview-h3-size: 18.8px;
+   --preview-h4-size: 16.5px;
+   --preview-h5-size: 15px;
+   --preview-h6-size: 13.5px;
+
+   /* ── Paper Padding Standard (96 DPI) ── */
+   --paper-padding-v: 76px;
+   --paper-padding-h: 83px;
+   --paper-margin-top: 76px;
+   --paper-margin-right: 83px;
+   --paper-margin-bottom: 76px;
+   --paper-margin-left: 83px;
+
+   /* ── Print Native Tokens (Phase 3 Alignment) ── */
+   --print-base-size: 11pt;
+   --print-line-height: 1.72;
+   --print-margin-top: 20mm;
+   --print-margin-right: 22mm;
+   --print-margin-bottom: 20mm;
+   --print-margin-left: 22mm;
+   --print-h1-size: 22pt;
+   --print-h2-size: 17pt;
+   --print-h3-size: 13pt;
+   --print-h4-size: 11pt;
+   --print-h5-size: 10pt;
+   --print-paragraph-spacing: 0.8em;
+
+   /* ── Spacing & Sizing ── */
+   --icon-sidebar-w: 40px;
+   --secondary-sidebar-w: 220px;
+   --toc-sidebar-w: 220px;
+   --titlebar-h: 30px;
+   --toolbar-h: 44px;
+   --statusbar-h: 24px;
+
+   /* ── Semantic Surface Tokens (New Phase 5) ── */
+   --surface-app: ;
+   --surface-shell: ;
+   --surface-sidebar: ;
+   --surface-panel: ;
+   --surface-editor: ;
+   --surface-preview: ;
+   --surface-modal: ;
+   --surface-card: ;
+   --surface-active: ;
+
+   /* ── Semantic Border & Shadow Tokens ── */
+   --border-subtle: ;
+   --border-default: ;
+   --border-strong: ;
+   --divider: ;
+   --shadow-soft: ;
+   --shadow-modal: ;
+
+   /* ── Interaction State Tokens ── */
+   --state-hover: ;
+   --state-active: ;
+   --state-focus-ring: ;
+   --state-selected: ;
+
+   /* ── Animation ── */
+   --transition-fast: 150ms ease;
+   --transition-med: 250ms ease;
+
+   /* ── Toggle knob ── */
+   --toggle-knob: var(--text-on-accent);
+   --selection-bg: ;
+}

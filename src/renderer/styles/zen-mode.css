@@ -1,0 +1,215 @@
+/* ─────────────────────────────────────────────────────────────────────────────
+   VanFolio — Zen Mode (Refactored)
+   Ownership: structure only. Colors via var(--zen-*).
+   ───────────────────────────────────────────────────────────────────────────── */
+
+#zen-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    overflow-y: auto;
+    background: var(--zen-bg);
+    isolation: isolate;
+    scrollbar-width: thin;
+    scrollbar-color: var(--zen-muted) transparent;
+}
+
+#zen-overlay>* {
+    position: relative;
+    z-index: 1;
+}
+
+body.zen-mode-active #app {
+    display: none;
+}
+
+body.zen-mode-active>#ai-palette {
+    z-index: 10000;
+}
+
+#zen-overlay::-webkit-scrollbar {
+    width: 6px;
+}
+
+#zen-overlay::-webkit-scrollbar-thumb {
+    background-color: var(--zen-muted);
+    border-radius: 6px;
+}
+
+#zen-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 48px;
+    opacity: 0.4;
+    transition: opacity 0.5s ease-in-out;
+    z-index: 10;
+    font-family: var(--font-heading), serif;
+}
+
+#zen-header:hover {
+    opacity: 1;
+}
+
+.zen-header-left,
+.zen-header-right {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    flex: 1;
+}
+
+.zen-header-right {
+    justify-content: flex-end;
+}
+
+#zen-back,
+#zen-settings-btn,
+#zen-close-btn {
+    background: none;
+    border: none;
+    color: var(--zen-accent);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: transform 0.2s, color 0.3s;
+}
+
+#zen-back:hover,
+#zen-settings-btn:hover,
+#zen-close-btn:hover {
+    color: var(--text-primary);
+    transform: scale(1.1);
+}
+
+.zen-wordmark {
+    font-size: 20px;
+    color: var(--zen-accent);
+    font-style: italic;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 320px;
+}
+
+#zen-mode-toggle {
+    display: flex;
+    gap: 32px;
+    font-size: 16px;
+}
+
+.zen-tab {
+    background: none;
+    border: none;
+    color: var(--zen-muted);
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.zen-tab:hover {
+    color: var(--zen-accent);
+}
+
+.zen-tab.active {
+    color: var(--zen-accent);
+    border-bottom: 1px solid var(--zen-accent);
+    padding-bottom: 2px;
+}
+
+#zen-canvas-wrapper {
+    padding: 96px 24px 80px;
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+#zen-canvas {
+    width: 100%;
+    max-width: calc(var(--paper-width, 794px) + 160px);
+    background-color: var(--zen-canvas-bg);
+    border-radius: 12px;
+    box-shadow: var(--zen-canvas-shadow);
+    border: 1px solid var(--zen-canvas-border);
+    padding: 64px 80px;
+    min-height: calc(100vh - 176px);
+    position: relative;
+    overflow: hidden;
+}
+
+#zen-canvas::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    display: none;
+}
+
+[data-zen-theme="dark"] #zen-canvas::before {
+    display: none;
+}
+
+#zen-editor-view,
+#zen-preview-view {
+    width: 100%;
+    height: 100%;
+}
+
+#zen-editor-view {
+    font-family: var(--font-mono), monospace;
+    color: var(--zen-canvas-text);
+    line-height: 1.8;
+    background: var(--zen-canvas-bg);
+}
+
+#zen-editor-view .cm-editor {
+    background: var(--zen-canvas-bg) !important;
+    color: var(--zen-canvas-text) !important;
+}
+
+#zen-editor-view .cm-gutters {
+    background: var(--zen-canvas-bg) !important;
+    border: none !important;
+    color: var(--zen-line-num) !important;
+}
+
+#zen-editor-view .cm-cursor {
+    border-left-color: var(--zen-accent) !important;
+    border-left-width: 2px !important;
+}
+
+#zen-editor-view .cm-selectionBackground {
+    background: var(--selection-bg) !important;
+    opacity: 0.3;
+}
+
+#zen-status {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 64px;
+    padding: 16px 24px;
+    opacity: 0.3;
+    transition: opacity 0.7s ease-in-out;
+    font-size: 11px;
+    text-transform: uppercase;
+    color: var(--zen-muted);
+    background: var(--zen-status-bg);
+    backdrop-filter: none;
+    border-top: 1px solid var(--zen-status-border);
+}
+
+[data-zen-hide-status="true"] #zen-status {
+    display: none;
+}
+
+#zen-status:hover {
+    opacity: 1;
+}
